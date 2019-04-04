@@ -33,6 +33,7 @@ export class DevelopersListComponent implements OnInit {
       this.developers.push(new Developer(element.id,
         element.fullName,
         element.internalCV,
+        element.externalCV,
         element.photoBase64));
     });
   }

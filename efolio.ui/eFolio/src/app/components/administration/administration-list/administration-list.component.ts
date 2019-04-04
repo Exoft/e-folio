@@ -7,7 +7,7 @@ import { MatTableDataSource } from '@angular/material';
   templateUrl: './administration-list.component.html',
   styleUrls: ['./administration-list.component.scss']
 })
-export class AdministrationListComponent implements OnInit {
+export class AdministrationListComponent  {
   // @Output() public showSpinner = new EventEmitter<any>();
 
   users: User[] = [];
@@ -15,9 +15,6 @@ export class AdministrationListComponent implements OnInit {
   displayedColumns: string[] = ['id', 'firstName', 'lastName', 'userName', 'email', 'emailConfirmed'];
   dataSource = new MatTableDataSource();
   constructor(private administrationService: AdministrationService) { }
-
-  ngOnInit() {
-  }
 
   showAllUsers() {
     this.administrationService.getAllUsers()
@@ -37,7 +34,7 @@ export class AdministrationListComponent implements OnInit {
         element.lastName,
         element.userName,
         element.email,
-        element.emailConfirmed))
+        element.emailConfirmed));
     });
   }
 }

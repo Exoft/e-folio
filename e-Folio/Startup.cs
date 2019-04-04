@@ -1,6 +1,8 @@
 using AutoMapper;
 using eFolio.API.Seeds;
 using eFolio.BL;
+using eFolio.BL.Interfaces;
+using eFolio.BL.Services;
 using eFolio.EF;
 using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -56,6 +58,7 @@ namespace eFolio.API
 
             services.AddScoped<IProjectService, ProjectService>();
             services.AddScoped<IDeveloperService, DeveloperService>();
+            services.AddScoped<IAdminService, AdminService>();
 
             //Automapping
             var mappingConfig = new MapperConfiguration(mc => { mc.AddProfile(new Automapper()); });
@@ -132,13 +135,13 @@ namespace eFolio.API
                     context.Database.Migrate();
                     contextForAuth.Database.Migrate();
 
-                    ContextInitializer.Initialize(context);
+                    ContextInitializer.Initialize(context, new Elastic.ElasticSearch());
                     ContextInitializerForAuth.Initialize(contextForAuth, userManager).Wait();
                 }
                 catch (Exception ex)
                 {
                     var logger = serviceProvider.GetRequiredService<ILogger<Program>>();
-                    logger.LogError(ex, "An error occured while seeding the database.");
+                    logger.LogError(ex, "An error occured while  seeding the database.");
                 }
                 //using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
                 //{

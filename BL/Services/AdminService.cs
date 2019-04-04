@@ -8,7 +8,7 @@ using eFolio.EF;
 
 namespace eFolio.BL.Services
 {
-    class AdminService : IAdminService
+    public class AdminService : IAdminService
     {
         private AdminRepository adminRepository;
         public AdminService(AuthDBContext authDB)

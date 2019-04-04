@@ -1,4 +1,5 @@
 ﻿using eFolio.EF;
+using eFolio.Elastic;
 using Microsoft.EntityFrameworkCore.Internal;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ namespace eFolio.API.Seeds
 {
     public class ContextInitializer
     {
-        public static void Initialize(eFolioDBContext context)
+        public static void Initialize(eFolioDBContext context, IEfolioElastic efolioElastic)
         {
             context.Database.EnsureCreated();
 
@@ -114,18 +115,33 @@ namespace eFolio.API.Seeds
             if (!context.Developers.Any())
             {
                 context.Developers.Add(
-                    new DeveloperEntity() {
+                    new DeveloperEntity()
+                    {
                         FullName = "Yurii Levko",
                         CVLink = "asfasf",
                         PhotoLink = Environment.CurrentDirectory + "\\Seeds\\PhotoDeveloper\\Levko.jpg"
                     });
                 context.Developers.Add(
-                    new DeveloperEntity() {
+                    new DeveloperEntity()
+                    {
                         FullName = "Ostap Roik",
                         CVLink = "swrherh",
                         PhotoLink = Environment.CurrentDirectory + "\\Seeds\\PhotoDeveloper\\Roik.jpg"
                     });
                 context.SaveChanges();
+
+                List<DeveloperEntity> updatedDevelopers = context.Developers.ToList();
+
+                foreach (var developer in updatedDevelopers)
+                {
+                    efolioElastic.AddItem(new ElasticDeveloperData()
+                    {
+                        Id = developer.Id,
+                        ExternalCV = "This is external cv",
+                        InternalCV = "This is internal cv",
+                        Name = developer.FullName
+                    });
+                }
             }
         }
     }
