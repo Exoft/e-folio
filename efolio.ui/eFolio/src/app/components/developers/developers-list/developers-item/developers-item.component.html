@@ -1,3 +1,7 @@
-<p>
-  developers-item works!
-</p>
+<mat-card class="card"> 
+  <div class="position">
+      <img class="photoDeveloper" [src]="developer.photoBase64" />
+      <p class="developerName">{{ developer.fullName }}</p>
+      <p class="cv" >{{ developer.externalCV }}</p>
+  </div>
+ </mat-card>

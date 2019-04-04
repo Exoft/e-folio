@@ -15,8 +15,14 @@ export class AdministrationService {
       headers: headers
     })
   }
-  addHeaders(headers: HttpHeaders) {
-    headers.append('Authorization', 'qwertyasdfgzxvc');
-    headers.append('Own-header', 'Name');
+  addHeaders(headers: HttpHeaders) {  
+    headers.append('Access-Control-Allow-Origin', '*');
+  }
+  getOneUser(id: number){
+    let headers = new HttpHeaders();
+    this.addHeaders(headers);
+    return this.http.get('http://localhost:5000/api/admin/'+ id.toString(), {
+      headers: headers
+    });
   }
 }

@@ -1,0 +1,170 @@
+2019-04-04 11:07:55.595 +03:00 [INF] User profile is available. Using 'C:\Users\sasha\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2019-04-04 11:08:17.294 +03:00 [WRN] Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data, this mode should only be enabled during development.
+2019-04-04 11:08:17.462 +03:00 [INF] Entity Framework Core 2.1.8-servicing-32085 initialized 'eFolioDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: SensitiveDataLoggingEnabled 
+2019-04-04 11:08:33.829 +03:00 [INF] Executed DbCommand (3,827ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+CREATE DATABASE [eFolio];
+2019-04-04 11:08:36.190 +03:00 [INF] Executed DbCommand (2,357ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+IF SERVERPROPERTY('EngineEdition') <> 5
+BEGIN
+    ALTER DATABASE [eFolio] SET READ_COMMITTED_SNAPSHOT ON;
+END;
+2019-04-04 11:08:36.446 +03:00 [INF] Executed DbCommand (136ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [__EFMigrationsHistory] (
+    [MigrationId] nvarchar(150) NOT NULL,
+    [ProductVersion] nvarchar(32) NOT NULL,
+    CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+);
+2019-04-04 11:08:36.501 +03:00 [INF] Executed DbCommand (54ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2019-04-04 11:08:36.553 +03:00 [INF] Executed DbCommand (52ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2019-04-04 11:08:36.583 +03:00 [INF] Applying migration '20190221124323_InitialMigration'.
+2019-04-04 11:08:36.709 +03:00 [INF] Executed DbCommand (33ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Clients] (
+    [Id] int NOT NULL IDENTITY,
+    [FullNameClient] nvarchar(max) NULL,
+    [Comment] nvarchar(max) NULL,
+    CONSTRAINT [PK_Clients] PRIMARY KEY ([Id])
+);
+2019-04-04 11:08:36.739 +03:00 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Contexsts] (
+    [Id] int NOT NULL IDENTITY,
+    [SourceCodeLink] nvarchar(max) NULL,
+    CONSTRAINT [PK_Contexsts] PRIMARY KEY ([Id])
+);
+2019-04-04 11:08:36.761 +03:00 [INF] Executed DbCommand (21ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Developers] (
+    [Id] int NOT NULL IDENTITY,
+    [FullName] nvarchar(max) NULL,
+    [CVLink] nvarchar(max) NULL,
+    CONSTRAINT [PK_Developers] PRIMARY KEY ([Id])
+);
+2019-04-04 11:08:36.783 +03:00 [INF] Executed DbCommand (22ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [ContactPersons] (
+    [Id] int NOT NULL IDENTITY,
+    [FullName] nvarchar(max) NULL,
+    [eMail] nvarchar(max) NULL,
+    [Phone] int NOT NULL,
+    [Comment] nvarchar(max) NULL,
+    [ClientEntityId] int NULL,
+    CONSTRAINT [PK_ContactPersons] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_ContactPersons_Clients_ClientEntityId] FOREIGN KEY ([ClientEntityId]) REFERENCES [Clients] ([Id]) ON DELETE NO ACTION
+);
+2019-04-04 11:08:36.805 +03:00 [INF] Executed DbCommand (22ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [FolioFiles] (
+    [Id] int NOT NULL IDENTITY,
+    [IsInternal] bit NOT NULL,
+    [Path] nvarchar(max) NULL,
+    [ContextEntityId] int NULL,
+    CONSTRAINT [PK_FolioFiles] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_FolioFiles_Contexsts_ContextEntityId] FOREIGN KEY ([ContextEntityId]) REFERENCES [Contexsts] ([Id]) ON DELETE NO ACTION
+);
+2019-04-04 11:08:36.827 +03:00 [INF] Executed DbCommand (22ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Projects] (
+    [Id] int NOT NULL IDENTITY,
+    [Name] nvarchar(max) NULL,
+    [ContextId] int NULL,
+    CONSTRAINT [PK_Projects] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Projects_Contexsts_ContextId] FOREIGN KEY ([ContextId]) REFERENCES [Contexsts] ([Id]) ON DELETE NO ACTION
+);
+2019-04-04 11:08:36.934 +03:00 [INF] Executed DbCommand (107ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [ProjectDeveloperEntity] (
+    [ProjectId] int NOT NULL,
+    [DeveloperId] int NOT NULL,
+    CONSTRAINT [PK_ProjectDeveloperEntity] PRIMARY KEY ([ProjectId], [DeveloperId]),
+    CONSTRAINT [FK_ProjectDeveloperEntity_Developers_DeveloperId] FOREIGN KEY ([DeveloperId]) REFERENCES [Developers] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_ProjectDeveloperEntity_Projects_ProjectId] FOREIGN KEY ([ProjectId]) REFERENCES [Projects] ([Id]) ON DELETE CASCADE
+);
+2019-04-04 11:08:36.957 +03:00 [INF] Executed DbCommand (23ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_ContactPersons_ClientEntityId] ON [ContactPersons] ([ClientEntityId]);
+2019-04-04 11:08:36.980 +03:00 [INF] Executed DbCommand (22ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_FolioFiles_ContextEntityId] ON [FolioFiles] ([ContextEntityId]);
+2019-04-04 11:08:37.002 +03:00 [INF] Executed DbCommand (22ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_ProjectDeveloperEntity_DeveloperId] ON [ProjectDeveloperEntity] ([DeveloperId]);
+2019-04-04 11:08:37.025 +03:00 [INF] Executed DbCommand (22ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Projects_ContextId] ON [Projects] ([ContextId]);
+2019-04-04 11:08:37.048 +03:00 [INF] Executed DbCommand (23ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20190221124323_InitialMigration', N'2.1.8-servicing-32085');
+2019-04-04 11:08:37.123 +03:00 [INF] Applying migration '20190326105653_EditContexts'.
+2019-04-04 11:08:37.166 +03:00 [INF] Executed DbCommand (26ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [FolioFiles] DROP CONSTRAINT [FK_FolioFiles_Contexsts_ContextEntityId];
+2019-04-04 11:08:37.188 +03:00 [INF] Executed DbCommand (23ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Projects] DROP CONSTRAINT [FK_Projects_Contexsts_ContextId];
+2019-04-04 11:08:37.216 +03:00 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DROP INDEX [IX_Projects_ContextId] ON [Projects];
+2019-04-04 11:08:37.240 +03:00 [INF] Executed DbCommand (24ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Contexsts] DROP CONSTRAINT [PK_Contexsts];
+2019-04-04 11:08:39.379 +03:00 [INF] Executed DbCommand (2,139ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[Contexsts]', N'Contexts';
+2019-04-04 11:08:39.488 +03:00 [INF] Executed DbCommand (109ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var0 sysname;
+SELECT @var0 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[Projects]') AND [c].[name] = N'ContextId');
+IF @var0 IS NOT NULL EXEC(N'ALTER TABLE [Projects] DROP CONSTRAINT [' + @var0 + '];');
+ALTER TABLE [Projects] ALTER COLUMN [ContextId] int NOT NULL;
+2019-04-04 11:08:39.527 +03:00 [INF] Executed DbCommand (39ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DROP INDEX [IX_FolioFiles_ContextEntityId] ON [FolioFiles];
+DECLARE @var1 sysname;
+SELECT @var1 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[FolioFiles]') AND [c].[name] = N'ContextEntityId');
+IF @var1 IS NOT NULL EXEC(N'ALTER TABLE [FolioFiles] DROP CONSTRAINT [' + @var1 + '];');
+ALTER TABLE [FolioFiles] ALTER COLUMN [ContextEntityId] int NOT NULL;
+CREATE INDEX [IX_FolioFiles_ContextEntityId] ON [FolioFiles] ([ContextEntityId]);
+2019-04-04 11:08:39.550 +03:00 [INF] Executed DbCommand (23ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Contexts] ADD CONSTRAINT [PK_Contexts] PRIMARY KEY ([Id]);
+2019-04-04 11:08:39.572 +03:00 [INF] Executed DbCommand (22ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX [IX_Projects_ContextId] ON [Projects] ([ContextId]);
+2019-04-04 11:08:39.596 +03:00 [INF] Executed DbCommand (23ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [FolioFiles] ADD CONSTRAINT [FK_FolioFiles_Contexts_ContextEntityId] FOREIGN KEY ([ContextEntityId]) REFERENCES [Contexts] ([Id]) ON DELETE CASCADE;
+2019-04-04 11:08:39.674 +03:00 [INF] Executed DbCommand (77ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Projects] ADD CONSTRAINT [FK_Projects_Contexts_ContextId] FOREIGN KEY ([ContextId]) REFERENCES [Contexts] ([Id]) ON DELETE CASCADE;
+2019-04-04 11:08:39.747 +03:00 [INF] Executed DbCommand (23ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20190326105653_EditContexts', N'2.1.8-servicing-32085');
+2019-04-04 11:08:39.838 +03:00 [INF] Applying migration '20190326134440_EditDeveloperAddPhoto'.
+2019-04-04 11:08:39.882 +03:00 [INF] Executed DbCommand (25ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Developers] ADD [PhotoLink] nvarchar(max) NULL;
+2019-04-04 11:08:39.904 +03:00 [INF] Executed DbCommand (22ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20190326134440_EditDeveloperAddPhoto', N'2.1.8-servicing-32085');
+2019-04-04 11:08:39.979 +03:00 [INF] Applying migration '20190327134713_rename_contexts'.
+2019-04-04 11:08:40.012 +03:00 [ERR] Failed executing DbCommand (23ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [FolioFiles] DROP CONSTRAINT [FK_FolioFiles_Contexsts_ContextEntityId];
+System.Data.SqlClient.SqlException (0x80131904): 'FK_FolioFiles_Contexsts_ContextEntityId' is not a constraint.
+Could not drop constraint. See previous errors.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite, String methodName)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+ClientConnectionId:d3548b50-0554-4d68-b479-bfa621d966f6
+Error Number:3728,State:1,Class:16
+2019-04-04 11:08:40.442 +03:00 [ERR] An error occured while seeding the database.
+System.Data.SqlClient.SqlException (0x80131904): 'FK_FolioFiles_Contexsts_ContextEntityId' is not a constraint.
+Could not drop constraint. See previous errors.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite, String methodName)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteNonQuery(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Migrations.MigrationCommand.ExecuteNonQuery(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.MigrationCommandExecutor.ExecuteNonQuery(IEnumerable`1 migrationCommands, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.Migrate(String targetMigration)
+   at Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.Migrate(DatabaseFacade databaseFacade)
+   at eFolio.API.Startup.Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider) in E:\E-Folio\e-Folio\Startup.cs:line 135
+ClientConnectionId:d3548b50-0554-4d68-b479-bfa621d966f6
+Error Number:3728,State:1,Class:16
