@@ -9,20 +9,14 @@ export class AdministrationService {
   constructor(private http: HttpClient) { }
 
   getAllUsers() {
-    const headers = new HttpHeaders();
-    this.addHeaders(headers);
+    const httpHeaders = new HttpHeaders();
+    this.addHeaders(httpHeaders);
     return this.http.get('http://localhost:5000/api/admin', {
-      headers
+      headers: httpHeaders
     });
   }
   addHeaders(headers: HttpHeaders) {
-    headers.append('Access-Control-Allow-Origin', '*');
-  }
-  getOneUser(id: number) {
-    const headers = new HttpHeaders();
-    this.addHeaders(headers);
-    return this.http.get('http://localhost:5000/api/admin/' + id.toString(), {
-      headers
-    });
+    headers.append('Authorization', 'qwertyasdfgzxvc');
+    headers.append('Own-header', 'Name');
   }
 }
