@@ -1,8 +1,6 @@
 using AutoMapper;
 using eFolio.API.Seeds;
 using eFolio.BL;
-using eFolio.BL.Interfaces;
-using eFolio.BL.Services;
 using eFolio.EF;
 using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;

@@ -8,7 +8,7 @@ import { Developer } from 'src/app/components/models/developer.model';
 })
 export class DevelopersItemComponent implements OnInit {
 
-  @Input() developer:Developer;
+  @Input() developer: Developer;
 
   constructor() { }
 
