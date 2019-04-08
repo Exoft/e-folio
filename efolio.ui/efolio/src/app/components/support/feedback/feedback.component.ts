@@ -11,14 +11,16 @@ import {Router} from '@angular/router';
   styleUrls: ['./feedback.component.scss']
 })
 export class FeedbackComponent implements OnInit {
-public feedbackform  = new FormGroup({
-  name: new FormControl(null),
-  email: new FormControl(null, [Validators.email, Validators.required]),
-  message: new FormControl(null, [Validators.required])
-});
+public feedbackForm: FormGroup;
 
  // constructor() { }
-  constructor() { }
+  constructor() {
+    this.feedbackForm = new FormGroup({
+      name: new FormControl(null),
+      email: new FormControl(null, [Validators.email, Validators.required]),
+      message: new FormControl(null, [Validators.required])
+    });
+  }
 
   ngOnInit() {}
 

@@ -29,4 +29,12 @@ export class ProjectService {
     headers.append('Authorization', 'kbasdlkgjbasalskfhalkdg');
     headers.append('Own-header', 'Ostap');
   }
+
+  DeleteProject(id: number) {
+    const httpHeaders = new HttpHeaders();
+    this.addHeaders(httpHeaders);
+    return this.http.delete<void>('http://localhost:5000/api/Project/' + id, {
+      headers: httpHeaders
+    });
+  }
 }
