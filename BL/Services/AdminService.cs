@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using eFolio.BL.Interfaces;
+﻿using System.Collections.Generic;
+using eFolio.BL;
 using eFolio.BL.Repositories;
 using eFolio.EF;
 
-namespace eFolio.BL.Services
+namespace eFolio.BL
 {
     public class AdminService : IAdminService
     {
