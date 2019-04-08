@@ -1,8 +1,10 @@
+<div>
 <input type="text" [(ngModel)]="searchString">
 <ul>
-  <li><input type="checkbox"> .Net </li>
-  <li><input type="checkbox"> Java </li>
-  <li><input type="checkbox"> Angular </li>
-  <li><input type="checkbox"> Node </li>
+  <li><input type="checkbox" (change)="check1change()"> .Net </li>
+  <li><input type="checkbox" (change)="check2change()"> Java </li>
+  <li><input type="checkbox" (change)="check3change()"> Angular </li>
+  <li><input type="checkbox" (change)="check4change()"> Node </li>
 </ul>
 <button [disabled]="!searchString" (click)="onSearchClick()">Search</button>
+</div>
