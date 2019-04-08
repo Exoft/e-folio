@@ -18,11 +18,26 @@ export class ProjectListComponent implements OnInit {
     this.projectService.GetAll().subscribe(
       (res) => {
         res.forEach(element => {
-          this.projects.push(new Project(element.id, element.name, element.internalDescription));
+          this.projects.push(new Project(element.id, element.name, element.internalDescription, element.photoBase64));
         });
         this.loaderService.stopLoading();
       }
-
     );
+  }
+  public getSearchedProject(searchString: string) {
+    this.projectService.getProjectSearched(searchString).subscribe(
+      (res) => {
+        res.forEach(element => {
+          this.projects.push(new Project(element.id, element.name, element.internalDescription, element.photoBase64));
+        });
+        this.loaderService.stopLoading();
+      }
+    );
+  }
+
+  onSearch(request: string) {
+    console.log(request);
+    this.projects = [];
+    this.getSearchedProject(request);
   }
 }

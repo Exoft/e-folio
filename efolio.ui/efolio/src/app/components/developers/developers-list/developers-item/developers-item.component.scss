@@ -1,0 +1,29 @@
+.developerName{
+    font-size: 25px;
+    display: inline-block;
+    margin-left: 10%;
+
+}
+
+.cv {
+    font-size: 16px;
+    font-weight: 400;
+    
+}
+
+.card.mat-card
+{
+    padding: 0;
+}
+
+.position { 
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+img {
+    width: 24%;
+    //height: auto;
+}

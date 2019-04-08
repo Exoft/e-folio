@@ -1,8 +1,7 @@
 div.container {
   width: 100%;
   height: 100%;
-  background-image: url("https://www.agernic.com/uploads/css-background-image-size-fit-full-screen.jpg");
-
+  
   background-size: cover;
   background-position: center;
   background-attachment: scroll;
@@ -16,6 +15,9 @@ div.header {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  width: 100%;
+  height: 100%;
 }
 
 span.header {

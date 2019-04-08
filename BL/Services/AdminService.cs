@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using eFolio.BL.Interfaces;
+﻿using System.Collections.Generic;
+using eFolio.BL;
 using eFolio.BL.Repositories;
 using eFolio.EF;
 
-namespace eFolio.BL.Services
+namespace eFolio.BL
 {
-    class AdminService : IAdminService
+    public class AdminService : IAdminService
     {
         private AdminRepository adminRepository;
         public AdminService(AuthDBContext authDB)

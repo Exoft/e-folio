@@ -36,6 +36,8 @@ import { FeedbackComponent } from './components/support/feedback/feedback.compon
 import { ContactInfoComponent } from './components/support/contact-info/contact-info.component';
 import { AdministrationListComponent } from './components/administration/administration-list/administration-list.component';
 import { ProjectPageComponent } from './components/projects/project-page/project-page.component';
+import { AuthGuard } from './guards/auth.guard';
+import { AdminProjectListComponent } from './components/administration/admin-project-list/admin-project-list.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +63,8 @@ import { ProjectPageComponent } from './components/projects/project-page/project
     SpinnerComponent,
     DevelopersFilterComponent,
     AdministrationListComponent,
-    ProjectPageComponent
+    ProjectPageComponent,
+    AdminProjectListComponent
   ],
   imports: [
     BrowserModule,
@@ -77,7 +80,8 @@ import { ProjectPageComponent } from './components/projects/project-page/project
     ProjectService,
     UserLoggingService,
     ValidationService,
-    DeveloperServiceService
+    DeveloperServiceService,
+    AuthGuard
   ],
   bootstrap: [
     AppComponent
