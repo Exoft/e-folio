@@ -14,7 +14,8 @@
 
   <mat-form-field>
     <input matInput placeholder="Password" [type]="passwordVisibility ? 'password' : 'text'" formControlName="password">
-    <mat-icon matSuffix (click)="passwordVisibility = !passwordVisibility">{{passwordVisibility ? 'visibility_off' : 'visibility'}}</mat-icon>
+    <mat-icon matSuffix (click)="passwordVisibility = !passwordVisibility">
+      {{passwordVisibility ? 'visibility_off' : 'visibility'}}</mat-icon>
     <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
       Password is <strong>required</strong>
     </mat-error>

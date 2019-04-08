@@ -12,7 +12,7 @@ export class ContactInfoComponent implements OnInit {
 
   public contactinfoForm: FormGroup;
 
-  constructor(private loaderService: LoaderService) { 
+  constructor(private loaderService: LoaderService) {
     this.contactinfoForm = new FormGroup({});
   }
 

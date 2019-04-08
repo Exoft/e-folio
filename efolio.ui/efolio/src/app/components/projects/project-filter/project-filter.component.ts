@@ -1,5 +1,5 @@
-import {Component, Input, Output} from '@angular/core';
-import {EventEmitter} from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-project-filter',
@@ -13,7 +13,7 @@ export class ProjectFilterComponent {
   public check3 = false;
   public check4 = false;
   @Output() public SearchStringChanged = new EventEmitter<string>();
-  constructor() {}
+  constructor() { }
   public onSearchClick() {
     console.log(this.searchString);
     this.SearchStringChanged.emit(this.searchString);
@@ -23,28 +23,32 @@ export class ProjectFilterComponent {
     this.check1 = !this.check1;
     if (this.check1 === true) {
       this.searchString += ' .Net';
-      } else {this.searchString = this.searchString.replace(' .Net', '');
+    } else {
+      this.searchString = this.searchString.replace(' .Net', '');
     }
-    }
+  }
   check2change() {
     this.check2 = !this.check2;
     if (this.check2 === true) {
       this.searchString += ' Java';
-    } else {this.searchString = this.searchString.replace(' Java', '');
+    } else {
+      this.searchString = this.searchString.replace(' Java', '');
     }
   }
   check3change() {
     this.check3 = !this.check3;
     if (this.check3 === true) {
       this.searchString += ' Angular.';
-    } else {this.searchString = this.searchString.replace(' Angular', '');
+    } else {
+      this.searchString = this.searchString.replace(' Angular', '');
     }
   }
   check4change() {
     this.check4 = !this.check4;
     if (this.check4 === true) {
       this.searchString += ' Node';
-    } else {this.searchString = this.searchString.replace(' Node', '');
+    } else {
+      this.searchString = this.searchString.replace(' Node', '');
     }
   }
 }

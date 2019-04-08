@@ -16,14 +16,14 @@ export class UserPageComponent implements OnInit {
   });
   public emailForm = new FormGroup({
     email: new FormControl('')
-  })
+  });
 
   public passwordVisibility = true;
   public confirmPasswordVisibility = true;
   public user: User;
 
   constructor(private loaderService: LoaderService,
-              private userLoggingService: UserLoggingService) { }
+    private userLoggingService: UserLoggingService) { }
 
   ngOnInit() {
     this.loaderService.stopLoading();
@@ -31,9 +31,9 @@ export class UserPageComponent implements OnInit {
     this.userLoggingService.getUserInfo(localStorage.getItem('userId'))
       .subscribe(response => {
         this.getData(response);
-        this.personalInfoForm.controls['firstName'].setValue(this.user.firstName);
-        this.personalInfoForm.controls['lastName'].setValue(this.user.lastName);
-        this.emailForm.controls['email'].setValue(this.user.email);
+        this.personalInfoForm.controls.firstName.setValue(this.user.firstName);
+        this.personalInfoForm.controls.lastName.setValue(this.user.lastName);
+        this.emailForm.controls.email.setValue(this.user.email);
       },
         error => {
           return console.log(error);

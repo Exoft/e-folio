@@ -36,4 +36,4 @@ export class AdministrationListComponent implements OnInit {
         element.emailConfirmed));
     });
   }
-} 
+}

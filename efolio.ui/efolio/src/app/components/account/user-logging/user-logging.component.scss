@@ -16,7 +16,8 @@ $elementsMainColor: rgb(115, 1, 180);
   align-items: center;
 }
 
-.register-container, .login-container {
+.register-container,
+.login-container {
   width: 100%;
 }
 
@@ -91,7 +92,7 @@ div.auth-container {
   }
 }
 
-@media screen and (max-width: 999px){
+@media screen and (max-width: 999px) {
   .all-component-container-mobile {
     display: none;
   }
@@ -111,7 +112,7 @@ div.auth-container {
   .all-component-container-desktop {
     display: none;
   }
-  
+
   .all-component-container-mobile {
     display: flex;
   }

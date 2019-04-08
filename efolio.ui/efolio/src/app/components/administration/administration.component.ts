@@ -9,9 +9,9 @@ import { AdministrationService } from 'src/app/services/administration.service';
 })
 export class AdministrationComponent implements OnInit {
   opened = true;
-  public showUsersTable: boolean = false;
-  public showProjectsTable: boolean = false;
-  public showDevelopersTable: boolean = false;
+  public showUsersTable = false;
+  public showProjectsTable = false;
+  public showDevelopersTable = false;
   public users: User[] = [];
 
   constructor(

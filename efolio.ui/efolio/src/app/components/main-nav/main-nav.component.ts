@@ -12,8 +12,8 @@ export class MainNavComponent {
 
   constructor(private authService: UserLoggingService) { }
 
-  public isAdmin() : boolean {
-    return this.authService.userRole() === "admin";
+  public isAdmin(): boolean {
+    return this.authService.userRole() === 'admin';
   }
 
   @HostListener('window:resize', ['$event']) onResize() {

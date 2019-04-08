@@ -7,11 +7,10 @@ import { Component } from '@angular/core';
 export class AccountComponent {
     constructor() { }
 
-    readAccesToken(){
+    readAccesToken() {
       const token = localStorage.getItem('accessToken');
-      if(token){
+      if (token) {
         return false;
-      }
-      else return true;
+      } else { return true; }
     }
 }

@@ -20,7 +20,7 @@ export class ProjectPageComponent implements OnInit {
   ngOnInit() {
     this.loaderService.startLoading();
     const id = +this.route.snapshot.paramMap.get('id');
-    
+
     this.projectService.GetProject(id).subscribe(
       (res) => {
         this.projectInput = new Project(res.id, res.name, res.internalDescription, res.photoBase64);
@@ -30,8 +30,9 @@ export class ProjectPageComponent implements OnInit {
   }
 
   public returnImgUrl(img) {
-    if(img)
-      return `url(${img})`
-    return 'none'
+    if (img) {
+      return `url(${img})`;
+    }
+    return 'none';
   }
 }

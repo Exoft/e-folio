@@ -5,7 +5,7 @@ import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import { LoaderService } from 'src/app/services/loader.service';
-import * as jwt_decode from 'jwt-decode'; 
+import * as jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-sign-in',
@@ -27,7 +27,7 @@ export class SignInComponent {
   }
 
   onSignIn() {
-    this.loaderService.startLoading(); 
+    this.loaderService.startLoading();
     if (this.loginForm.valid) {
       const formData = {
         email: this.loginForm.value.email,
@@ -38,8 +38,8 @@ export class SignInComponent {
       this.userLoggingService.signIn(formData)
         .subscribe(
           response => {
-            let token = response[tokenKey];
-            let decodedToken = jwt_decode(token);
+            const token = response[tokenKey];
+            const decodedToken = jwt_decode(token);
             localStorage.setItem('accessToken', token);
             localStorage.setItem('validUntil', decodedToken.exp);
             localStorage.setItem('userRole', decodedToken.role);
@@ -48,7 +48,7 @@ export class SignInComponent {
               duration: 5000,
               panelClass: ['snackBar'],
             });
-            //this.router.navigate(['projects']);
+            // this.router.navigate(['projects']);
           },
           error => {
             this.loginValidatorBar.open('Invalid Email or Password', 'Ok', {
