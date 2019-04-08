@@ -14,7 +14,6 @@ namespace eFolio.API
 {
     [Route("api/[controller]")]
     [Produces("application/json")]
-    [HasClaim("role", "admin")]
     [ApiController]
     public class AdminController : ControllerBase
     {
@@ -34,7 +33,8 @@ namespace eFolio.API
             this._adminService = adminService;
         }
 
-        [HttpGet]
+        [HttpGet] 
+        [HasClaim("role", "admin")]
         public IActionResult GetUsersList()
         {
             try
@@ -50,7 +50,7 @@ namespace eFolio.API
 
         // GET api/<controller>/5
         [HttpGet]
-        [Route("{id}")]
+        [Route("{id}")]  
         public IActionResult GetUser(int id)
         {
             try
@@ -70,13 +70,15 @@ namespace eFolio.API
         }
 
         // POST api/<controller>
-        [HttpPost]
+        [HttpPost] 
+        [HasClaim("role", "admin")]
         public void Post([FromBody]string value)
         {
         }
 
         // PUT api/<controller>/5
         [HttpPut]
+        [HasClaim("role", "admin")]
         public IActionResult Edit(UserEntity user)
         {
             try
@@ -93,6 +95,7 @@ namespace eFolio.API
 
         // DELETE api/<controller>/5
         [HttpDelete("{id}")]
+        [HasClaim("role", "admin")]
         public IActionResult Delete(int id)
         {
             try

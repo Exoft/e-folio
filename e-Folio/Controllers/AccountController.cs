@@ -53,6 +53,7 @@ namespace eFolio.API.Controllers
                             tokenResponse.ExpiresIn,
                             tokenResponse.TokenType,
                             tokenResponse.RefreshToken,
+                            user.Id
                         });
                     else
                         throw new Exception($"{tokenResponse.Error}{Environment.NewLine}{tokenResponse.ErrorDescription}");

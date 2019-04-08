@@ -5,6 +5,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./account.component.scss']
 })
 export class AccountComponent {
+    constructor() { }
 
-  constructor() { }
+    readAccesToken(){
+      const token = localStorage.getItem('accessToken');
+      if(token){
+        return false;
+      }
+      else return true;
+    }
 }

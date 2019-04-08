@@ -6,12 +6,13 @@ import { AppMaterialsModule } from './app-materials.module';
 import { LayoutModule } from '@angular/cdk/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // Services
 import { ProjectService } from './services/project.service';
 import { UserLoggingService } from './services/user-logging.service';
 import { ValidationService } from './services/validation.service';
+import { Interceptor } from './services/interceptor.service';
 
 // Components
 import { AppComponent } from './app.component';
@@ -38,6 +39,7 @@ import { AdministrationListComponent } from './components/administration/adminis
 import { ProjectPageComponent } from './components/projects/project-page/project-page.component';
 import { AuthGuard } from './guards/auth.guard';
 import { AdminProjectListComponent } from './components/administration/admin-project-list/admin-project-list.component';
+import { UserPageComponent } from './components/account/user-page/user-page.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +66,8 @@ import { AdminProjectListComponent } from './components/administration/admin-pro
     DevelopersFilterComponent,
     AdministrationListComponent,
     ProjectPageComponent,
-    AdminProjectListComponent
+    AdminProjectListComponent,
+    UserPageComponent
   ],
   imports: [
     BrowserModule,
@@ -77,6 +80,11 @@ import { AdminProjectListComponent } from './components/administration/admin-pro
     HttpClientModule
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: Interceptor,
+      multi: true
+    },
     ProjectService,
     UserLoggingService,
     ValidationService,

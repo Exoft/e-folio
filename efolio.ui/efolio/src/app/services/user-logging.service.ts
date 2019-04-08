@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import * as jwt_decode from 'jwt-decode';
+//import * as jwt_decode from 'jwt-decode';
 import { Observable } from 'rxjs';
 import { map, catchError, retry } from 'rxjs/operators';
 
@@ -15,6 +15,14 @@ export class UserLoggingService {
 
     signUp(registerData) {
         return this.httpClient.post('http://localhost:5000/api/account/register/', registerData);
+    }
+
+    getUserInfo(userId){
+        return this.httpClient.get('http://localhost:5000/api/admin/' + userId);
+    }
+
+    changePersonalInfo(userInfo){
+        
     }
 
     isAuthenticated() : boolean {
