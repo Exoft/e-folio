@@ -1,15 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {LoaderService} from '../../services/loader.service';
+import { Component } from '@angular/core';
 
 @Component({
   templateUrl: './support.component.html',
   styleUrls: ['./support.component.scss']
 })
-export class SupportComponent implements OnInit {
-  constructor(private loaderService: LoaderService) { }
+export class SupportComponent {
 
-  ngOnInit() {
-    this.loaderService.stopLoading();
-  }
-
+  constructor() { }
 }

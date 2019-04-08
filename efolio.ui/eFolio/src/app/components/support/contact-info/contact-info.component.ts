@@ -1,5 +1,4 @@
-import {Component, OnInit} from '@angular/core';
-import {LoaderService} from '../../../services/loader.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-contact-info',
@@ -7,12 +6,7 @@ import {LoaderService} from '../../../services/loader.service';
   styleUrls: ['./contact-info.component.scss']
 })
 
-export class ContactInfoComponent implements OnInit {
+export class ContactInfoComponent {
 
-  // constructor() { }
-  constructor(private loaderService: LoaderService) { }
-
-  ngOnInit() {
-    this.loaderService.stopLoading();
-  }
+  constructor() { }
 }
