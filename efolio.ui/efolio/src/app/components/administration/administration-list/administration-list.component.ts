@@ -26,6 +26,8 @@ export class AdministrationListComponent implements OnInit {
       );
   }
 
+  
+
   getData(responce) {
     responce.forEach(element => {
       this.users.push(new User(element.id,

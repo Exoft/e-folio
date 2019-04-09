@@ -2,6 +2,7 @@
     <button class="designedButton" (click)="showAllUsers()">Show users</button>
     <button class="designedButton" (click)="showAllProjects()">Show projects</button>
     <button class="designedButton" (click)="showAllDevelopers()">Show developers</button>
-</div>
+  </div>
 
-<app-admin-project-list *ngIf="showProjectsTable"></app-admin-project-list>
+<app-admin-developers-list *ngIf="showDevelopersTable"></app-admin-developers-list>
+<app-administration-list *ngIf="showUsersTable"></app-administration-list>

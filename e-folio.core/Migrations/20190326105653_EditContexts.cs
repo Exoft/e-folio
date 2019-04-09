@@ -5,67 +5,67 @@ namespace e_folio.core.Migrations
     public partial class EditContexts : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
-        {/*
-            migrationBuilder.DropForeignKey(
-                name: "FK_FolioFiles_Contexsts_ContextEntityId",
-                table: "FolioFiles");
+        {
+            //migrationBuilder.DropForeignKey(
+            //    name: "FK_FolioFiles_Contexsts_ContextEntityId",
+            //    table: "FolioFiles");
 
-            migrationBuilder.DropForeignKey(
-                name: "FK_Projects_Contexsts_ContextId",
-                table: "Projects");
+            //migrationBuilder.DropForeignKey(
+            //    name: "FK_Projects_Contexsts_ContextId",
+            //    table: "Projects");
 
-            migrationBuilder.DropIndex(
-                name: "IX_Projects_ContextId",
-                table: "Projects");
+            //migrationBuilder.DropIndex(
+            //    name: "IX_Projects_ContextId",
+            //    table: "Projects");
 
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_Contexsts",
-                table: "Contexsts");
+            //migrationBuilder.DropPrimaryKey(
+            //    name: "PK_Contexsts",
+            //    table: "Contexsts");
 
-            migrationBuilder.RenameTable(
-                name: "Contexsts",
-                newName: "Contexts");
+            //migrationBuilder.RenameTable(
+            //    name: "Contexsts",
+            //    newName: "Contexts");
 
-            migrationBuilder.AlterColumn<int>(
-                name: "ContextId",
-                table: "Projects",
-                nullable: false,
-                oldClrType: typeof(int),
-                oldNullable: true);
+            //migrationBuilder.AlterColumn<int>(
+            //    name: "ContextId",
+            //    table: "Projects",
+            //    nullable: false,
+            //    oldClrType: typeof(int),
+            //    oldNullable: true);
 
-            migrationBuilder.AlterColumn<int>(
-                name: "ContextEntityId",
-                table: "FolioFiles",
-                nullable: false,
-                oldClrType: typeof(int),
-                oldNullable: true);
+            //migrationBuilder.AlterColumn<int>(
+            //    name: "ContextEntityId",
+            //    table: "FolioFiles",
+            //    nullable: false,
+            //    oldClrType: typeof(int),
+            //    oldNullable: true);
 
-            migrationBuilder.AddPrimaryKey(
-                name: "PK_Contexts",
-                table: "Contexts",
-                column: "Id");
+            //migrationBuilder.AddPrimaryKey(
+            //    name: "PK_Contexts",
+            //    table: "Contexts",
+            //    column: "Id");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Projects_ContextId",
-                table: "Projects",
-                column: "ContextId",
-                unique: true);
+            //migrationBuilder.CreateIndex(
+            //    name: "IX_Projects_ContextId",
+            //    table: "Projects",
+            //    column: "ContextId",
+            //    unique: true);
 
-            migrationBuilder.AddForeignKey(
-                name: "FK_FolioFiles_Contexts_ContextEntityId",
-                table: "FolioFiles",
-                column: "ContextEntityId",
-                principalTable: "Contexts",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+            //migrationBuilder.AddForeignKey(
+            //    name: "FK_FolioFiles_Contexts_ContextEntityId",
+            //    table: "FolioFiles",
+            //    column: "ContextEntityId",
+            //    principalTable: "Contexts",
+            //    principalColumn: "Id",
+            //    onDelete: ReferentialAction.Cascade);
 
-            migrationBuilder.AddForeignKey(
-                name: "FK_Projects_Contexts_ContextId",
-                table: "Projects",
-                column: "ContextId",
-                principalTable: "Contexts",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);*/
+            //migrationBuilder.AddForeignKey(
+            //    name: "FK_Projects_Contexts_ContextId",
+            //    table: "Projects",
+            //    column: "ContextId",
+            //    principalTable: "Contexts",
+            //    principalColumn: "Id",
+            //    onDelete: ReferentialAction.Cascade);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

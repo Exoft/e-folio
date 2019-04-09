@@ -13,6 +13,7 @@ import { LoaderService } from 'src/app/services/loader.service';
 })
 
 export class DevelopersListComponent implements OnInit {
+  public opened = true;
   developers: Developer[] = [];
 
   constructor(private developerService: DeveloperService,

@@ -11,7 +11,8 @@ export class ProjectListComponent implements OnInit {
   public opened = true;
   public projects: Project[] = [];
 
-  constructor(private projectService: ProjectService, private loaderService: LoaderService) { }
+  constructor(private projectService: ProjectService,
+    private loaderService: LoaderService) { }
 
   ngOnInit() {
     this.loaderService.startLoading();
@@ -22,22 +23,7 @@ export class ProjectListComponent implements OnInit {
         });
         this.loaderService.stopLoading();
       }
-    );
-  }
-  public getSearchedProject(searchString: string) {
-    this.projectService.getProjectSearched(searchString).subscribe(
-      (res) => {
-        res.forEach(element => {
-          this.projects.push(new Project(element.id, element.name, element.internalDescription, element.photoBase64));
-        });
-        this.loaderService.stopLoading();
-      }
-    );
-  }
 
-  onSearch(request: string) {
-    console.log(request);
-    this.projects = [];
-    this.getSearchedProject(request);
+    );
   }
 }

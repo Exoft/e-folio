@@ -40,6 +40,10 @@ import { ProjectPageComponent } from './components/projects/project-page/project
 import { AuthGuard } from './guards/auth.guard';
 import { AdminProjectListComponent } from './components/administration/admin-project-list/admin-project-list.component';
 import { UserPageComponent } from './components/account/user-page/user-page.component';
+import { DevelopersPageComponent } from './components/developers/developers-page/developers-page.component';
+import { MatDialogModule } from '@angular/material';
+import { AddDialogComponent } from './components/administration/admin-developers-list/dialogs/add-dialog/add-dialog.component';
+import { AdminDevelopersListComponent } from './components/administration/admin-developers-list/admin-developers-list.component';
 
 @NgModule({
   declarations: [
@@ -67,8 +71,12 @@ import { UserPageComponent } from './components/account/user-page/user-page.comp
     AdministrationListComponent,
     ProjectPageComponent,
     AdminProjectListComponent,
-    UserPageComponent
+    UserPageComponent,
+    DevelopersPageComponent,
+    AdminDevelopersListComponent,
+    AddDialogComponent
   ],
+  entryComponents: [AddDialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -77,7 +85,8 @@ import { UserPageComponent } from './components/account/user-page/user-page.comp
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule
   ],
   providers: [
     {

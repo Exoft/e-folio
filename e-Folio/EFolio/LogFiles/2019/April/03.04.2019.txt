@@ -1,4 +1,7 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 2019-04-03 14:19:23.755 +03:00 [INF] User profile is available. Using 'C:\Users\user\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
 2019-04-03 14:19:30.456 +03:00 [WRN] Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data, this mode should only be enabled during development.
 2019-04-03 14:19:30.857 +03:00 [INF] Entity Framework Core 2.1.8-servicing-32085 initialized 'eFolioDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: SensitiveDataLoggingEnabled 
@@ -20,6 +23,7 @@ DROP INDEX [IX_Projects_ContextId] ON [Projects];
 2019-04-03 14:19:32.550 +03:00 [ERR] Failed executing DbCommand (123ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
 ALTER TABLE [Contexsts] DROP CONSTRAINT [PK_Contexsts];
 System.Data.SqlClient.SqlException (0x80131904): Cannot find the object "Contexsts" because it does not exist or you do not have permissions.
+<<<<<<< Updated upstream
 =======
 2019-04-03 13:48:53.512 +03:00 [INF] User profile is available. Using 'C:\Users\Администратор\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
 2019-04-03 13:48:57.882 +03:00 [WRN] Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data, this mode should only be enabled during development.
@@ -162,6 +166,8 @@ VALUES (N'20190326134440_EditDeveloperAddPhoto', N'2.1.8-servicing-32085');
 ALTER TABLE [FolioFiles] DROP CONSTRAINT [FK_FolioFiles_Contexsts_ContextEntityId];
 System.Data.SqlClient.SqlException (0x80131904): 'FK_FolioFiles_Contexsts_ContextEntityId' is not a constraint.
 Could not drop constraint. See previous errors.
+=======
+>>>>>>> Stashed changes
    at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
    at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
    at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
@@ -170,6 +176,7 @@ Could not drop constraint. See previous errors.
    at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite, String methodName)
    at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
    at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+<<<<<<< Updated upstream
 ClientConnectionId:14310b04-1608-41a6-ba85-ca5215ae2d33
 Error Number:3728,State:1,Class:16
 2019-04-03 13:50:15.608 +03:00 [INF] User profile is available. Using 'C:\Users\Администратор\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
@@ -198,16 +205,21 @@ Could not drop constraint. See previous errors.
    at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
    at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
 <<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 ClientConnectionId:44c3df63-3f58-42b4-8bd8-d045b3e91978
 Error Number:4902,State:1,Class:16
 2019-04-03 14:19:33.303 +03:00 [ERR] An error occured while seeding the database.
 System.Data.SqlClient.SqlException (0x80131904): Cannot find the object "Contexsts" because it does not exist or you do not have permissions.
+<<<<<<< Updated upstream
 =======
 ClientConnectionId:bac0bcf6-e1e7-45f0-9ef2-e4b24d021223
 Error Number:3728,State:1,Class:16
 2019-04-03 13:50:16.120 +03:00 [ERR] An error occured while seeding the database.
 System.Data.SqlClient.SqlException (0x80131904): 'FK_FolioFiles_Contexsts_ContextEntityId' is not a constraint.
 Could not drop constraint. See previous errors.
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
    at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
    at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
@@ -223,6 +235,9 @@ Could not drop constraint. See previous errors.
    at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.Migrate(String targetMigration)
    at Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.Migrate(DatabaseFacade databaseFacade)
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
    at eFolio.API.Startup.Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider) in C:\projects\e-folio\e-Folio\Startup.cs:line 132
 ClientConnectionId:44c3df63-3f58-42b4-8bd8-d045b3e91978
 Error Number:4902,State:1,Class:16
@@ -283,6 +298,7 @@ DROP INDEX [IX_Projects_ContextId] ON [Projects];
 2019-04-03 15:39:13.232 +03:00 [ERR] Failed executing DbCommand (552ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
 ALTER TABLE [Contexsts] DROP CONSTRAINT [PK_Contexsts];
 System.Data.SqlClient.SqlException (0x80131904): Cannot find the object "Contexsts" because it does not exist or you do not have permissions.
+<<<<<<< Updated upstream
 =======
    at eFolio.API.Startup.Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider) in D:\exoft\e-Folio\Startup.cs:line 132
 ClientConnectionId:bac0bcf6-e1e7-45f0-9ef2-e4b24d021223
@@ -306,6 +322,8 @@ ALTER TABLE [FolioFiles] DROP CONSTRAINT [FK_FolioFiles_Contexsts_ContextEntityI
 System.Data.SqlClient.SqlException (0x80131904): 'FK_FolioFiles_Contexsts_ContextEntityId' is not a constraint.
 Could not drop constraint. See previous errors.
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
    at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
    at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
    at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
@@ -315,16 +333,22 @@ Could not drop constraint. See previous errors.
    at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
    at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 ClientConnectionId:e34e5335-588f-4f5f-be18-a812e755544e
 Error Number:4902,State:1,Class:16
 2019-04-03 15:39:15.142 +03:00 [ERR] An error occured while seeding the database.
 System.Data.SqlClient.SqlException (0x80131904): Cannot find the object "Contexsts" because it does not exist or you do not have permissions.
+<<<<<<< Updated upstream
 =======
 ClientConnectionId:62eeb12d-a1f1-4fe0-805f-8bfc7d3f4664
 Error Number:3728,State:1,Class:16
 2019-04-03 13:50:44.962 +03:00 [ERR] An error occured while seeding the database.
 System.Data.SqlClient.SqlException (0x80131904): 'FK_FolioFiles_Contexsts_ContextEntityId' is not a constraint.
 Could not drop constraint. See previous errors.
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
    at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
    at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
@@ -340,6 +364,9 @@ Could not drop constraint. See previous errors.
    at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.Migrate(String targetMigration)
    at Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.Migrate(DatabaseFacade databaseFacade)
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
    at eFolio.API.Startup.Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider) in C:\projects\e-folio\e-Folio\Startup.cs:line 132
 ClientConnectionId:e34e5335-588f-4f5f-be18-a812e755544e
 Error Number:4902,State:1,Class:16
@@ -370,6 +397,7 @@ DROP INDEX [IX_Projects_ContextId] ON [Projects];
 2019-04-03 16:01:35.544 +03:00 [ERR] Failed executing DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
 ALTER TABLE [Contexsts] DROP CONSTRAINT [PK_Contexsts];
 System.Data.SqlClient.SqlException (0x80131904): Cannot find the object "Contexsts" because it does not exist or you do not have permissions.
+<<<<<<< Updated upstream
 =======
    at eFolio.API.Startup.Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider) in D:\exoft\e-Folio\Startup.cs:line 132
 ClientConnectionId:62eeb12d-a1f1-4fe0-805f-8bfc7d3f4664
@@ -395,6 +423,8 @@ ALTER TABLE [FolioFiles] DROP CONSTRAINT [FK_FolioFiles_Contexsts_ContextEntityI
 System.Data.SqlClient.SqlException (0x80131904): 'FK_FolioFiles_Contexsts_ContextEntityId' is not a constraint.
 Could not drop constraint. See previous errors.
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
    at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
    at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
    at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
@@ -404,16 +434,22 @@ Could not drop constraint. See previous errors.
    at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
    at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 ClientConnectionId:9fe91c21-9711-4efa-8be9-df4858046929
 Error Number:4902,State:1,Class:16
 2019-04-03 16:01:35.820 +03:00 [ERR] An error occured while seeding the database.
 System.Data.SqlClient.SqlException (0x80131904): Cannot find the object "Contexsts" because it does not exist or you do not have permissions.
+<<<<<<< Updated upstream
 =======
 ClientConnectionId:7d0f242d-2a21-4b01-8a7c-b11a4f6898c2
 Error Number:3728,State:1,Class:16
 2019-04-03 13:56:11.477 +03:00 [ERR] An error occured while seeding the database.
 System.Data.SqlClient.SqlException (0x80131904): 'FK_FolioFiles_Contexsts_ContextEntityId' is not a constraint.
 Could not drop constraint. See previous errors.
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
    at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
    at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
@@ -429,6 +465,9 @@ Could not drop constraint. See previous errors.
    at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.Migrate(String targetMigration)
    at Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.Migrate(DatabaseFacade databaseFacade)
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
    at eFolio.API.Startup.Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider) in C:\projects\e-folio\e-Folio\Startup.cs:line 132
 ClientConnectionId:9fe91c21-9711-4efa-8be9-df4858046929
 Error Number:4902,State:1,Class:16
@@ -544,6 +583,7 @@ DROP INDEX [IX_Projects_ContextId] ON [Projects];
 2019-04-03 16:04:09.653 +03:00 [ERR] Failed executing DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
 ALTER TABLE [Contexsts] DROP CONSTRAINT [PK_Contexsts];
 System.Data.SqlClient.SqlException (0x80131904): Cannot find the object "Contexsts" because it does not exist or you do not have permissions.
+<<<<<<< Updated upstream
 =======
    at eFolio.API.Startup.Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider) in D:\exoft\e-Folio\Startup.cs:line 132
 ClientConnectionId:7d0f242d-2a21-4b01-8a7c-b11a4f6898c2
@@ -569,6 +609,8 @@ ALTER TABLE [FolioFiles] DROP CONSTRAINT [FK_FolioFiles_Contexsts_ContextEntityI
 System.Data.SqlClient.SqlException (0x80131904): 'FK_FolioFiles_Contexsts_ContextEntityId' is not a constraint.
 Could not drop constraint. See previous errors.
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
    at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
    at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
    at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
@@ -578,16 +620,22 @@ Could not drop constraint. See previous errors.
    at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
    at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 ClientConnectionId:80269409-d612-43c4-b5e0-172326b7358b
 Error Number:4902,State:1,Class:16
 2019-04-03 16:04:09.692 +03:00 [ERR] An error occured while seeding the database.
 System.Data.SqlClient.SqlException (0x80131904): Cannot find the object "Contexsts" because it does not exist or you do not have permissions.
+<<<<<<< Updated upstream
 =======
 ClientConnectionId:4d1c00be-c1a4-4a14-9ae4-14d739082270
 Error Number:3728,State:1,Class:16
 2019-04-03 13:56:40.678 +03:00 [ERR] An error occured while seeding the database.
 System.Data.SqlClient.SqlException (0x80131904): 'FK_FolioFiles_Contexsts_ContextEntityId' is not a constraint.
 Could not drop constraint. See previous errors.
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
    at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
    at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
@@ -603,6 +651,9 @@ Could not drop constraint. See previous errors.
    at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.Migrate(String targetMigration)
    at Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.Migrate(DatabaseFacade databaseFacade)
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
    at eFolio.API.Startup.Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider) in C:\projects\e-folio\e-Folio\Startup.cs:line 132
 ClientConnectionId:80269409-d612-43c4-b5e0-172326b7358b
 Error Number:4902,State:1,Class:16
@@ -629,6 +680,7 @@ DROP INDEX [IX_Projects_ContextId] ON [Projects];
 2019-04-03 16:05:39.951 +03:00 [ERR] Failed executing DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
 ALTER TABLE [Contexsts] DROP CONSTRAINT [PK_Contexsts];
 System.Data.SqlClient.SqlException (0x80131904): Cannot find the object "Contexsts" because it does not exist or you do not have permissions.
+<<<<<<< Updated upstream
 =======
    at eFolio.API.Startup.Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider) in D:\exoft\e-Folio\Startup.cs:line 132
 ClientConnectionId:4d1c00be-c1a4-4a14-9ae4-14d739082270
@@ -680,6 +732,8 @@ ALTER TABLE [FolioFiles] DROP CONSTRAINT [FK_FolioFiles_Contexsts_ContextEntityI
 System.Data.SqlClient.SqlException (0x80131904): 'FK_FolioFiles_Contexsts_ContextEntityId' is not a constraint.
 Could not drop constraint. See previous errors.
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
    at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
    at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
    at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
@@ -689,16 +743,22 @@ Could not drop constraint. See previous errors.
    at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
    at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 ClientConnectionId:ea43f629-84f1-4e43-b336-7094547eb2a9
 Error Number:4902,State:1,Class:16
 2019-04-03 16:05:40.002 +03:00 [ERR] An error occured while seeding the database.
 System.Data.SqlClient.SqlException (0x80131904): Cannot find the object "Contexsts" because it does not exist or you do not have permissions.
+<<<<<<< Updated upstream
 =======
 ClientConnectionId:e92b6757-2e1c-46a7-aafc-088643f5343f
 Error Number:3728,State:1,Class:16
 2019-04-03 13:59:13.013 +03:00 [ERR] An error occured while seeding the database.
 System.Data.SqlClient.SqlException (0x80131904): 'FK_FolioFiles_Contexsts_ContextEntityId' is not a constraint.
 Could not drop constraint. See previous errors.
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
    at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
    at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
@@ -714,6 +774,9 @@ Could not drop constraint. See previous errors.
    at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.Migrate(String targetMigration)
    at Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.Migrate(DatabaseFacade databaseFacade)
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
    at eFolio.API.Startup.Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider) in C:\projects\e-folio\e-Folio\Startup.cs:line 132
 ClientConnectionId:ea43f629-84f1-4e43-b336-7094547eb2a9
 Error Number:4902,State:1,Class:16
@@ -725,6 +788,7 @@ Error Number:4902,State:1,Class:16
 2019-04-03 16:05:41.235 +03:00 [INF] Executing ObjectResult, writing value of type 'eFolio.BL.ProjectService+<GetItemsList>d__7'.
 2019-04-03 16:05:41.254 +03:00 [INF] Entity Framework Core 2.1.8-servicing-32085 initialized 'eFolioDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: SensitiveDataLoggingEnabled 
 2019-04-03 16:05:41.601 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+<<<<<<< Updated upstream
 =======
    at eFolio.API.Startup.Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider) in D:\exoft\e-Folio\Startup.cs:line 132
 ClientConnectionId:e92b6757-2e1c-46a7-aafc-088643f5343f
@@ -1114,14 +1178,20 @@ System.InvalidOperationException: You must either set Authority or Introspection
 2019-04-03 14:12:57.136 +03:00 [INF] Entity Framework Core 2.1.8-servicing-32085 initialized 'eFolioDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: SensitiveDataLoggingEnabled 
 2019-04-03 14:12:58.001 +03:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 SELECT [project].[Id], [project].[ContextId], [project].[Name], [project.Context].[Id], [project.Context].[SourceCodeLink]
 FROM [Projects] AS [project]
 INNER JOIN [Contexts] AS [project.Context] ON [project].[ContextId] = [project.Context].[Id]
 ORDER BY [project.Context].[Id]
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 2019-04-03 16:05:41.755 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
 =======
 2019-04-03 14:12:58.138 +03:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+>>>>>>> Stashed changes
+=======
+2019-04-03 16:05:41.755 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
 >>>>>>> Stashed changes
 SELECT [project.Context.ScreenLinks].[Id], [project.Context.ScreenLinks].[ContextEntityId], [project.Context.ScreenLinks].[IsInternal], [project.Context.ScreenLinks].[Path]
 FROM [FolioFiles] AS [project.Context.ScreenLinks]
@@ -1132,17 +1202,25 @@ INNER JOIN (
 ) AS [t] ON [project.Context.ScreenLinks].[ContextEntityId] = [t].[Id]
 ORDER BY [t].[Id]
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 2019-04-03 16:05:41.857 +03:00 [WRN] The LINQ expression 'GroupBy([pde].ProjectId, _Include(queryContext, [pde], new [] {[pde.DeveloperEntity]}, (queryContext, entity, included) => { ... }))' could not be translated and will be evaluated locally.
 2019-04-03 16:05:41.891 +03:00 [ERR] Failed executing DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
 =======
 2019-04-03 14:12:58.814 +03:00 [WRN] The LINQ expression 'GroupBy([pde].ProjectId, _Include(queryContext, [pde], new [] {[pde.DeveloperEntity]}, (queryContext, entity, included) => { ... }))' could not be translated and will be evaluated locally.
 2019-04-03 14:12:58.826 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
 >>>>>>> Stashed changes
+=======
+2019-04-03 16:05:41.857 +03:00 [WRN] The LINQ expression 'GroupBy([pde].ProjectId, _Include(queryContext, [pde], new [] {[pde.DeveloperEntity]}, (queryContext, entity, included) => { ... }))' could not be translated and will be evaluated locally.
+2019-04-03 16:05:41.891 +03:00 [ERR] Failed executing DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+>>>>>>> Stashed changes
 SELECT [pde].[ProjectId], [pde].[DeveloperId], [pde.DeveloperEntity].[Id], [pde.DeveloperEntity].[CVLink], [pde.DeveloperEntity].[FullName], [pde.DeveloperEntity].[PhotoLink]
 FROM [ProjectDeveloperEntity] AS [pde]
 INNER JOIN [Developers] AS [pde.DeveloperEntity] ON [pde].[DeveloperId] = [pde.DeveloperEntity].[Id]
 ORDER BY [pde].[ProjectId]
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'PhotoLink'.
    at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
    at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
@@ -1300,6 +1378,7 @@ System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'PhotoLink'
    at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
    at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
    at IdentityServer4.Hosting.IdentityServerMiddleware.Invoke(HttpContext context, IEndpointRouter router, IUserSession session, IEventService events) in C:\local\identity\server4\IdentityServer4\src\IdentityServer4\Hosting\IdentityServerMiddleware.cs:line 72
+<<<<<<< Updated upstream
 =======
 2019-04-03 14:13:09.690 +03:00 [INF] Executed action eFolio.Api.Controllers.ProjectController.GetProjects (eFolio.API) in 17403.754800000002ms
 2019-04-03 14:13:09.691 +03:00 [INF] Request finished in 17890.0959ms 200 application/json; charset=utf-8
@@ -1327,11 +1406,16 @@ System.InvalidOperationException: You must either set Authority or Introspection
    at Microsoft.AspNetCore.Authentication.AuthenticationHandler`1.AuthenticateAsync()
    at Microsoft.AspNetCore.Authentication.AuthenticationService.AuthenticateAsync(HttpContext context, String scheme)
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
    at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
    at Microsoft.AspNetCore.Cors.Infrastructure.CorsMiddleware.Invoke(HttpContext context)
    at IdentityServer4.Hosting.BaseUrlMiddleware.Invoke(HttpContext context) in C:\local\identity\server4\IdentityServer4\src\IdentityServer4\Hosting\BaseUrlMiddleware.cs:line 36
    at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
    at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
    at Microsoft.AspNetCore.Cors.Infrastructure.CorsMiddleware.Invoke(HttpContext context)
    at Microsoft.AspNetCore.Server.IISIntegration.IISMiddleware.Invoke(HttpContext httpContext)
@@ -1347,6 +1431,7 @@ Error Number:207,State:1,Class:16
 2019-04-03 16:08:27.540 +03:00 [INF] Executing ObjectResult, writing value of type 'eFolio.BL.ProjectService+<GetItemsList>d__7'.
 2019-04-03 16:08:27.542 +03:00 [INF] Entity Framework Core 2.1.8-servicing-32085 initialized 'eFolioDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: SensitiveDataLoggingEnabled 
 2019-04-03 16:08:27.549 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+<<<<<<< Updated upstream
 =======
 2019-04-03 14:13:35.345 +03:00 [INF] Request finished in 33.5444ms 500 text/html; charset=utf-8
 2019-04-03 14:14:19.538 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/Project  
@@ -1361,14 +1446,20 @@ Error Number:207,State:1,Class:16
 2019-04-03 14:14:19.684 +03:00 [INF] Entity Framework Core 2.1.8-servicing-32085 initialized 'eFolioDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: SensitiveDataLoggingEnabled 
 2019-04-03 14:14:19.688 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 SELECT [project].[Id], [project].[ContextId], [project].[Name], [project.Context].[Id], [project.Context].[SourceCodeLink]
 FROM [Projects] AS [project]
 INNER JOIN [Contexts] AS [project.Context] ON [project].[ContextId] = [project.Context].[Id]
 ORDER BY [project.Context].[Id]
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 2019-04-03 16:08:27.553 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
 =======
 2019-04-03 14:14:19.691 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+>>>>>>> Stashed changes
+=======
+2019-04-03 16:08:27.553 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
 >>>>>>> Stashed changes
 SELECT [project.Context.ScreenLinks].[Id], [project.Context.ScreenLinks].[ContextEntityId], [project.Context.ScreenLinks].[IsInternal], [project.Context.ScreenLinks].[Path]
 FROM [FolioFiles] AS [project.Context.ScreenLinks]
@@ -1379,15 +1470,22 @@ INNER JOIN (
 ) AS [t] ON [project.Context.ScreenLinks].[ContextEntityId] = [t].[Id]
 ORDER BY [t].[Id]
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 2019-04-03 16:08:27.561 +03:00 [ERR] Failed executing DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
 =======
 2019-04-03 14:14:19.694 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+>>>>>>> Stashed changes
+=======
+2019-04-03 16:08:27.561 +03:00 [ERR] Failed executing DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
 >>>>>>> Stashed changes
 SELECT [pde].[ProjectId], [pde].[DeveloperId], [pde.DeveloperEntity].[Id], [pde.DeveloperEntity].[CVLink], [pde.DeveloperEntity].[FullName], [pde.DeveloperEntity].[PhotoLink]
 FROM [ProjectDeveloperEntity] AS [pde]
 INNER JOIN [Developers] AS [pde.DeveloperEntity] ON [pde].[DeveloperId] = [pde.DeveloperEntity].[Id]
 ORDER BY [pde].[ProjectId]
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'PhotoLink'.
    at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
    at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
@@ -1564,6 +1662,7 @@ Error Number:207,State:1,Class:16
 2019-04-03 16:09:05.126 +03:00 [INF] Executing ObjectResult, writing value of type 'eFolio.BL.ProjectService+<GetItemsList>d__7'.
 2019-04-03 16:09:05.127 +03:00 [INF] Entity Framework Core 2.1.8-servicing-32085 initialized 'eFolioDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: SensitiveDataLoggingEnabled 
 2019-04-03 16:09:05.132 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+<<<<<<< Updated upstream
 =======
 2019-04-03 14:14:23.823 +03:00 [INF] Executed action eFolio.Api.Controllers.ProjectController.GetProjects (eFolio.API) in 4142.5251ms
 2019-04-03 14:14:23.823 +03:00 [INF] Request finished in 4144.3461ms 200 application/json; charset=utf-8
@@ -1576,14 +1675,20 @@ Error Number:207,State:1,Class:16
 2019-04-03 14:19:39.524 +03:00 [INF] Entity Framework Core 2.1.8-servicing-32085 initialized 'eFolioDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: SensitiveDataLoggingEnabled 
 2019-04-03 14:19:39.527 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 SELECT [project].[Id], [project].[ContextId], [project].[Name], [project.Context].[Id], [project.Context].[SourceCodeLink]
 FROM [Projects] AS [project]
 INNER JOIN [Contexts] AS [project.Context] ON [project].[ContextId] = [project.Context].[Id]
 ORDER BY [project.Context].[Id]
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 2019-04-03 16:09:05.136 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
 =======
 2019-04-03 14:19:39.529 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+>>>>>>> Stashed changes
+=======
+2019-04-03 16:09:05.136 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
 >>>>>>> Stashed changes
 SELECT [project.Context.ScreenLinks].[Id], [project.Context.ScreenLinks].[ContextEntityId], [project.Context.ScreenLinks].[IsInternal], [project.Context.ScreenLinks].[Path]
 FROM [FolioFiles] AS [project.Context.ScreenLinks]
@@ -1594,15 +1699,22 @@ INNER JOIN (
 ) AS [t] ON [project.Context.ScreenLinks].[ContextEntityId] = [t].[Id]
 ORDER BY [t].[Id]
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 2019-04-03 16:09:05.163 +03:00 [ERR] Failed executing DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
 =======
 2019-04-03 14:19:39.534 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+>>>>>>> Stashed changes
+=======
+2019-04-03 16:09:05.163 +03:00 [ERR] Failed executing DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
 >>>>>>> Stashed changes
 SELECT [pde].[ProjectId], [pde].[DeveloperId], [pde.DeveloperEntity].[Id], [pde.DeveloperEntity].[CVLink], [pde.DeveloperEntity].[FullName], [pde.DeveloperEntity].[PhotoLink]
 FROM [ProjectDeveloperEntity] AS [pde]
 INNER JOIN [Developers] AS [pde.DeveloperEntity] ON [pde].[DeveloperId] = [pde.DeveloperEntity].[Id]
 ORDER BY [pde].[ProjectId]
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'PhotoLink'.
    at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
    at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
@@ -4723,6 +4835,7 @@ FROM [Projects] AS [project]
 INNER JOIN [Contexts] AS [project.Context] ON [project].[ContextId] = [project.Context].[Id]
 ORDER BY [project.Context].[Id]
 2019-04-03 23:56:40.587 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+<<<<<<< Updated upstream
 =======
 2019-04-03 14:19:43.714 +03:00 [INF] Executed action eFolio.Api.Controllers.ProjectController.GetProjects (eFolio.API) in 4191.9713ms
 2019-04-03 14:19:43.716 +03:00 [INF] Request finished in 4194.3602ms 200 application/json; charset=utf-8
@@ -4864,6 +4977,8 @@ FROM [Projects] AS [project]
 INNER JOIN [Contexts] AS [project.Context] ON [project].[ContextId] = [project.Context].[Id]
 ORDER BY [project.Context].[Id]
 2019-04-03 14:25:13.488 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+=======
+>>>>>>> Stashed changes
 SELECT [project.Context.ScreenLinks].[Id], [project.Context.ScreenLinks].[ContextEntityId], [project.Context.ScreenLinks].[IsInternal], [project.Context.ScreenLinks].[Path]
 FROM [FolioFiles] AS [project.Context.ScreenLinks]
 INNER JOIN (
@@ -4872,6 +4987,7 @@ INNER JOIN (
     INNER JOIN [Contexts] AS [project.Context0] ON [project0].[ContextId] = [project.Context0].[Id]
 ) AS [t] ON [project.Context.ScreenLinks].[ContextEntityId] = [t].[Id]
 ORDER BY [t].[Id]
+<<<<<<< Updated upstream
 2019-04-03 14:25:13.494 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
 SELECT [pde].[ProjectId], [pde].[DeveloperId], [pde.DeveloperEntity].[Id], [pde.DeveloperEntity].[CVLink], [pde.DeveloperEntity].[FullName], [pde.DeveloperEntity].[PhotoLink]
 FROM [ProjectDeveloperEntity] AS [pde]
@@ -4977,11 +5093,18 @@ ORDER BY [t].[Id]
 =======
 2019-04-03 15:42:39.059 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
 >>>>>>> Stashed changes
+=======
+2019-04-03 23:56:40.701 +03:00 [WRN] The LINQ expression 'GroupBy([pde].ProjectId, _Include(queryContext, [pde], new [] {[pde.DeveloperEntity]}, (queryContext, entity, included) => { ... }))' could not be translated and will be evaluated locally.
+2019-04-03 23:56:40.732 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+>>>>>>> Stashed changes
 SELECT [pde].[ProjectId], [pde].[DeveloperId], [pde.DeveloperEntity].[Id], [pde.DeveloperEntity].[CVLink], [pde.DeveloperEntity].[FullName], [pde.DeveloperEntity].[PhotoLink]
 FROM [ProjectDeveloperEntity] AS [pde]
 INNER JOIN [Developers] AS [pde.DeveloperEntity] ON [pde].[DeveloperId] = [pde.DeveloperEntity].[Id]
 ORDER BY [pde].[ProjectId]
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 2019-04-03 23:56:43.448 +03:00 [INF] Executed action eFolio.Api.Controllers.ProjectController.GetProjects (eFolio.API) in 5387.3740000000007ms
 2019-04-03 23:56:43.451 +03:00 [INF] Request finished in 5704.5556ms 200 application/json; charset=utf-8
 2019-04-03 23:59:56.712 +03:00 [INF] User profile is available. Using 'C:\Users\user\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
@@ -5009,6 +5132,7 @@ ORDER BY [MigrationId];
 2019-04-04 00:00:00.943 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
 IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
 2019-04-04 00:00:01.540 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+<<<<<<< Updated upstream
 =======
 2019-04-03 15:42:46.706 +03:00 [INF] Executed action eFolio.Api.Controllers.ProjectController.GetProjects (eFolio.API) in 8382.335500000001ms
 2019-04-03 15:42:46.706 +03:00 [INF] Request finished in 8413.0738ms 200 application/json; charset=utf-8
@@ -5110,6 +5234,8 @@ ORDER BY [MigrationId];
 IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
 2019-04-03 15:59:31.493 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 SELECT CASE
     WHEN EXISTS (
         SELECT 1
@@ -5117,9 +5243,13 @@ SELECT CASE
     THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
 END
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 2019-04-04 00:00:01.677 +03:00 [INF] Executed DbCommand (30ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
 =======
 2019-04-03 15:59:31.526 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+>>>>>>> Stashed changes
+=======
+2019-04-04 00:00:01.677 +03:00 [INF] Executed DbCommand (30ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
 >>>>>>> Stashed changes
 SELECT CASE
     WHEN EXISTS (
@@ -5128,9 +5258,13 @@ SELECT CASE
     THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
 END
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 2019-04-04 00:00:01.690 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
 =======
 2019-04-03 15:59:31.533 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+>>>>>>> Stashed changes
+=======
+2019-04-04 00:00:01.690 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
 >>>>>>> Stashed changes
 SELECT CASE
     WHEN EXISTS (
@@ -5138,6 +5272,7 @@ SELECT CASE
         FROM [Developers] AS [d])
     THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
 END
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 2019-04-04 00:00:01.720 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
 IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
@@ -5147,6 +5282,11 @@ IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABL
 IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
 2019-04-03 15:59:31.546 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
 >>>>>>> Stashed changes
+=======
+2019-04-04 00:00:01.720 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2019-04-04 00:00:01.737 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+>>>>>>> Stashed changes
 SELECT CASE
     WHEN EXISTS (
         SELECT 1
@@ -5154,6 +5294,9 @@ SELECT CASE
     THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
 END
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 2019-04-04 00:00:03.092 +03:00 [INF] Request starting HTTP/1.1 DEBUG http://localhost:5000/  0
 2019-04-04 00:00:03.092 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/values  
 2019-04-04 00:00:03.594 +03:00 [INF] Request finished in 504.538ms 200 
@@ -5375,6 +5518,7 @@ INNER JOIN [Developers] AS [pde.DeveloperEntity] ON [pde].[DeveloperId] = [pde.D
 ORDER BY [pde].[ProjectId]
 2019-04-04 00:00:41.513 +03:00 [INF] Executed action eFolio.Api.Controllers.ProjectController.GetProjects (eFolio.API) in 202.42520000000002ms
 2019-04-04 00:00:41.513 +03:00 [INF] Request finished in 203.8006ms 200 application/json; charset=utf-8
+<<<<<<< Updated upstream
 =======
 2019-04-03 15:59:32.832 +03:00 [INF] Request starting HTTP/1.1 DEBUG http://localhost:5000/  0
 2019-04-03 15:59:32.832 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5000/api/account/login/  
@@ -5488,4 +5632,6 @@ WHERE [userRole].[UserId] = @__userId_0
 2019-04-03 16:11:19.486 +03:00 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType0`5[[System.String, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
 2019-04-03 16:11:19.487 +03:00 [INF] Executed action eFolio.API.Controllers.AccountController.Login (eFolio.API) in 454.54290000000003ms
 2019-04-03 16:11:19.488 +03:00 [INF] Request finished in 455.5037ms 200 application/json; charset=utf-8
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes

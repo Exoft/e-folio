@@ -8,31 +8,36 @@ import { AccountComponent } from './components/account/account.component';
 import { ProjectPageComponent } from './components/projects/project-page/project-page.component';
 import { ProjectListComponent } from './components/projects/project-list/project-list.component';
 import { AuthGuard } from './guards/auth.guard';
+import { DevelopersListComponent } from './components/developers/developers-list/developers-list.component';
+import { DevelopersPageComponent } from './components/developers/developers-page/developers-page.component';
 
 const routes: Routes = [{
-  path: '',
-  redirectTo: 'projects',
-  pathMatch: 'full'
-}, {
-  path: 'projects',
-  component: ProjectsComponent,
-  children: [
-    { path: '', component: ProjectListComponent },
-    { path: ':id', component: ProjectPageComponent }
-  ]
-}, {
-  path: 'developers',
-  component: DevelopersComponent
-}, {
-  path: 'support',
-  component: SupportComponent
-}, {
-  path: 'administration',
-  component: AdministrationComponent,
-  canActivate: [AuthGuard]
-}, {
-  path: 'account',
-  component: AccountComponent
+    path: '',
+    redirectTo: 'projects',
+    pathMatch: 'full'
+  }, {
+    path: 'projects',
+    component: ProjectsComponent,
+    children: [
+        { path: '', component: ProjectListComponent },
+        { path: ':id', component: ProjectPageComponent }
+    ]
+  }, {
+    path: 'developers',
+    component: DevelopersComponent,
+    children:[
+      {path: '',component:DevelopersListComponent},
+      {path: ':id', component: DevelopersPageComponent}
+    ]
+  }, {
+    path: 'support',
+    component: SupportComponent
+  }, {
+    path: 'administration',
+    component: AdministrationComponent
+  }, {
+    path: 'account',
+    component: AccountComponent
 }];
 
 @NgModule({

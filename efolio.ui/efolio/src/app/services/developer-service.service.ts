@@ -4,6 +4,7 @@ import { Developer } from '../components/models/developer.model';
 
 @Injectable()
 export class DeveloperServiceService {
+  dataChange: any;
 
   constructor(private http: HttpClient) { }
 
@@ -15,11 +16,13 @@ export class DeveloperServiceService {
     });
   }
 
-  // getOneDeveloper(){
-  //   let headers = new HttpHeaders();
-  //   this.addHeaders(headers);
-  //   return this.http.get<Developer>('');
-  // }
+  getOneDeveloper(id: number){
+    const httpHeaders = new HttpHeaders();
+    this.addHeaders(httpHeaders);
+    return this.http.get<any>('http://localhost:5000/api/developers/' + id, {
+        headers: httpHeaders
+    });
+  }
 
   addHeaders(headers: HttpHeaders) {
     headers.append('Authorization', 'qwertyasdfgzxvc');
