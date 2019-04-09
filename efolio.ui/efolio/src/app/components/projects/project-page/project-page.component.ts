@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Project } from 'src/app/models/project.model';
 import { ProjectService } from 'src/app/services/project.service';
 import { ActivatedRoute } from '@angular/router';
-import { LoaderService } from 'src/app/services/loader.service';
 
 @Component({
   selector: 'app-project-page',
@@ -10,29 +9,17 @@ import { LoaderService } from 'src/app/services/loader.service';
   styleUrls: ['./project-page.component.scss']
 })
 export class ProjectPageComponent implements OnInit {
-  public projectInput: Project = new Project(0, '', '', null);
+  public projectInput: Project = new Project(0, "", "");
 
-  constructor(
-    private projectService: ProjectService,
-    private route: ActivatedRoute,
-    private loaderService: LoaderService) { }
+  constructor(private projectService: ProjectService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.loaderService.startLoading();
-    const id = +this.route.snapshot.paramMap.get('id');
+    let id = +this.route.snapshot.paramMap.get('id');
 
     this.projectService.GetProject(id).subscribe(
       (res) => {
-        this.projectInput = new Project(res.id, res.name, res.internalDescription, res.photoBase64);
-        this.loaderService.stopLoading();
+        this.projectInput = new Project(res.id, res.name, res.internalDescription);
       }
     );
-  }
-
-  public returnImgUrl(img) {
-    if (img) {
-      return `url(${img})`;
-    }
-    return 'none';
   }
 }
