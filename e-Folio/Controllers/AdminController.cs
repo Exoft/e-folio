@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
 using eFolio.API.Models;
-using eFolio.BL.Interfaces;
+using eFolio.Attibutes;
+using eFolio.BL;
 using eFolio.EF;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -12,7 +10,7 @@ using Microsoft.Extensions.Logging;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace eFolio.API.Controllers
+namespace eFolio.API
 {
     [Route("api/[controller]")]
     [Produces("application/json")]
@@ -35,7 +33,8 @@ namespace eFolio.API.Controllers
             this._adminService = adminService;
         }
 
-        [HttpGet]
+        [HttpGet] 
+        [HasClaim("role", "admin")]
         public IActionResult GetUsersList()
         {
             try
@@ -51,7 +50,7 @@ namespace eFolio.API.Controllers
 
         // GET api/<controller>/5
         [HttpGet]
-        [Route("{id}")]
+        [Route("{id}")]  
         public IActionResult GetUser(int id)
         {
             try
@@ -71,13 +70,15 @@ namespace eFolio.API.Controllers
         }
 
         // POST api/<controller>
-        [HttpPost]
+        [HttpPost] 
+        [HasClaim("role", "admin")]
         public void Post([FromBody]string value)
         {
         }
 
         // PUT api/<controller>/5
         [HttpPut]
+        [HasClaim("role", "admin")]
         public IActionResult Edit(UserEntity user)
         {
             try
@@ -94,6 +95,7 @@ namespace eFolio.API.Controllers
 
         // DELETE api/<controller>/5
         [HttpDelete("{id}")]
+        [HasClaim("role", "admin")]
         public IActionResult Delete(int id)
         {
             try

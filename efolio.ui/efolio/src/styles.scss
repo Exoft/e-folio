@@ -13,43 +13,82 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif; 
 }
 
+//input style
 .mat-form-field-appearance-legacy .mat-focused .mat-form-field-label {
-    color: $elementsSecondaryColor;
-  }
-  
-  .mat-form-field-appearance-legacy .mat-form-field-label {
-    color: $elementsSecondaryColor;
-  }
- 
-  .mat-form-field-appearance-legacy .mat-form-field-underline {
-    background-color: $elementsSecondaryColor;
-    color: $elementsSecondaryColor;
-  }
-  
-  .mat-form-field.mat-form-field-invalid .mat-form-field-ripple {
-    background-color: $elementsMainColor;
-    color: $elementsMainColor;
-  }
+  color: $elementsSecondaryColor;
+}
 
-  .mat-form-field.mat-focused .mat-form-field-ripple {
-    background-color: $elementsMainColor;
-    color: $elementsMainColor;
-  }
-  
-  .mat-form-field-appearance-legacy .mat-form-field-empty.mat-form-field-label {
-    color: $elementsSecondaryColor;
-  }
+.mat-form-field-appearance-legacy .mat-form-field-label {
+  color: $elementsSecondaryColor;
+}
 
-  .mat-form-field.mat-focused .mat-form-field-label{
-    color: $elementsSecondaryColor;
-  }
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+  background-color: $elementsSecondaryColor;
+  color: $elementsSecondaryColor;
+}
 
-  .mat-form-field.mat-form-field-invalid .mat-form-field-label{
-    color: $elementsSecondaryColor;
-  }
+.mat-form-field.mat-form-field-invalid .mat-form-field-ripple {
+  background-color: $elementsMainColor;
+  color: $elementsMainColor;
+}
 
-  .mat-snack-bar-container{
-    background: rgb(115, 1, 180);
-    color: white;
-    font-family: Roboto;
+.mat-form-field.mat-focused .mat-form-field-ripple {
+  background-color: $elementsMainColor;
+  color: $elementsMainColor;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-empty.mat-form-field-label {
+  color: $elementsSecondaryColor;
+}
+
+.mat-form-field.mat-focused .mat-form-field-label{
+  color: $elementsSecondaryColor;
+}
+
+.mat-form-field.mat-form-field-invalid .mat-form-field-label{
+  color: $elementsSecondaryColor;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-wrapper{
+  width:100%;
+}
+
+//snackbar style
+.mat-snack-bar-container{
+  background: rgb(115, 1, 180);
+  color: white;
+  font-family: Roboto;
+}
+
+//stepper style
+.mat-stepper-vertical{
+  background-color:white;
+  width: 90%;
+  border-bottom: 1px solid $elementsSecondaryColor;
+}
+
+.mat-vertical-content-container{
+  display: flex;
+}
+
+.mat-vertical-stepper-header-container{
+  background-color: white;
+  padding-bottom: 20px;
+
+}
+
+.mat-stepper-vertical-line{
+  background-color: white;
+}
+
+.mat-step-text-label{
+  color: black;
+}
+
+.mat-stepper-vertical-line::before{
+  background-color: $elementsMainColor;
+}
+
+.mat-step-header .mat-step-icon{
+  background-color: $elementsMainColor;
 }

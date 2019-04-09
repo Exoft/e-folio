@@ -1,0 +1,93 @@
+<div class="user-page-container">
+  <div class="title">User page</div>
+
+  <mat-vertical-stepper>
+    <ng-template matStepperIcon="edit">
+      <mat-icon>done</mat-icon>
+    </ng-template>
+
+    <ng-template matStepperIcon="person">
+      <mat-icon>person</mat-icon>
+    </ng-template>
+
+    <ng-template matStepperIcon="safe">
+      <mat-icon>lock</mat-icon>
+    </ng-template>
+
+    <ng-template matStepperIcon="language">
+      <mat-icon>language</mat-icon>
+    </ng-template>
+
+    <!-----------------PERSONAL INFORMATION------------------>
+    <mat-step label="Personal information" completed="false" state="person">
+      <form class="form-container" [formGroup]="personalInfoForm">
+        <div class="example-container">First name:
+          <mat-form-field class="input-container">
+            <input matInput placeholder="" class="input-form" formControlName="firstName">
+          </mat-form-field>
+        </div>
+
+        <div>Last name:
+          <mat-form-field class="input-container">
+            <input matInput placeholder="" formControlName="lastName">
+          </mat-form-field>
+        </div>
+
+        <button class="designed-button" mat-raised-button>Save changes</button>
+      </form>
+    </mat-step>
+
+    <!-----------------SAFETY------------------>
+    <mat-step label="Safety" completed="false" state="safe">
+      <form class="form-container" [formGroup]="emailForm">
+        <div>E-mail:
+          <mat-form-field class="input-container">
+            <input matInput placeholder="" formControlName="email">
+          </mat-form-field>
+        </div>
+
+        <button class="designed-button" mat-raised-button>Save changes</button>
+      </form>
+
+      <form class="form-container">
+        <div>New password:
+          <mat-form-field class="input-container">
+            <input matInput placeholder="Password" [type]="passwordVisibility ? 'password' : 'text'">
+
+            <mat-icon matSuffix (click)="passwordVisibility = !passwordVisibility">
+              {{passwordVisibility ? 'visibility_off' : 'visibility'}}
+            </mat-icon>
+          </mat-form-field>
+        </div>
+
+        <div>Confirm new password:
+          <mat-form-field class="input-container">
+            <input matInput placeholder="Password" [type]="confirmPasswordVisibility ? 'password' : 'text'">
+
+            <mat-icon matSuffix (click)="confirmPasswordVisibility = !confirmPasswordVisibility">
+              {{passwordVisibility ? 'visibility_off' : 'visibility'}}
+            </mat-icon>
+          </mat-form-field>
+        </div>
+
+        <button class="designed-button" mat-raised-button>Save new password</button>
+      </form>
+    </mat-step>
+
+    <!-----------------LANGUAGE------------------>
+    <mat-step label="Language" completed="false" state="language">
+      <div>
+        <p>Change language:</p>
+        <!--<mat-form-field class="language-container">
+          <mat-select  placeholder="">
+            <mat-option value="English">English</mat-option>
+            <mat-option value="Українська">Українська</mat-option>
+          </mat-select>
+        </mat-form-field>-->
+      </div>
+    </mat-step>
+  </mat-vertical-stepper>
+
+
+  <button class="designed-button log-out-button" mat-raised-button (click)="logOut()">Log out</button>
+</div>

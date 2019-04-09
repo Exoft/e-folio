@@ -12,9 +12,11 @@ import {
     MatProgressSpinnerModule,
     MatCheckboxModule,
     MatSelectModule,
-    MatSnackBarModule
+    MatSnackBarModule,
 } from '@angular/material';
 import { MatCardModule } from '@angular/material/card';
+import { MatStepperModule } from '@angular/material/stepper';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 @NgModule({
     exports: [
@@ -31,7 +33,14 @@ import { MatCardModule } from '@angular/material/card';
         MatSelectModule,
         MatCheckboxModule,
         MatProgressSpinnerModule,
-        MatTableModule
-    ]
+        MatTableModule,
+        MatStepperModule
+    ],
+    providers: [
+        {
+          provide: STEPPER_GLOBAL_OPTIONS,
+          useValue: { displayDefaultIndicatorType: false }
+        }
+      ]
 })
 export class AppMaterialsModule { }

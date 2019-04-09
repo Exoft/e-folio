@@ -1,0 +1,4 @@
+<app-user-logging *ngIf="readAccesToken(); else notShow"></app-user-logging>
+<ng-template #notShow>
+    <app-user-page ></app-user-page>
+</ng-template>

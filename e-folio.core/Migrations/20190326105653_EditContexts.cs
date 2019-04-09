@@ -5,7 +5,7 @@ namespace e_folio.core.Migrations
     public partial class EditContexts : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
-        {
+        {/*
             migrationBuilder.DropForeignKey(
                 name: "FK_FolioFiles_Contexsts_ContextEntityId",
                 table: "FolioFiles");
@@ -65,7 +65,7 @@ namespace e_folio.core.Migrations
                 column: "ContextId",
                 principalTable: "Contexts",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.Cascade);*/
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -129,6 +129,8 @@ namespace e_folio.core.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<string>("PhotoLink");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ContextId")
