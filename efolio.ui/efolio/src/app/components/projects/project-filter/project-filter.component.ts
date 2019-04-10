@@ -1,5 +1,7 @@
-import { Component, Input, Output } from '@angular/core';
-import { EventEmitter } from '@angular/core';
+
+import {Component, Output} from '@angular/core';
+import {EventEmitter} from '@angular/core';
+
 
 @Component({
   selector: 'app-project-filter',
@@ -7,48 +9,21 @@ import { EventEmitter } from '@angular/core';
   styleUrls: ['./project-filter.component.scss']
 })
 export class ProjectFilterComponent {
-  public searchString;
-  public check1 = false;
-  public check2 = false;
-  public check3 = false;
-  public check4 = false;
+  public searchString = '';
+  public check: boolean[] = [false, false, false, false];
+  public filterStrings: string[] = [' .Net', ' Java', ' Angular', ' Node'];
   @Output() public SearchStringChanged = new EventEmitter<string>();
   constructor() { }
   public onSearchClick() {
     console.log(this.searchString);
     this.SearchStringChanged.emit(this.searchString);
   }
-
-  check1change() {
-    this.check1 = !this.check1;
-    if (this.check1 === true) {
-      this.searchString += ' .Net';
+  public checkChange(i: number) {
+    this.check[i] = !this.check[i];
+    if (this.check[i] === true) {
+      this.searchString += this.filterStrings[i];
     } else {
-      this.searchString = this.searchString.replace(' .Net', '');
-    }
-  }
-  check2change() {
-    this.check2 = !this.check2;
-    if (this.check2 === true) {
-      this.searchString += ' Java';
-    } else {
-      this.searchString = this.searchString.replace(' Java', '');
-    }
-  }
-  check3change() {
-    this.check3 = !this.check3;
-    if (this.check3 === true) {
-      this.searchString += ' Angular.';
-    } else {
-      this.searchString = this.searchString.replace(' Angular', '');
-    }
-  }
-  check4change() {
-    this.check4 = !this.check4;
-    if (this.check4 === true) {
-      this.searchString += ' Node';
-    } else {
-      this.searchString = this.searchString.replace(' Node', '');
+      this.searchString = this.searchString.replace(this.filterStrings[i], '');
     }
   }
 }

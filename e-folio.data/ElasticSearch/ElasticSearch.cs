@@ -97,6 +97,11 @@
                             .Field(fg => fg.InternalDescr)
                             .Query(tstring)
                             .Fuzziness(Fuzziness.Auto)
+                      ),
+                        m => m.Match(mp => mp
+                            .Field(fg => fg.ExternalDescr)
+                            .Query(tstring)
+                            .Fuzziness(Fuzziness.Auto)
                       )
 
                       ))));
@@ -127,7 +132,12 @@
                                       mp => mp.Field(fg => fg.InternalCV)
                                        .Query(query)
                                        .Fuzziness(Fuzziness.Auto)
-                                  )
+                                  ),
+                        m => m.Match(mp => mp
+                            .Field(fg => fg.ExternalCV)
+                            .Query(query)
+                            .Fuzziness(Fuzziness.Auto)
+                      )
                               )
                           )
                       )

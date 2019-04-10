@@ -1,5 +1,5 @@
 <mat-sidenav-container>
-  <mat-sidenav mode="side" [(opened)]="opened">
+  <mat-sidenav mode={{filterMode}} [(opened)]="opened">
     <button mat-icon-button (click)="opened=!opened" *ngIf="opened===true">
       <mat-icon aria-label="Side nav toggle icon" class="project-filter-icon">arrow_back_ios</mat-icon>
     </button>

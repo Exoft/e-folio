@@ -1,10 +1,10 @@
 <div>
-  <input type="text" [(ngModel)]="searchString">
-  <ul>
-    <li><input type="checkbox" (change)="check1change()"> .Net </li>
-    <li><input type="checkbox" (change)="check2change()"> Java </li>
-    <li><input type="checkbox" (change)="check3change()"> Angular </li>
-    <li><input type="checkbox" (change)="check4change()"> Node </li>
-  </ul>
-  <button [disabled]="!searchString" (click)="onSearchClick()">Search</button>
+  <mat-form-field><input type="text" matInput [(ngModel)]="searchString" placeholder="Search"></mat-form-field>
+<ul>
+  <li><mat-checkbox (change)="checkChange(0)">.Net</mat-checkbox></li>
+  <li><mat-checkbox (change)="checkChange(1)"> Java </mat-checkbox></li>
+  <li><mat-checkbox (change)="checkChange(2)"> Angular </mat-checkbox></li>
+  <li><mat-checkbox (change)="checkChange(3)"> Node </mat-checkbox></li>
+</ul>
+<button class="designed-button" mat-raised-button [disabled]="!searchString" (click)="onSearchClick()">Search</button>
 </div>
