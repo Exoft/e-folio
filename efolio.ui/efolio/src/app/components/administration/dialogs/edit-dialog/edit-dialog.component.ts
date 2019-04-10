@@ -3,7 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 export interface DialogData {
   name: string;
-  description: string;
+  internalDescription: string;
 }
 
 @Component({

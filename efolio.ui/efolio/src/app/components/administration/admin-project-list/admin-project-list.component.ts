@@ -35,7 +35,8 @@ export class AdminProjectListComponent implements OnInit {
         responce.forEach(element => {
           this.projects.push(new Project(element.id,
             element.name,
-            element.description,
+            element.internalDescription,
+            element.externalDescription,
             element.photoBase64));
         });
         this.dataSource.data = this.projects;
@@ -59,14 +60,14 @@ export class AdminProjectListComponent implements OnInit {
   openEditDialog(project: Project): void {
     const dialogRef = this.dialog.open(EditDialogComponent, {
       width: '450px',
-      data: { name: project.name, description: project.description }
+      data: { name: project.name, internalDescription: project.internalDescription }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result !== undefined) {
         let editProject = project;
         editProject.name = result.name;
-        editProject.description = result.description;
+        editProject.internalDescription = result.internalDescription;
         this.projectService.UpdateProject(editProject).subscribe(() =>
           this.loginValidatorBar.open('Project was updated.', 'Ok', {
             duration: 5000,
@@ -81,12 +82,12 @@ export class AdminProjectListComponent implements OnInit {
   openAddDialog(): void {
     const dialogRef = this.dialog.open(AddDialogComponent, {
       width: '450px',
-      data: { name: '', description: '' }
+      data: { name: '', internalDescription: '' }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result !== undefined) {
-        let project = new Project(0, result.name, result.description, '');
+        let project = new Project(0, result.name, result.internalDescription , '', '');
         this.projectService.AddProject(project).subscribe(() =>
           this.loginValidatorBar.open('Project was added.', 'Ok', {
             duration: 5000,

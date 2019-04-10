@@ -21,7 +21,7 @@ export class ProjectListComponent implements OnInit {
     this.projectService.GetAll().subscribe(
       (res) => {
         res.forEach(element => {
-          this.projects.push(new Project(element.id, element.name, element.internalDescription, element.photoBase64));
+          this.projects.push(new Project(element.id, element.name, element.internalDescription, element.externalDescription, element.photoBase64));
         });
         this.loaderService.stopLoading();
       }
@@ -31,7 +31,7 @@ export class ProjectListComponent implements OnInit {
     this.projectService.getProjectSearched(searchString).subscribe(
       (res) => {
         res.forEach(element => {
-          this.projects.push(new Project(element.id, element.name, element.internalDescription, element.photoBase64));
+          this.projects.push(new Project(element.id, element.name, element.internalDescription, element.externalDescription, element.photoBase64));
         });
         this.loaderService.stopLoading();
       }

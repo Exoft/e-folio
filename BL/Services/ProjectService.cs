@@ -6,6 +6,7 @@ using eFolio.Elastic;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace eFolio.BL
 {
@@ -25,10 +26,15 @@ namespace eFolio.BL
         public void Add(Project item)
         {
             ProjectEntity pe = mapper.Map<ProjectEntity>(item);
-            projectRepository.Add(pe);
+            int newId = projectRepository.Add(pe);
 
             item.UpdateId(pe.Id);
             ElasticProjectData epd = mapper.Map<ElasticProjectData>(item);
+
+            var list = projectRepository.GetItemsList().ToList();
+            newId = list[list.Count-1].Id;
+            epd.Id = newId;
+
             elastic.AddItem(epd);
         }
 
