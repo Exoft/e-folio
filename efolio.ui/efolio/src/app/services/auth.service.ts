@@ -30,4 +30,10 @@ export class AuthService {
         const role = localStorage.getItem('userRole') || 'unauthorized';
         return role;
     }
+
+    deleteUserData() { 
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('userRole');
+        localStorage.removeItem('userId');
+    }
 }

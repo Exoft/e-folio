@@ -4,7 +4,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { User } from '../../models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { MatSnackBar } from '@angular/material';
-
+ 
 @Component({
   selector: 'app-user-page',
   templateUrl: './user-page.component.html',
@@ -49,10 +49,7 @@ export class UserPageComponent implements OnInit {
 
   logOut(): void {
     this.loaderService.startLoading();
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('userId');
-    localStorage.removeItem('userRole');
-    localStorage.removeItem('validUntil');
+    this.authService.deleteUserData();
 
     this.loginValidatorBar.open('You are logged out', 'OK', {
       duration: 5000,

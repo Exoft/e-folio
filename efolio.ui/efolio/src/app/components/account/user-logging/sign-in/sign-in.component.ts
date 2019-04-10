@@ -19,7 +19,7 @@ export class SignInComponent {
   });
 
   constructor(public loginValidatorBar: MatSnackBar,
-              private authService: AuthService,
+              private authService: AuthService, 
               private loaderService: LoaderService) {
   }
 
@@ -37,10 +37,10 @@ export class SignInComponent {
           response => {
             const token = response[tokenKey];
             const decodedToken = jwt_decode(token);
-            localStorage.setItem('accessToken', token);
-            localStorage.setItem('validUntil', decodedToken.exp);
+            localStorage.setItem('accessToken', token); 
             localStorage.setItem('userRole', decodedToken.role);
             localStorage.setItem('userId', response[idKey]);
+
             this.loginValidatorBar.open('You are logged in eFolio', 'Ok', {
               duration: 5000,
               panelClass: ['snackBar'],

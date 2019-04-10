@@ -7,7 +7,7 @@ import { SupportComponent } from './components/support/support.component';
 import { AccountComponent } from './components/account/account.component';
 import { ProjectPageComponent } from './components/projects/project-page/project-page.component';
 import { ProjectListComponent } from './components/projects/project-list/project-list.component';
-import { AuthGuard } from './guards/auth.guard';
+import { AdministrationGuard } from './guards/administration.guard';
 
 const routes: Routes = [{
   path: '',
@@ -29,10 +29,10 @@ const routes: Routes = [{
 }, {
   path: 'administration',
   component: AdministrationComponent,
-  canActivate: [AuthGuard]
+  canActivate: [AdministrationGuard]
 }, {
   path: 'account',
-  component: AccountComponent
+  component: AccountComponent 
 }];
 
 @NgModule({
