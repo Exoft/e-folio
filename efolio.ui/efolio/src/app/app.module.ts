@@ -10,9 +10,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // Services
 import { ProjectService } from './services/project.service';
-import { UserLoggingService } from './services/user-logging.service';
-import { ValidationService } from './services/validation.service';
-import { Interceptor } from './services/interceptor.service';
+import { Interceptor } from './helpers/interceptor';
 
 // Components
 import { AppComponent } from './app.component';
@@ -90,8 +88,6 @@ import { AuthGuard } from './guards/auth.guard';
       multi: true
     },
     ProjectService,
-    UserLoggingService,
-    ValidationService,
     DeveloperServiceService,
     AuthGuard
   ],

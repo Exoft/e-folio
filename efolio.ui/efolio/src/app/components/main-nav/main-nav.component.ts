@@ -12,7 +12,7 @@ export class MainNavComponent {
 
   constructor(private authService: UserLoggingService) { }
 
-  public isAdmin(): boolean {
+  public isAdmin() : boolean {
     return this.authService.userRole() === 'admin';
   }
 

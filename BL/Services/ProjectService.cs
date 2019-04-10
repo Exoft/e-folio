@@ -26,13 +26,13 @@ namespace eFolio.BL
         public void Add(Project item)
         {
             ProjectEntity pe = mapper.Map<ProjectEntity>(item);
-            int newId = projectRepository.Add(pe);
+            projectRepository.Add(pe);
 
             item.UpdateId(pe.Id);
             ElasticProjectData epd = mapper.Map<ElasticProjectData>(item);
 
             var list = projectRepository.GetItemsList().ToList();
-            newId = list[list.Count-1].Id;
+            int newId = list[list.Count-1].Id;
             epd.Id = newId;
 
             elastic.AddItem(epd);

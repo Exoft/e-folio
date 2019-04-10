@@ -1,37 +1,33 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-// import * as jwt_decode from 'jwt-decode';
 import { Observable } from 'rxjs';
-import { map, catchError, retry } from 'rxjs/operators';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class UserLoggingService {
 
     constructor(private httpClient: HttpClient) { }
 
-    signIn(loginData) {
-        return this.httpClient.post('http://localhost:5000/api/account/login/', loginData);
+    signIn(loginData): Observable<any> {
+        return this.httpClient.post('http://localhost:5000/api/account/login/', loginData)
     }
 
-    signUp(registerData) {
+    signUp(registerData): Observable<any> {
         return this.httpClient.post('http://localhost:5000/api/account/register/', registerData);
     }
 
-    getUserInfo(userId) {
+    getUserInfo(userId) : Observable<any>{
         return this.httpClient.get('http://localhost:5000/api/admin/' + userId);
     }
 
-    changePersonalInfo(userInfo) {
-
-    }
-
     isAuthenticated(): boolean {
-        const token = localStorage.getItem('accessToken');
+        let token = localStorage.getItem("accessToken");
         return token !== null && token !== undefined;
     }
 
-    userRole(): string {
-        const role = localStorage.getItem('userRole') || 'unauthorized';
+    userRole(): String {
+        let role = localStorage.getItem("userRole") || "unauthorized";
         return role;
     }
 }

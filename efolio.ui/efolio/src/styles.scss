@@ -5,12 +5,12 @@ $elementsMainColor: rgb(115, 1, 180);
 $elementsSecondaryColor: rgb(66, 66, 66);
 
 html, body {
-    height: 100%; 
+  height: 100%; 
 }
 
 body { 
-    margin: 0; 
-    font-family: Roboto, "Helvetica Neue", sans-serif; 
+  margin: 0; 
+  font-family: Roboto, "Helvetica Neue", sans-serif; 
 }
 
 //input style
@@ -61,6 +61,10 @@ body {
 }
 
 //stepper style
+.mat-step-icon .mat-icon{
+  color:white;
+}
+
 .mat-stepper-vertical{
   background-color:white;
   width: 90%;
@@ -74,7 +78,6 @@ body {
 .mat-vertical-stepper-header-container{
   background-color: white;
   padding-bottom: 20px;
-
 }
 
 .mat-stepper-vertical-line{
@@ -91,48 +94,13 @@ body {
 
 .mat-step-header .mat-step-icon{
   background-color: $elementsMainColor;
-
-    color: $elementsSecondaryColor;
-  }
-  
-  .mat-form-field-appearance-legacy .mat-form-field-label {
-    color: $elementsSecondaryColor;
-  }
- 
-  .mat-form-field-appearance-legacy .mat-form-field-underline {
-    background-color: $elementsSecondaryColor;
-    color: $elementsSecondaryColor;
-  }
-  
-  .mat-form-field.mat-form-field-invalid .mat-form-field-ripple {
-    background-color: $elementsMainColor;
-    color: $elementsMainColor;
-  }
-
-  .mat-form-field.mat-focused .mat-form-field-ripple {
-    background-color: $elementsMainColor;
-    color: $elementsMainColor;
-  }
-  
-  .mat-form-field-appearance-legacy .mat-form-field-empty.mat-form-field-label {
-    color: $elementsSecondaryColor;
-  }
-
-  .mat-form-field.mat-focused .mat-form-field-label{
-    color: $elementsSecondaryColor;
-  }
-
-  .mat-form-field.mat-form-field-invalid .mat-form-field-label{
-    color: $elementsSecondaryColor;
-  }
-
-  .mat-snack-bar-container{
-    background: rgb(115, 1, 180);
-    color: white;
-    font-family: Roboto;
+  color: $elementsSecondaryColor;
 }
-    .mat-checkbox-frame{
-     border-color: $elementsMainColor;
+  
+
+//checkbox style
+.mat-checkbox-frame{
+  border-color: $elementsMainColor;
 }
 .mat-checkbox-checked.mat-accent .mat-checkbox-background{
   background-color: white;

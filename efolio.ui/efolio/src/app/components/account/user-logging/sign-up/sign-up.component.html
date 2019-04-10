@@ -47,13 +47,19 @@
   <mat-form-field>
     <input matInput placeholder="Confirm password" [type]="confirmPasswordVisibility ? 'password' : 'text'"
       formControlName="confirmPassword">
+
     <mat-icon matSuffix (click)="confirmPasswordVisibility = !confirmPasswordVisibility">
-      {{confirmPasswordVisibility ? 'visibility_off' : 'visibility'}}</mat-icon>
+      {{confirmPasswordVisibility ? 'visibility_off' : 'visibility'}}
+    </mat-icon>
 
     <mat-error *ngIf="registerForm.controls['confirmPassword'].hasError('required')">
       Password confirmation is <strong>required</strong>
     </mat-error>
   </mat-form-field>
+
+  <mat-error class="password-not-mach-error" *ngIf="registerForm.hasError('passwordsDoNotMatch')">
+    Password <strong>do not match</strong>
+  </mat-error>
 
   <button class="designed-button" mat-raised-button type="submit" [disabled]="registerForm.invalid">Sign up</button>
 </form>

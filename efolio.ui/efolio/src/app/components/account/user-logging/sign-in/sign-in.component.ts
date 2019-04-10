@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
-
 import { UserLoggingService } from 'src/app/services/user-logging.service';
-import { FormControl, Validators, FormGroup } from '@angular/forms';
+import { FormControl, Validators, FormGroup, AbstractControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
-import { Router } from '@angular/router';
 import { LoaderService } from 'src/app/services/loader.service';
 import * as jwt_decode from 'jwt-decode';
 
@@ -21,12 +19,11 @@ export class SignInComponent {
   });
 
   constructor(public loginValidatorBar: MatSnackBar,
-              private userLoggingService: UserLoggingService,
-              private router: Router,
-              private loaderService: LoaderService) {
+    private userLoggingService: UserLoggingService,
+    private loaderService: LoaderService) {
   }
 
-  onSignIn() {
+  onSignIn(): void {
     this.loaderService.startLoading();
     if (this.loginForm.valid) {
       const formData = {
@@ -48,22 +45,24 @@ export class SignInComponent {
               duration: 5000,
               panelClass: ['snackBar'],
             });
-            // this.router.navigate(['projects']);
+            this.loaderService.stopLoading();
           },
           error => {
             this.loginValidatorBar.open('Invalid Email or Password', 'Ok', {
               duration: 5000,
               panelClass: ['snackBar'],
             });
+            this.loaderService.stopLoading();
           }
         );
-    } else {
-      this.loginValidatorBar.open('Invalid Email or Password', 'Ok', {
-        duration: 5000,
-        panelClass: ['snackBar'],
-      });
     }
-    this.loaderService.stopLoading();
     this.loginForm.reset();
+    this.loginForm.markAsUntouched();
+
+    let control: AbstractControl = null;
+    Object.keys(this.loginForm.controls).forEach((name) => {
+      control = this.loginForm.controls[name];
+      control.setErrors(null);
+    });
   }
 }

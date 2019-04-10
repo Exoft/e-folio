@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { LoaderService } from 'src/app/services/loader.service';
 
 
@@ -12,8 +11,7 @@ import { LoaderService } from 'src/app/services/loader.service';
 export class UserLoggingComponent implements OnInit {
   public showSignUpWindowForMobileDevices = true;
 
-  constructor(private breakpointObserver: BreakpointObserver,
-              private loaderService: LoaderService) { }
+  constructor(private loaderService: LoaderService) { }
 
   ngOnInit() {
     this.loaderService.stopLoading();
