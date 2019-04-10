@@ -82,13 +82,15 @@ namespace eFolio.BL
                 return;
             }
 
-            ProjectEntity projectEntity = mapper.Map<Project, ProjectEntity>(
-                item, oldProjectEntity, options => options
-                .ConfigureMap()
-                .ForMember(proj => proj.Context, mo => mo.Ignore())
-            );
-
-            projectRepository.Update(projectEntity);
+            projectRepository.Update(new ProjectEntity()
+            {
+                Id = item.Id,
+                Name = item.Name,
+                Context = oldProjectEntity.Context,
+                ContextId = oldProjectEntity.ContextId,
+                Developers = oldProjectEntity.Developers,
+                PhotoLink = oldProjectEntity.PhotoLink
+            });
 
             elastic.UpdateProjectData(mapper.Map<ElasticProjectData>(item));
         }

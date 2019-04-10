@@ -35,11 +35,14 @@ import { DevelopersFilterComponent } from './components/developers/developers-fi
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { FeedbackComponent } from './components/support/feedback/feedback.component';
 import { ContactInfoComponent } from './components/support/contact-info/contact-info.component';
-import { AdministrationListComponent } from './components/administration/administration-list/administration-list.component';
 import { ProjectPageComponent } from './components/projects/project-page/project-page.component';
-import { AuthGuard } from './guards/auth.guard';
 import { AdminProjectListComponent } from './components/administration/admin-project-list/admin-project-list.component';
 import { UserPageComponent } from './components/account/user-page/user-page.component';
+import { EditDialogComponent } from './components/administration/dialogs/edit-dialog/edit-dialog.component';
+import { AddDialogComponent } from './components/administration/dialogs/add-dialog/add-dialog.component';
+
+// Guards
+import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -64,10 +67,11 @@ import { UserPageComponent } from './components/account/user-page/user-page.comp
     DevelopersItemComponent,
     SpinnerComponent,
     DevelopersFilterComponent,
-    AdministrationListComponent,
     ProjectPageComponent,
     AdminProjectListComponent,
-    UserPageComponent
+    UserPageComponent,
+    EditDialogComponent,
+    AddDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -93,6 +97,10 @@ import { UserPageComponent } from './components/account/user-page/user-page.comp
   ],
   bootstrap: [
     AppComponent
+  ],
+  entryComponents: [
+    EditDialogComponent,
+    AddDialogComponent
   ]
 })
 export class AppModule { }

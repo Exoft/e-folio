@@ -15,9 +15,18 @@ namespace eFolio.BL
             this.db = eFolioDBContext;
         }
 
+
+        // TODO fix
         public void Add(ProjectEntity item)
         {
-            db.Projects.Add(item);
+            db.Projects.Add(new ProjectEntity()
+            {
+                Context = null,
+                ContextId = 10,
+                Developers = null,
+                Name = item.Name,
+                PhotoLink = @"D:\Exoft\e-Folio\e-Folio\Seeds\PhotoProject\efolio.png"
+            });
 
             db.SaveChanges();
         }
@@ -96,7 +105,8 @@ namespace eFolio.BL
 
         public void Update(ProjectEntity item)
         {
-            db.Update(item);
+            var entity = db.Projects.Find(item.Id);
+            db.Entry(entity).CurrentValues.SetValues(item);
             db.SaveChanges();
         }
 

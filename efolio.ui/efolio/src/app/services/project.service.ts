@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Project } from '../models/project.model';
 
 @Injectable()
 export class ProjectService {
@@ -37,4 +38,21 @@ export class ProjectService {
       headers: httpHeaders
     });
   }
+
+  UpdateProject(project: Project) {
+    const httpHeaders = new HttpHeaders();
+    this.addHeaders(httpHeaders);
+    return this.http.put<void>('http://localhost:5000/api/Project/', project, {
+      headers: httpHeaders
+    });
+  }
+
+  AddProject(project: Project) {
+    const httpHeaders = new HttpHeaders();
+    this.addHeaders(httpHeaders);
+    return this.http.post<void>('http://localhost:5000/api/Project/', project, {
+      headers: httpHeaders
+    });
+  }
+
 }
