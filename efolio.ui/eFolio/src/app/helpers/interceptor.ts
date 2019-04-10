@@ -33,10 +33,14 @@ export class Interceptor implements HttpInterceptor {
 
                 if (resp instanceof HttpErrorResponse) {
                     if (resp.status === 401) {
-                        this.authService.deleteUserData();
+   			observable = empty();
+                        
+			this.authService.deleteUserData();
                         this.router.navigate['account'];
                     } else if (resp.status === 0 || resp.status >= 500 ) {
-                        this.loaderService.stopLoading();
+   			observable = empty();
+                        
+			this.loaderService.stopLoading();
                         let displayMessage : string;
 
                         if (resp.status === 0) {
@@ -49,11 +53,10 @@ export class Interceptor implements HttpInterceptor {
                             duration: 8000,
                             panelClass: ['snackBar'],
                         });
-                    } else {
+                    } 
+		    else {
                         observable = throwError(resp);
                     }
-                        
-                    observable = empty();
                 }
                 else {
                     observable = throwError(resp)
