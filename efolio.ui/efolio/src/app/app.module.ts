@@ -9,7 +9,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // Services
-import { ProjectService } from './services/project.service';
 import { Interceptor } from './helpers/interceptor';
 
 // Components
@@ -87,7 +86,6 @@ import { AuthGuard } from './guards/auth.guard';
       useClass: Interceptor,
       multi: true
     },
-    ProjectService,
     DeveloperServiceService,
     AuthGuard
   ],

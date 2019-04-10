@@ -1,7 +1,9 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Project } from 'src/app/models/project.model';
 import { ProjectService } from 'src/app/services/project.service';
 import { LoaderService } from 'src/app/services/loader.service';
+
+
 @Component({
   selector: 'app-project-list',
   templateUrl: './project-list.component.html',
@@ -18,28 +20,37 @@ export class ProjectListComponent implements OnInit {
       this.filterMode = 'side';
     } else { this.filterMode = 'over'; }
     this.loaderService.startLoading();
-    this.projectService.GetAll().subscribe(
+    this.projectService.getAll().subscribe(
       (res) => {
         res.forEach(element => {
-          this.projects.push(new Project(element.id, element.name, element.internalDescription, element.externalDescription, element.photoBase64));
+          this.projects.push(new Project(
+            element.id,
+            element.name,
+            element.internalDescription,
+            element.externalDescription,
+            element.photoBase64));
         });
         this.loaderService.stopLoading();
       }
     );
   }
-  public getSearchedProject(searchString: string) {
+  public getSearchedProject(searchString: string): void {
     this.projectService.getProjectSearched(searchString).subscribe(
       (res) => {
         res.forEach(element => {
-          this.projects.push(new Project(element.id, element.name, element.internalDescription, element.externalDescription, element.photoBase64));
+          this.projects.push(new Project(
+            element.id,
+            element.name,
+            element.internalDescription,
+            element.externalDescription,
+            element.photoBase64));
         });
         this.loaderService.stopLoading();
       }
     );
   }
 
-  onSearch(request: string) {
-    console.log(request);
+  onSearch(request: string): void {
     this.projects = [];
     this.getSearchedProject(request);
   }

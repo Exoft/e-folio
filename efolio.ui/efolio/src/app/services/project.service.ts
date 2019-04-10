@@ -1,58 +1,37 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Project } from '../models/project.model';
+import { Observable } from 'rxjs';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ProjectService {
 
   constructor(private http: HttpClient) { }
 
-  GetAll() {
-    const httpHeaders = new HttpHeaders();
-    this.addHeaders(httpHeaders);
-    return this.http.get<any>('http://localhost:5000/api/Project', {
-      headers: httpHeaders
-    });
+  getAll(): Observable<any> {
+    return this.http.get<any>('http://localhost:5000/api/Project');
   }
 
-  GetProject(id: number) {
-    const httpHeaders = new HttpHeaders();
-    this.addHeaders(httpHeaders);
-    return this.http.get<any>('http://localhost:5000/api/Project/' + id, {
-      headers: httpHeaders
-    });
+  getProject(id: number): Observable<any> {
+    return this.http.get<any>('http://localhost:5000/api/Project/' + id);
   }
-  getProjectSearched(searchString: string) {
+
+  getProjectSearched(searchString: string): Observable<any> {
     return this.http.get<any>('http://localhost:5000/api/Project/search/' + searchString.toLowerCase() + '?from=0&size=100');
   }
 
-  addHeaders(headers: HttpHeaders) {
-    headers.append('Authorization', 'kbasdlkgjbasalskfhalkdg');
-    headers.append('Own-header', 'Ostap');
+  deleteProject(id: number): Observable<any> {
+    return this.http.delete<void>('http://localhost:5000/api/Project/' + id);
   }
 
-  DeleteProject(id: number) {
-    const httpHeaders = new HttpHeaders();
-    this.addHeaders(httpHeaders);
-    return this.http.delete<void>('http://localhost:5000/api/Project/' + id, {
-      headers: httpHeaders
-    });
+  updateProject(project: Project): Observable<any> {
+    return this.http.put<void>('http://localhost:5000/api/Project/', project);
   }
 
-  UpdateProject(project: Project) {
-    const httpHeaders = new HttpHeaders();
-    this.addHeaders(httpHeaders);
-    return this.http.put<void>('http://localhost:5000/api/Project/', project, {
-      headers: httpHeaders
-    });
-  }
-
-  AddProject(project: Project) {
-    const httpHeaders = new HttpHeaders();
-    this.addHeaders(httpHeaders);
-    return this.http.post<void>('http://localhost:5000/api/Project/', project, {
-      headers: httpHeaders
-    });
+  addProject(project: Project): Observable<any> {
+    return this.http.post<void>('http://localhost:5000/api/Project/', project);
   }
 
 }

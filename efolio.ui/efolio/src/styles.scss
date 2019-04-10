@@ -4,13 +4,14 @@
 $elementsMainColor: rgb(115, 1, 180);
 $elementsSecondaryColor: rgb(66, 66, 66);
 
-html, body {
-  height: 100%; 
+html,
+body {
+  height: 100%;
 }
 
-body { 
-  margin: 0; 
-  font-family: Roboto, "Helvetica Neue", sans-serif; 
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 //input style
@@ -41,73 +42,78 @@ body {
   color: $elementsSecondaryColor;
 }
 
-.mat-form-field.mat-focused .mat-form-field-label{
+.mat-form-field.mat-focused .mat-form-field-label {
   color: $elementsSecondaryColor;
 }
 
-.mat-form-field.mat-form-field-invalid .mat-form-field-label{
+.mat-form-field.mat-form-field-invalid .mat-form-field-label {
   color: $elementsSecondaryColor;
 }
 
-.mat-form-field-appearance-legacy .mat-form-field-wrapper{
-  width:100%;
+.mat-form-field-appearance-legacy .mat-form-field-wrapper {
+  width: 100%;
 }
 
 //snackbar style
-.mat-snack-bar-container{
+.mat-snack-bar-container {
   background: rgb(115, 1, 180);
   color: white;
   font-family: Roboto;
 }
 
 //stepper style
-.mat-step-icon .mat-icon{
-  color:white;
+.mat-step-icon .mat-icon {
+  color: white;
 }
 
-.mat-stepper-vertical{
-  background-color:white;
+.mat-stepper-vertical {
+  background-color: white;
   width: 90%;
   border-bottom: 1px solid $elementsSecondaryColor;
 }
 
-.mat-vertical-content-container{
+.mat-vertical-content-container {
   display: flex;
 }
 
-.mat-vertical-stepper-header-container{
+.mat-vertical-stepper-header-container {
   background-color: white;
   padding-bottom: 20px;
 }
 
-.mat-stepper-vertical-line{
+.mat-stepper-vertical-line {
   background-color: white;
 }
 
-.mat-step-text-label{
+.mat-step-text-label {
   color: black;
 }
 
-.mat-stepper-vertical-line::before{
+.mat-stepper-vertical-line::before {
   background-color: $elementsMainColor;
 }
 
-.mat-step-header .mat-step-icon{
+.mat-step-header .mat-step-icon {
   background-color: $elementsMainColor;
   color: $elementsSecondaryColor;
 }
-  
 
 //checkbox style
-.mat-checkbox-frame{
-  border-color: $elementsMainColor;
-}
-.mat-checkbox-checked.mat-accent .mat-checkbox-background{
-  background-color: white;
-}
-.mat-checkbox-checked{
+.mat-checkbox-frame {
   border-color: $elementsMainColor;
 }
 .mat-checkbox-checked.mat-accent .mat-checkbox-background {
- background: none;
+  background-color: white;
+}
+.mat-checkbox-checked {
+  border-color: $elementsMainColor;
+}
+.mat-checkbox-checked.mat-accent .mat-checkbox-background {
+  background: none;
+}
+
+// Card style
+.mat-card {
+  margin: 20px;
+  box-shadow: 0 2px 10px -1px rgb(0, 0, 0), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12) !important;
 }

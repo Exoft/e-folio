@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UserLoggingService } from 'src/app/services/user-logging.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { FormControl, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { ValidationService } from 'src/app/services/validation.service';
 import { MatSnackBar } from '@angular/material';
@@ -24,7 +24,7 @@ export class SignUpComponent {
       validators: this.validationService.confirmPasswordValidator
     });
 
-  constructor(private userLoggingService: UserLoggingService,
+  constructor(private authService: AuthService,
               public validationService: ValidationService,
               public loginValidatorBar: MatSnackBar,
               private loaderService: LoaderService) {
@@ -39,7 +39,7 @@ export class SignUpComponent {
         email: this.registerForm.value.email,
         password: this.registerForm.value.password
       };
-      this.userLoggingService.signUp(formData)
+      this.authService.signUp(formData)
         .subscribe(
           response => {
             if (response) {

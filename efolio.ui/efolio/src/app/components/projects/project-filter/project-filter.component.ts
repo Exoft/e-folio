@@ -18,7 +18,7 @@ export class ProjectFilterComponent {
     console.log(this.searchString);
     this.SearchStringChanged.emit(this.searchString);
   }
-  public checkChange(i: number) {
+  public checkChange(i: number): void {
     this.check[i] = !this.check[i];
     if (this.check[i] === true) {
       this.searchString += this.filterStrings[i];

@@ -1,5 +1,5 @@
 import { Component, HostListener, ViewChild } from '@angular/core';
-import { UserLoggingService } from '../../services/user-logging.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-main-nav',
@@ -10,9 +10,9 @@ export class MainNavComponent {
   public showSidenav = true;
   @ViewChild('drawer') public drawer;
 
-  constructor(private authService: UserLoggingService) { }
+  constructor(private authService: AuthService) { }
 
-  public isAdmin() : boolean {
+  public isAdmin(): boolean {
     return this.authService.userRole() === 'admin';
   }
 

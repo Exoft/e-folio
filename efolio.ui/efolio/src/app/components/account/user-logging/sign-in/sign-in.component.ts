@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { UserLoggingService } from 'src/app/services/user-logging.service';
 import { FormControl, Validators, FormGroup, AbstractControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { LoaderService } from 'src/app/services/loader.service';
 import * as jwt_decode from 'jwt-decode';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -19,8 +19,8 @@ export class SignInComponent {
   });
 
   constructor(public loginValidatorBar: MatSnackBar,
-    private userLoggingService: UserLoggingService,
-    private loaderService: LoaderService) {
+              private authService: AuthService,
+              private loaderService: LoaderService) {
   }
 
   onSignIn(): void {
@@ -32,7 +32,7 @@ export class SignInComponent {
       };
       const tokenKey = 'accessToken';
       const idKey = 'id';
-      this.userLoggingService.signIn(formData)
+      this.authService.signIn(formData)
         .subscribe(
           response => {
             const token = response[tokenKey];

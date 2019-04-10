@@ -30,7 +30,7 @@ export class AdminProjectListComponent implements OnInit {
   getData() {
     this.loaderService.startLoading();
     this.projects = [];
-    this.projectService.GetAll()
+    this.projectService.getAll()
       .subscribe(responce => {
         responce.forEach(element => {
           this.projects.push(new Project(element.id,
@@ -47,8 +47,7 @@ export class AdminProjectListComponent implements OnInit {
   }
 
   deleteElement(id: number) {
-    console.log(id);
-    this.projectService.DeleteProject(id).subscribe(() =>
+    this.projectService.deleteProject(id).subscribe(() =>
       this.loginValidatorBar.open('Project was deleted.', 'Ok', {
         duration: 5000,
         panelClass: ['snackBar'],
@@ -65,17 +64,16 @@ export class AdminProjectListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result !== undefined) {
-        let editProject = project;
+        const editProject = project;
         editProject.name = result.name;
         editProject.internalDescription = result.internalDescription;
-        this.projectService.UpdateProject(editProject).subscribe(() =>
+        this.projectService.updateProject(editProject).subscribe(() =>
           this.loginValidatorBar.open('Project was updated.', 'Ok', {
             duration: 5000,
             panelClass: ['snackBar'],
           })
         );
       }
-      console.log(result);
     });
   }
 
@@ -87,15 +85,14 @@ export class AdminProjectListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result !== undefined) {
-        let project = new Project(0, result.name, result.internalDescription , '', '');
-        this.projectService.AddProject(project).subscribe(() =>
+        const project = new Project(0, result.name, result.internalDescription, '', '');
+        this.projectService.addProject(project).subscribe(() =>
           this.loginValidatorBar.open('Project was added.', 'Ok', {
             duration: 5000,
             panelClass: ['snackBar'],
           })
         );
       }
-      console.log(result);
     });
   }
 }

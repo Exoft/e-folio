@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 export class AccountComponent {
     constructor() { }
 
-    readAccesToken(): boolean{
+    readAccesToken(): boolean {
       const token = localStorage.getItem('accessToken');
       if (token) {
         return false;
