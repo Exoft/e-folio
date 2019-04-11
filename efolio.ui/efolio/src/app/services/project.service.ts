@@ -9,29 +9,33 @@ import { Observable } from 'rxjs';
 export class ProjectService {
 
   constructor(private http: HttpClient) { }
-
+private apiString = 'http://localhost:5000/api/Project/';
   getAll(): Observable<any> {
-    return this.http.get<any>('http://localhost:5000/api/Project');
+    return this.http.get<any>(this.apiString);
   }
 
   getProject(id: number): Observable<any> {
-    return this.http.get<any>('http://localhost:5000/api/Project/' + id);
+    return this.http.get<any>(this.apiString + id);
   }
 
-  getProjectSearched(searchString: string): Observable<any> {
-    return this.http.get<any>('http://localhost:5000/api/Project/search/' + searchString.toLowerCase() + '?from=0&size=100');
+  getProjectSearched(searchString: string, from: number, size: number): Observable<any> {
+    return this.http.get<any>(this.apiString + 'search/' + searchString.toLowerCase() +
+      '?from=' + from + '&size=' + size);
   }
 
   deleteProject(id: number): Observable<any> {
-    return this.http.delete<void>('http://localhost:5000/api/Project/' + id);
+    return this.http.delete<void>(this.apiString + id);
   }
 
   updateProject(project: Project): Observable<any> {
-    return this.http.put<void>('http://localhost:5000/api/Project/', project);
+    return this.http.put<void>(this.apiString , project);
   }
 
   addProject(project: Project): Observable<any> {
-    return this.http.post<void>('http://localhost:5000/api/Project/', project);
+    return this.http.post<void>(this.apiString , project);
   }
 
+  getProjectSize(): Observable<number> {
+    return this.http.get<number>(this.apiString + 'size');
+  }
 }

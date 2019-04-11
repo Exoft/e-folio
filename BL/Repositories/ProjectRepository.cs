@@ -42,6 +42,11 @@ namespace eFolio.BL
             }
         }
 
+        public int GetSize()
+        {
+            return db.Projects.Count();
+        }
+
         public ProjectEntity GetItem(int id, params string[] extendWith)
         {
             IQueryable<ProjectEntity> query = db.Projects;

@@ -56,6 +56,20 @@ namespace eFolio.Api.Controllers
             }
         }
 
+        [HttpGet("size")]
+        public IActionResult GetProjectSize()
+        {
+            try
+            {
+                return Ok(_projectService.GetSize());
+            }
+            catch (Exception ex)
+            {
+                _logger.LogWarning(ex, string.Empty);
+                return StatusCode((int)HttpStatusCode.InternalServerError, new ErrorResponse(ex));
+            }
+        }
+
         [HttpGet("search/{request}")] 
         public IActionResult SearchProjects(string request, [FromQuery] int from, [FromQuery] int size)
         {

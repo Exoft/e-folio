@@ -101,6 +101,11 @@ namespace eFolio.BL
             elastic.UpdateProjectData(mapper.Map<ElasticProjectData>(item));
         }
 
+        public int GetSize()
+        {
+            return projectRepository.GetSize();
+        }
+
         public void UpdateDetails(int project, Context context)
         {
             ProjectEntity oldProjectEntity = projectRepository.GetItem(project);

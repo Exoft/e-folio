@@ -15,5 +15,8 @@
     <div>
       <app-project-item *ngFor="let item of projects" [projectInput]="item"></app-project-item>
     </div>
+    <div>
+      <p *ngFor="let item of pages" (click)="onCurrentPageChanged(pages[item])">{{item}}</p>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
