@@ -27,4 +27,11 @@ export class DeveloperServiceService {
     headers.append('Authorization', 'qwertyasdfgzxvc');
     headers.append('Own-header', 'Name');
   }
+
+  getDevelopersSearched(searchString: string, from: number, size: number) {
+    const httpHeaders = new HttpHeaders();
+    this.addHeaders(httpHeaders);
+    return this.http.get<Developer>( 'http://localhost:5000/api/developers/' + 'search/' + searchString.toLowerCase() +
+      '?from=' + from + '&size=' + size);
+  }
 }

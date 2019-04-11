@@ -1,8 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Response } from '@angular/http';
+import {Component, HostListener, OnInit} from '@angular/core';
 import { DeveloperServiceService as DeveloperService } from 'src/app/services/developer-service.service';
-import { MatProgressSpinnerModule } from '@angular/material';
-import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
 import { LoaderService } from 'src/app/services/loader.service';
 import { Developer } from 'src/app/models/developer.model';
 
@@ -15,11 +12,14 @@ import { Developer } from 'src/app/models/developer.model';
 export class DevelopersListComponent implements OnInit {
   public opened = true;
   developers: Developer[] = [];
-
+  public filterMode: string;
   constructor(private developerService: DeveloperService,
               private loaderService: LoaderService) { }
 
   ngOnInit() {
+    if (window.innerWidth > 700) {
+      this.filterMode = 'side';
+    } else { this.filterMode = 'over'; }
     this.loaderService.startLoading();
     this.developerService.getAllDevelopers()
       .subscribe(response => {
@@ -38,4 +38,23 @@ export class DevelopersListComponent implements OnInit {
         element.photoBase64));
     });
   }
+  @HostListener('window:resize', ['$event']) onResize() {
+    if (window.innerWidth < 700) {
+      this.filterMode = 'over';
+    } else {
+      this.filterMode = 'side';
+    }
+  }
+
+  public getSearchedDevelopers(searchString: string, from: number, size: number) {
+    this.developerService.getDevelopersSearched(searchString, from, size).subscribe(
+      response => {this.getData(response);
+      },
+    );
+  }
+  public onSearch(request: string): void {
+    this.developers = [];
+    this.getSearchedDevelopers(request, 0, 10);    // fix hardcode leter!!!!!
+  }
+
 }

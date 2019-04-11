@@ -45,9 +45,8 @@ import { EditDialogComponent } from './components/administration/dialogs/edit-di
 import { AddDeveloperDialogComponent } from './components/administration/admin-developers-list/dialogs/add-dialog/add-developer-dialog.component';
 import { EditDeveloperDialogComponent } from './components/administration/admin-developers-list/dialogs/edit-dialog/edit-developer-dialog.component';
 import { AdministrationGuard } from './guards/administration.guard';
-import { AdministrationGuard } from './guards/administration.guard';
 
-//Pipe
+// Pipe
 import { TruncatePipe } from './pipes/truncate.pipe';
 
 @NgModule({
@@ -81,14 +80,14 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     AddDialogComponent,
     EditDialogComponent,
     AddDeveloperDialogComponent,
-    EditDeveloperDialogComponent
+    EditDeveloperDialogComponent,
+    TruncatePipe
   ],
   entryComponents: [
     EditDialogComponent,
     AddDialogComponent,
     EditDeveloperDialogComponent,
     AddDeveloperDialogComponent
-    TruncatePipe
   ],
   imports: [
     BrowserModule,
@@ -109,7 +108,7 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     },
     DeveloperServiceService,
     AuthGuard,
-    AdministrationService
+    AdministrationService,
     AdministrationGuard
   ],
   bootstrap: [
