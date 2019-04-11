@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -31,7 +31,7 @@ export class AuthService {
         return role;
     }
 
-    deleteUserData() { 
+    deleteUserData() {
         localStorage.removeItem('accessToken');
         localStorage.removeItem('userRole');
         localStorage.removeItem('userId');
