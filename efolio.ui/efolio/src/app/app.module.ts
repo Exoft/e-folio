@@ -40,6 +40,10 @@ import { AddDialogComponent } from './components/administration/dialogs/add-dial
 
 // Guards
 import { AuthGuard } from './guards/auth.guard';
+import { AdministrationGuard } from './guards/administration.guard';
+
+//Pipe
+import { TruncatePipe } from './pipes/truncate.pipe';
 
 @NgModule({
   declarations: [
@@ -68,7 +72,8 @@ import { AuthGuard } from './guards/auth.guard';
     AdminProjectListComponent,
     UserPageComponent,
     EditDialogComponent,
-    AddDialogComponent
+    AddDialogComponent,
+    TruncatePipe
   ],
   imports: [
     BrowserModule,
@@ -87,7 +92,8 @@ import { AuthGuard } from './guards/auth.guard';
       multi: true
     },
     DeveloperServiceService,
-    AuthGuard
+    AuthGuard,
+    AdministrationGuard
   ],
   bootstrap: [
     AppComponent

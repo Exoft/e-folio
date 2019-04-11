@@ -6,21 +6,26 @@
 
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef>Name</th>
-    <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    <td mat-cell *matCellDef="let element">{{ element.name | truncate : 24 : false }}</td>
   </ng-container>
 
-  <ng-container matColumnDef="description">
-    <th mat-header-cell *matHeaderCellDef>Description</th>
-    <td mat-cell *matCellDef="let element">{{ element.internalDescription }}</td>
+  <ng-container matColumnDef="InDesc">
+    <th mat-header-cell *matHeaderCellDef>InDesc</th>
+    <td mat-cell *matCellDef="let element">{{ element.internalDescription | truncate : 24 : false }}</td>
   </ng-container>
+
+  <ng-container matColumnDef="ExDesc">
+      <th mat-header-cell *matHeaderCellDef>ExDesc</th>
+      <td mat-cell *matCellDef="let element">{{ element.externalDescription | truncate : 24 : false}}</td>
+    </ng-container>
 
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef>
       <p>Actions <button type="button" (click)='openAddDialog()'>Add</button></p>
     </th>
-    <td mat-cell *matCellDef="let element">
+    <td mat-cell *matCellDef="let element; let i = index">
       <button type="button" (click)='openEditDialog(element)'>Edit</button>
-      <button type="button" (click)="deleteElement(element.id)">Delete</button>
+      <button type="button" (click)="deleteElement(element.id, i)">Delete</button>
     </td>
   </ng-container>
 

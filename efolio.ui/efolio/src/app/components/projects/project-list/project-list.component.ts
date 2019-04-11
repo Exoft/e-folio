@@ -76,8 +76,8 @@ export class ProjectListComponent implements OnInit {
   }
 
   public calculatePages() {
-    const temp = Math.floor(this.projectListSize / 10);
-    for (let i = 1; i < temp; i++) {
+    const temp = Math.floor(this.projectListSize / 10) + 1;
+    for (let i = 1; i < 2; i++) {
       this.pages.push(i);
     }
   }

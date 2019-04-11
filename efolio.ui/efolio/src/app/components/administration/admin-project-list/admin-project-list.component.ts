@@ -13,7 +13,7 @@ import { AddDialogComponent } from '../dialogs/add-dialog/add-dialog.component';
   styleUrls: ['./admin-project-list.component.scss']
 })
 export class AdminProjectListComponent implements OnInit {
-  public displayedColumns: string[] = ['id', 'name', 'description', 'actions'];
+  public displayedColumns: string[] = ['id', 'name', 'InDesc', 'ExDesc', 'actions'];
   public dataSource = new MatTableDataSource();
   public projects: Project[] = [];
 
@@ -46,20 +46,25 @@ export class AdminProjectListComponent implements OnInit {
       );
   }
 
-  deleteElement(id: number) {
+  deleteElement(id: number, index: number) {
     this.projectService.deleteProject(id).subscribe(() =>
       this.loginValidatorBar.open('Project was deleted.', 'Ok', {
         duration: 5000,
         panelClass: ['snackBar'],
       })
     );
-    this.getData();
+    this.projects.splice(index, 1);
+    this.dataSource.data = this.projects;
   }
 
   openEditDialog(project: Project): void {
     const dialogRef = this.dialog.open(EditDialogComponent, {
       width: '450px',
-      data: { name: project.name, internalDescription: project.internalDescription }
+      data: {
+        name: project.name,
+        internalDescription: project.internalDescription,
+        externalDescription: project.externalDescription
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -67,6 +72,7 @@ export class AdminProjectListComponent implements OnInit {
         const editProject = project;
         editProject.name = result.name;
         editProject.internalDescription = result.internalDescription;
+        editProject.externalDescription = result.externalDescription;
         this.projectService.updateProject(editProject).subscribe(() =>
           this.loginValidatorBar.open('Project was updated.', 'Ok', {
             duration: 5000,
@@ -75,17 +81,19 @@ export class AdminProjectListComponent implements OnInit {
         );
       }
     });
+
+    this.getData();
   }
 
   openAddDialog(): void {
     const dialogRef = this.dialog.open(AddDialogComponent, {
       width: '450px',
-      data: { name: '', internalDescription: '' }
+      data: { name: '', internalDescription: '', externalDescription: '' }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result !== undefined) {
-        const project = new Project(0, result.name, result.internalDescription, '', '');
+        const project = new Project(0, result.name, result.internalDescription, result.externalDescription, '');
         this.projectService.addProject(project).subscribe(() =>
           this.loginValidatorBar.open('Project was added.', 'Ok', {
             duration: 5000,
@@ -93,6 +101,8 @@ export class AdminProjectListComponent implements OnInit {
           })
         );
       }
+
+      this.ngOnInit();
     });
   }
 }

@@ -29,7 +29,7 @@ const routes: Routes = [{
 }, {
   path: 'administration',
   component: AdministrationComponent,
-  canActivate: [AdministrationGuard]
+  //canActivate: [AdministrationGuard]
 }, {
   path: 'account',
   component: AccountComponent 
