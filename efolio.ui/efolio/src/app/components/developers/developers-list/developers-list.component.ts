@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Response } from '@angular/http';
 import { DeveloperServiceService as DeveloperService } from 'src/app/services/developer-service.service';
-import { Developer } from 'src/app/components/models/developer.model';
 import { MatProgressSpinnerModule } from '@angular/material';
 import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
 import { LoaderService } from 'src/app/services/loader.service';
+import { Developer } from 'src/app/models/developer.model';
 
 @Component({
   selector: 'app-developers-list',
@@ -13,6 +13,7 @@ import { LoaderService } from 'src/app/services/loader.service';
 })
 
 export class DevelopersListComponent implements OnInit {
+  public opened = true;
   developers: Developer[] = [];
 
   constructor(private developerService: DeveloperService,
@@ -28,7 +29,7 @@ export class DevelopersListComponent implements OnInit {
         (error) => console.log(error)
       );
   }
-  private getData(response) {
+  public getData(response) {
     response.forEach(element => {
       this.developers.push(new Developer(element.id,
         element.fullName,

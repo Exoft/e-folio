@@ -8,6 +8,8 @@ import { AccountComponent } from './components/account/account.component';
 import { ProjectPageComponent } from './components/projects/project-page/project-page.component';
 import { ProjectListComponent } from './components/projects/project-list/project-list.component';
 import { AdministrationGuard } from './guards/administration.guard';
+import { DevelopersListComponent } from './components/developers/developers-list/developers-list.component';
+import { DevelopersPageComponent } from './components/developers/developers-page/developers-page.component';
 
 const routes: Routes = [{
   path: '',
@@ -22,7 +24,11 @@ const routes: Routes = [{
   ]
 }, {
   path: 'developers',
-  component: DevelopersComponent
+  component: DevelopersComponent,
+  children: [
+    { path: '', component: DevelopersListComponent },
+    { path: ':id', component: DevelopersPageComponent }
+  ]
 }, {
   path: 'support',
   component: SupportComponent

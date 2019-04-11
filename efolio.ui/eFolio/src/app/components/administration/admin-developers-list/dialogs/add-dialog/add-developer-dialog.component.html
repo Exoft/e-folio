@@ -1,0 +1,30 @@
+<div class="container">
+  <h3>Add new developer</h3>
+
+  <form class="mat-dialog-content" (ngSubmit)="confirmAdd()" [formGroup]="formControl">
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput formControlName="fullName" class="form-control" placeholder="fullName" name="fullName" required>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput formControlName="internalCV" class="form-control" placeholder="internalCV" name="internalCV"
+          required>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput formControlName="externalCV" class="form-control" placeholder="externalCV" name="externalCV"
+          required>
+      </mat-form-field>
+    </div>
+
+    <div mat-dialog-actions>
+      <button mat-button [type]="submit" [disabled]="!formControl.valid">Save</button>
+      <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+    </div>
+  </form>
+</div>

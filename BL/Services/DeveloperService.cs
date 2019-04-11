@@ -106,12 +106,13 @@ namespace eFolio.BL
         private async Task<Developer> GetMergeDeveloperAsync(DeveloperEntity developerEntity, ElasticDeveloperData elasticDeveloperData)
         {
             var developer = mapper.Map<Developer>(Tuple.Create(elasticDeveloperData, developerEntity));
-
-            developer.HasPhoto(
-                await File.ReadAllBytesAsync(developerEntity.PhotoLink),
-                Path.GetExtension(developerEntity.PhotoLink)
-            );
-
+            if (developerEntity.PhotoLink != null)
+            {
+                developer.HasPhoto(
+                    await File.ReadAllBytesAsync(developerEntity.PhotoLink),
+                    Path.GetExtension(developerEntity.PhotoLink)
+                );
+            }
             return developer;
         }
     }

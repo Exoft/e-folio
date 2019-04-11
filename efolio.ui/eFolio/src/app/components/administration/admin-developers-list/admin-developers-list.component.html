@@ -1,0 +1,36 @@
+<table mat-table [dataSource]="dataSource" class="mat-cell">
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>Id</th>
+    <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="fullName">
+    <th mat-header-cell *matHeaderCellDef>fullName</th>
+    <td mat-cell *matCellDef="let element">{{ element.fullName }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="internalCV">
+    <th mat-header-cell *matHeaderCellDef>internalCV</th>
+    <td mat-cell *matCellDef="let element">{{ element.internalCV }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="externalCV">
+    <th mat-header-cell *matHeaderCellDef>externalCV</th>
+    <td mat-cell *matCellDef="let element">{{ element.externalCV }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef>
+      <button class="add" (click)="addDeveloper()">Add</button>
+    </mat-header-cell>
+
+    <mat-cell *matCellDef="let row; let i=index;">
+      <button class="edit" (click)="editDeveloper()">Edit</button>
+      <button class="delete" (click)="deleteDeveloper(i)">Delete</button>
+
+    </mat-cell>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>

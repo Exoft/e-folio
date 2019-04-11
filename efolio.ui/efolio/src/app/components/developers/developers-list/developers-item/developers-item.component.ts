@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Developer } from 'src/app/components/models/developer.model';
+import { Developer } from 'src/app/models/developer.model';
 
 @Component({
   selector: 'app-developers-item',

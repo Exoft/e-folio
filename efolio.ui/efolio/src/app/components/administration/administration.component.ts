@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoaderService } from 'src/app/services/loader.service';
-import { User } from '../models/user.model';
 import { AdministrationService } from 'src/app/services/administration.service';
+import { User } from 'src/app/models/user.model';
 
 @Component({
   templateUrl: './administration.component.html',

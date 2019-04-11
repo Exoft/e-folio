@@ -191,10 +191,13 @@ namespace eFolio.BL
         private Project GetMergeProject(ProjectEntity projectEntity, ElasticProjectData elasticProjectData)
         {
             var project = mapper.Map<Project>(Tuple.Create(elasticProjectData, projectEntity));
-            project.HasPhoto(
-                File.ReadAllBytes(projectEntity.PhotoLink), 
-                Path.GetExtension(projectEntity.PhotoLink)
-            );
+            if (projectEntity.PhotoLink != null)
+            {
+                project.HasPhoto(
+                    File.ReadAllBytes(projectEntity.PhotoLink),
+                    Path.GetExtension(projectEntity.PhotoLink)
+                ); 
+            }
             return project;
         }
     } 

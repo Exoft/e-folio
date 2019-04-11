@@ -9,7 +9,7 @@ export interface DialogData {
 @Component({
   selector: 'app-add-dialog',
   templateUrl: './add-dialog.component.html',
-  styleUrls: ['./add-dialog.component.sass']
+  styleUrls: ['./add-dialog.component.scss']
 })
 export class AddDialogComponent {
 

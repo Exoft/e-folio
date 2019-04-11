@@ -96,7 +96,7 @@ namespace eFolio.Api.Controllers
         }
 
         [HttpPost] 
-        [HasClaim("role", "admin")]
+     //   [HasClaim("role", "admin", AllowAnonymous = true)]
         public IActionResult NewDeveloper([FromBody] Developer developer)
         {
             try
@@ -112,7 +112,7 @@ namespace eFolio.Api.Controllers
         }
 
         [HttpDelete("{id}")] 
-        [HasClaim("role", "admin")]
+        // [HasClaim("role", "admin")]
         public IActionResult DeleteDeveloper(int id)
         {
             try

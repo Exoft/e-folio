@@ -35,11 +35,16 @@ import { ContactInfoComponent } from './components/support/contact-info/contact-
 import { ProjectPageComponent } from './components/projects/project-page/project-page.component';
 import { AdminProjectListComponent } from './components/administration/admin-project-list/admin-project-list.component';
 import { UserPageComponent } from './components/account/user-page/user-page.component';
-import { EditDialogComponent } from './components/administration/dialogs/edit-dialog/edit-dialog.component';
-import { AddDialogComponent } from './components/administration/dialogs/add-dialog/add-dialog.component';
-
-// Guards
+import { AdminDevelopersListComponent } from './components/administration/admin-developers-list/admin-developers-list.component';
+import { DevelopersPageComponent } from './components/developers/developers-page/developers-page.component';
+import { MatDialogModule } from '@angular/material';
+import { AdministrationService } from './services/administration.service';
 import { AuthGuard } from './guards/auth.guard';
+import { AddDialogComponent } from './components/administration/dialogs/add-dialog/add-dialog.component';
+import { EditDialogComponent } from './components/administration/dialogs/edit-dialog/edit-dialog.component';
+import { AddDeveloperDialogComponent } from './components/administration/admin-developers-list/dialogs/add-dialog/add-developer-dialog.component';
+import { EditDeveloperDialogComponent } from './components/administration/admin-developers-list/dialogs/edit-dialog/edit-developer-dialog.component';
+import { AdministrationGuard } from './guards/administration.guard';
 
 @NgModule({
   declarations: [
@@ -63,12 +68,22 @@ import { AuthGuard } from './guards/auth.guard';
     DevelopersListComponent,
     DevelopersItemComponent,
     SpinnerComponent,
-    DevelopersFilterComponent,
-    ProjectPageComponent,
     AdminProjectListComponent,
     UserPageComponent,
+    DevelopersFilterComponent,
+    ProjectPageComponent,
+    DevelopersPageComponent,
+    AdminDevelopersListComponent,
+    AddDialogComponent,
     EditDialogComponent,
-    AddDialogComponent
+    AddDeveloperDialogComponent,
+    EditDeveloperDialogComponent
+  ],
+  entryComponents: [
+    EditDialogComponent,
+    AddDialogComponent,
+    EditDeveloperDialogComponent,
+    AddDeveloperDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -78,7 +93,8 @@ import { AuthGuard } from './guards/auth.guard';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule
   ],
   providers: [
     {
@@ -87,14 +103,12 @@ import { AuthGuard } from './guards/auth.guard';
       multi: true
     },
     DeveloperServiceService,
-    AuthGuard
+    AuthGuard,
+    AdministrationGuard,
+    AdministrationService
   ],
   bootstrap: [
     AppComponent
-  ],
-  entryComponents: [
-    EditDialogComponent,
-    AddDialogComponent
   ]
 })
 export class AppModule { }

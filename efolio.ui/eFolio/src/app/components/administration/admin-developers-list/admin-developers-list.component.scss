@@ -1,0 +1,15 @@
+$elementsMainColor: #212121;
+
+.delete, .edit, .add{
+    margin: 15px;
+    padding: 7px;
+    background-color: white;
+    border: 2px solid $elementsMainColor;
+    color: $elementsMainColor;
+    border-radius: 12px;
+    font-size: 115%;
+}
+.delete:hover, .edit:hover, .add:hover{
+    background-color: $elementsMainColor;
+    color: black;
+}

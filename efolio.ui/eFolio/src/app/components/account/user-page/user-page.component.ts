@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { LoaderService } from 'src/app/services/loader.service';
 import { FormControl, FormGroup } from '@angular/forms';
-import { User } from '../../models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
-import { MatSnackBar } from '@angular/material';
- 
+import { MatSnackBar } from '@angular/material';  
+import { User } from 'src/app/models/user.model';
+
 @Component({
   selector: 'app-user-page',
   templateUrl: './user-page.component.html',
