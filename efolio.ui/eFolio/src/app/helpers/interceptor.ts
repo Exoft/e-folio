@@ -5,15 +5,15 @@ import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import { throwError, empty } from 'rxjs';
-import { LoaderService } from '../services/loader.service'; 
+import { LoaderService } from '../services/loader.service';
 import { AuthService } from '../services/auth.service';
- 
+
 @Injectable()
 export class Interceptor implements HttpInterceptor {
-    constructor(private router: Router, 
-                private notification: MatSnackBar,
-                private loaderService: LoaderService,
-                private authService: AuthService) {
+    constructor(private router: Router,
+        private notification: MatSnackBar,
+        private loaderService: LoaderService,
+        private authService: AuthService) {
 
     }
 
@@ -22,39 +22,39 @@ export class Interceptor implements HttpInterceptor {
         if (userToken) {
             req = req.clone({
                 setHeaders: {
-                    Authorization: userToken,
+                    Authorization: 'Bearer ' + userToken,
                 }
             });
         }
 
         return next.handle(req).pipe(
             catchError((resp) => {
-                let observable : Observable<HttpEvent<any>>;
+                let observable: Observable<HttpEvent<any>>;
 
                 if (resp instanceof HttpErrorResponse) {
                     if (resp.status === 401) {
-   			observable = empty();
-                        
-			this.authService.deleteUserData();
+                        observable = empty();
+
+                        this.authService.deleteUserData();
                         this.router.navigate['account'];
-                    } else if (resp.status === 0 || resp.status >= 500 ) {
-   			observable = empty();
-                        
-			this.loaderService.stopLoading();
-                        let displayMessage : string;
+                    } else if (resp.status === 0 || resp.status >= 500) {
+                        observable = empty();
+
+                        this.loaderService.stopLoading();
+                        let displayMessage: string;
 
                         if (resp.status === 0) {
                             displayMessage = 'Cannot connect to server.';
-                        } else { 
+                        } else {
                             displayMessage = 'Server error.';
-                        } 
-                        
+                        }
+
                         this.notification.open(displayMessage, 'Ok', {
                             duration: 8000,
                             panelClass: ['snackBar'],
                         });
-                    } 
-		    else {
+                    }
+                    else {
                         observable = throwError(resp);
                     }
                 }
