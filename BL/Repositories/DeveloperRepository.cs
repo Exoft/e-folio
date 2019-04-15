@@ -50,6 +50,13 @@ namespace eFolio.BL
             await db.SaveChangesAsync();
         }
 
+        public async Task ChangeAvatarAsync(int id, string path)
+        {
+            await db.Database.ExecuteSqlCommandAsync(
+                "UPDATE dbo.Developers SET PhotoLink = @p0 WHERE Id = @p1", path, id
+            );
+        }
+
         private bool disposed = false;
 
         public virtual void Dispose(bool disposing)

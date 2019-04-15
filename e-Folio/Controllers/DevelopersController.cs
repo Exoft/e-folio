@@ -113,16 +113,20 @@ namespace eFolio.Api.Controllers
             }
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("avatar/{id}")]
         [HasClaim("role", "admin")]
         public async Task<IActionResult> UploadPhoto(int id, IFormFile formFile)
         {
             try
             {
-                if (formFile.Name.Contains(".png") ||
-                    formFile.Name.Contains(".jpg"))
+                string contentType = formFile.ContentType;
+                if (contentType.Contains("image/png") ||
+                    contentType.Contains("image/jpeg"))
                 {
-                    await _developerService.ChangeAvatar(id, Path.GetExtension(formFile.Name), formFile.OpenReadStream());
+                    await _developerService.ChangeAvatar(
+                        id, contentType.Split('/').Last(),
+                        formFile.OpenReadStream()
+                    );
                     return Ok();
                 }
                 else

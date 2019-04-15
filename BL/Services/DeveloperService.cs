@@ -34,6 +34,23 @@ namespace eFolio.BL
             elastic.AddItem(eld);
         }
 
+        public async Task ChangeAvatar(int id, string extension, Stream stream)
+        {
+            string path = string.Format("{0}\\Seeds\\PhotoProject\\{1}.{2}",
+                Environment.CurrentDirectory,
+                id.ToString(),
+                extension
+            );
+            using (stream)
+            {
+                using (FileStream fileStream = File.OpenWrite(path))
+                {
+                    await stream.CopyToAsync(fileStream);
+                }
+            }
+            await developerRepository.ChangeAvatarAsync(id, path);
+        }
+
         public async Task DeleteAsync(int id)
         {
             await developerRepository.DeleteAsync(id);
