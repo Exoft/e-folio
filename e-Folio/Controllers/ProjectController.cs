@@ -38,7 +38,7 @@ namespace eFolio.Api.Controllers
 
         private DescriptionKind GetDescriptionKindForRequest()
         {
-            return User != null && User.Claims.Any() && haveExtraPermissions.Contains(User.Claims.First().Value) ?
+            return User != null && User.Claims.Any(cl => cl.Value == "admin" || cl.Value == "sale") ?
                 DescriptionKind.Internal :
                 DescriptionKind.External;
         }

@@ -13,6 +13,8 @@ using eFolio.DTO;
 using Microsoft.AspNetCore.Identity;
 using eFolio.Attibutes;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace eFolio.Api.Controllers
 {
@@ -56,7 +58,7 @@ namespace eFolio.Api.Controllers
 
         private CVKind GetCVKindForRequest()
         {
-            return User != null && User.Claims.Any() && haveExtraPermissions.Contains(User.Claims.First().Value) ?
+            return User != null && User.Claims.Any(cl => cl.Value == "admin" || cl.Value == "sale") ?
                 CVKind.Internal :
                 CVKind.External;
         }
@@ -96,13 +98,37 @@ namespace eFolio.Api.Controllers
         }
 
         [HttpPost]
-        [HasClaim("role", "admin", AllowAnonymous = true)]
+        [HasClaim("role", "admin")]
         public async Task<IActionResult> NewDeveloper([FromBody] Developer developer)
         {
             try
             {
                 await _developerService.AddAsync(developer);
                 return Ok();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogWarning(ex, string.Empty);
+                return StatusCode((int)HttpStatusCode.InternalServerError, new ErrorResponse(ex));
+            }
+        }
+
+        [HttpPut("{id}")]
+        [HasClaim("role", "admin")]
+        public async Task<IActionResult> UploadPhoto(int id, IFormFile formFile)
+        {
+            try
+            {
+                if (formFile.Name.Contains(".png") ||
+                    formFile.Name.Contains(".jpg"))
+                {
+                    await _developerService.ChangeAvatar(id, Path.GetExtension(formFile.Name), formFile.OpenReadStream());
+                    return Ok();
+                }
+                else
+                {
+                    return BadRequest("File formats supported: .jpg, .png");
+                }
             }
             catch (Exception ex)
             {
