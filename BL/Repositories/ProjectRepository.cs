@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace eFolio.BL
 {
@@ -15,9 +16,8 @@ namespace eFolio.BL
             this.db = eFolioDBContext;
         }
 
-
         // TODO fix
-        public void Add(ProjectEntity item)
+        public async Task AddAsync(ProjectEntity item)
         {
             db.Projects.Add(new ProjectEntity()
             {
@@ -28,26 +28,26 @@ namespace eFolio.BL
                 PhotoLink = @"D:\Exoft\e-Folio\e-Folio\Seeds\PhotoProject\efolio.png"
             });
 
-            db.SaveChanges();
+            await db.SaveChangesAsync();
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
-            ProjectEntity project = db.Projects.Find(id);
+            ProjectEntity project = await db.Projects.FindAsync(id);
 
             if (project != null)
             {
                 db.Projects.Remove(project);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
             }
         }
 
-        public int GetSize()
+        public Task<int> GetSizeAsync()
         {
-            return db.Projects.Count();
+            return db.Projects.CountAsync();
         }
 
-        public ProjectEntity GetItem(int id, params string[] extendWith)
+        public async Task<ProjectEntity> GetItemAsync(int id, params string[] extendWith)
         {
             IQueryable<ProjectEntity> query = db.Projects;
 
@@ -63,39 +63,40 @@ namespace eFolio.BL
                         query = query.Include(proj => proj.Context)
                                      .ThenInclude(context => context.ScreenLinks);
                         break;
-                    case "developers": addDevelopers = true;
+                    case "developers":
+                        addDevelopers = true;
                         break;
                     default:
                         break;
                 }
             }
 
-            var project = query.SingleOrDefault(item => item.Id == id);
+            var project = await query.SingleOrDefaultAsync(item => item.Id == id);
 
             if (addDevelopers && project != null)
             {
-                var developers = db.Set<ProjectDeveloperEntity>()
+                var developers = await db.Set<ProjectDeveloperEntity>()
                       .Include(pde => pde.DeveloperEntity)
                       .Where(pde => pde.ProjectId == id)
-                      .ToList();
+                      .ToListAsync();
 
-                project.Developers = developers; 
+                project.Developers = developers;
             }
 
             return project;
         }
 
-        public IEnumerable<ProjectEntity> GetItemsList()
+        public async Task<IEnumerable<ProjectEntity>> GetItemsListAsync()
         {
-            List<ProjectEntity> list = db.Projects
+            List<ProjectEntity> list = await db.Projects
                 .Include(project => project.Context)
                 .ThenInclude(context => context.ScreenLinks)
-                .ToList();
+                .ToListAsync();
 
-            var developers = db.Set<ProjectDeveloperEntity>()
+            var developers = await db.Set<ProjectDeveloperEntity>()
                 .Include(pde => pde.DeveloperEntity)
                 .GroupBy(pde => pde.ProjectId)
-                .ToDictionary(pde => pde.Key);
+                .ToDictionaryAsync(pde => pde.Key);
 
             foreach (var item in list)
             {
@@ -108,11 +109,11 @@ namespace eFolio.BL
             return list;
         }
 
-        public void Update(ProjectEntity item)
+        public async Task UpdateAsync(ProjectEntity item)
         {
-            var entity = db.Projects.Find(item.Id);
+            var entity = await db.Projects.FindAsync(item.Id);
             db.Entry(entity).CurrentValues.SetValues(item);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
         }
 
         private bool disposed = false;

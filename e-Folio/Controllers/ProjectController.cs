@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Net;
 using eFolio.Attibutes;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace eFolio.Api.Controllers
 {
@@ -43,11 +44,11 @@ namespace eFolio.Api.Controllers
         }
 
         [HttpGet] 
-        public IActionResult GetProjects()
+        public async Task<IActionResult> GetProjects()
         {
             try
             {
-                return Ok(_projectService.GetItemsList(GetDescriptionKindForRequest()));
+                return Ok(await _projectService.GetItemsListAsync(GetDescriptionKindForRequest()));
             }
             catch (Exception ex)
             {
@@ -57,11 +58,11 @@ namespace eFolio.Api.Controllers
         }
 
         [HttpGet("size")]
-        public IActionResult GetProjectSize()
+        public async Task<IActionResult> GetProjectSize()
         {
             try
             {
-                return Ok(_projectService.GetSize());
+                return Ok(await _projectService.GetSizeAsync());
             }
             catch (Exception ex)
             {
@@ -71,11 +72,15 @@ namespace eFolio.Api.Controllers
         }
 
         [HttpGet("search/{request}")] 
-        public IActionResult SearchProjects(string request, [FromQuery] int from, [FromQuery] int size)
+        public async Task<IActionResult> SearchProjects(string request, [FromQuery] int from, [FromQuery] int size)
         {
             try
             {
-                return Ok(_projectService.Search(request, new Paging(from, size), GetDescriptionKindForRequest()));
+                return Ok(
+                    await _projectService.SearchAsync(
+                        request, new Paging(from, size), GetDescriptionKindForRequest()
+                    )
+                );
             }
             catch (Exception ex)
             {
@@ -85,11 +90,11 @@ namespace eFolio.Api.Controllers
         }
 
         [HttpGet("{id}")]   
-        public IActionResult GetProject(int id, string options)
+        public async Task<IActionResult> GetProject(int id, string options)
         {
             try
             {
-                var project = _projectService.GetItem(
+                var project = await _projectService.GetItemAsync(
                     id, GetDescriptionKindForRequest(), (options ?? default_options).Split(',')
                 );
                 if (project == null)
@@ -106,13 +111,12 @@ namespace eFolio.Api.Controllers
         }
 
         [HttpDelete("{id}")]  
-        // TODO fix
-        // [HasClaim("role", "admin", "sales")]
-        public ActionResult DeleteProject(int id)
+        [HasClaim("role", "admin", "sales")]
+        public async Task<ActionResult> DeleteProject(int id)
         {
             try
             {
-                _projectService.Delete(id);
+                await _projectService.DeleteAsync(id);
                 return Ok();
             }
             catch (Exception ex)
@@ -123,12 +127,12 @@ namespace eFolio.Api.Controllers
         }
 
         [HttpPost] 
-        //[HasClaim("role", "admin", "sales")]
-        public IActionResult MakeNewProject([FromBody] Project project)
+        [HasClaim("role", "admin", "sales")]
+        public async Task<IActionResult> MakeNewProject([FromBody] Project project)
         {
             try
             {
-                _projectService.Add(project);
+                await _projectService.AddAsync(project);
                 return Ok();
             }
             catch (Exception ex)
@@ -141,11 +145,11 @@ namespace eFolio.Api.Controllers
 
         [HttpPut("{project}/details")] 
         [HasClaim("role", "admin", "sales")]
-        public IActionResult EditDetails(int project, [FromBody] Context details)
+        public async Task<IActionResult> EditDetails(int project, [FromBody] Context details)
         {
             try
             {
-                _projectService.UpdateDetails(project, details);
+                await _projectService.UpdateDetailsAsync(project, details);
                 return Ok();
             }
             catch (Exception ex)
@@ -157,11 +161,11 @@ namespace eFolio.Api.Controllers
 
         [HttpDelete("{project}/screenshots")]  
         [HasClaim("role", "admin", "sales") ]
-        public IActionResult DeleteScreenshots(int project, [FromBody] RequestBody<int[]> deleted)
+        public async Task<IActionResult> DeleteScreenshots(int project, [FromBody] RequestBody<int[]> deleted)
         {
             try
             {
-                _projectService.DeleteScreeenshots(project, deleted.Item);
+                await _projectService.DeleteScreeenshotsAsync(project, deleted.Item);
                 return Ok();
             }
             catch (Exception ex)
@@ -173,11 +177,11 @@ namespace eFolio.Api.Controllers
 
         [HttpPut("{project}/screenshots")] 
         [HasClaim("role", "admin", "sales")]
-        public IActionResult UpdateScreenshots(int project, [FromBody] Dictionary<int, FolioFile> files)
+        public async Task<IActionResult> UpdateScreenshots(int project, [FromBody] Dictionary<int, FolioFile> files)
         {
             try
             {
-                _projectService.UpdateScreenshots(project, files);
+                await _projectService.UpdateScreenshotsAsync(project, files);
                 return Ok();
             }
             catch (Exception ex)
@@ -188,13 +192,12 @@ namespace eFolio.Api.Controllers
         }
 
         [HttpPut] 
-        // TODO fix
-        // [HasClaim("role", "admin", "sales")]
-        public IActionResult Edit([FromBody] Project project)
+        [HasClaim("role", "admin", "sales")]
+        public async Task<IActionResult> Edit([FromBody] Project project)
         {
             try
             {
-                _projectService.Update(project);
+                await _projectService.UpdateAsync(project);
                 return Ok();
             }
             catch (Exception ex)

@@ -18,7 +18,7 @@ namespace eFolio.Api.Controllers
 {
     [Route("api/[controller]")]
     [Produces("application/json")]
-    [ApiController] 
+    [ApiController]
     public class DevelopersController : ControllerBase
     {
         private static readonly string[] haveExtraPermissions = new string[] { "admin", "sales" };
@@ -40,7 +40,7 @@ namespace eFolio.Api.Controllers
         }
 
 
-        [HttpGet] 
+        [HttpGet]
         public async Task<IActionResult> GetDevelopers()
         {
             try
@@ -55,13 +55,13 @@ namespace eFolio.Api.Controllers
         }
 
         private CVKind GetCVKindForRequest()
-        { 
-            return User != null && User.Claims.Any() && haveExtraPermissions.Contains(User.Claims.First().Value) ? 
-                CVKind.Internal: 
+        {
+            return User != null && User.Claims.Any() && haveExtraPermissions.Contains(User.Claims.First().Value) ?
+                CVKind.Internal :
                 CVKind.External;
         }
 
-        [HttpGet("search/{request}")] 
+        [HttpGet("search/{request}")]
         public async Task<IActionResult> SearchDevelopers(string request, [FromQuery] int from, [FromQuery] int size)
         {
             try
@@ -76,7 +76,7 @@ namespace eFolio.Api.Controllers
         }
 
         [HttpGet]
-        [Route("{id}")] 
+        [Route("{id}")]
         public async Task<IActionResult> GetDeveloper(int id)
         {
             try
@@ -95,13 +95,13 @@ namespace eFolio.Api.Controllers
             }
         }
 
-        [HttpPost] 
-     //   [HasClaim("role", "admin", AllowAnonymous = true)]
-        public IActionResult NewDeveloper([FromBody] Developer developer)
+        [HttpPost]
+        [HasClaim("role", "admin", AllowAnonymous = true)]
+        public async Task<IActionResult> NewDeveloper([FromBody] Developer developer)
         {
             try
             {
-                _developerService.Add(developer);
+                await _developerService.AddAsync(developer);
                 return Ok();
             }
             catch (Exception ex)
@@ -111,13 +111,13 @@ namespace eFolio.Api.Controllers
             }
         }
 
-        [HttpDelete("{id}")] 
-        // [HasClaim("role", "admin")]
-        public IActionResult DeleteDeveloper(int id)
+        [HttpDelete("{id}")]
+        [HasClaim("role", "admin")]
+        public async Task<IActionResult> DeleteDeveloper(int id)
         {
             try
             {
-                _developerService.Delete(id);
+                await _developerService.DeleteAsync(id);
                 return Ok();
             }
             catch (Exception ex)
@@ -129,18 +129,18 @@ namespace eFolio.Api.Controllers
 
         [HttpPut]
         [HasClaim("role", "admin")]
-        public IActionResult Edit(Developer developer)
+        public async Task<IActionResult> Edit(Developer developer)
         {
             try
             {
-                _developerService.Update(developer);
-                return Ok(); 
+                await _developerService.UpdateAsync(developer);
+                return Ok();
             }
             catch (Exception ex)
             {
                 _logger.LogWarning(ex, string.Empty);
                 return StatusCode((int)HttpStatusCode.InternalServerError, new ErrorResponse(ex));
-            } 
+            }
         }
 
         [HttpDelete("{projectId}/d/{id}")]
@@ -149,7 +149,7 @@ namespace eFolio.Api.Controllers
         {
             try
             {
-                var project = _projectService.GetItem(projectId, DescriptionKind.External);
+                var project = await _projectService.GetItemAsync(projectId, DescriptionKind.External);
                 if (project == null)
                 {
                     return NotFound("Project not found: " + projectId);
@@ -165,7 +165,7 @@ namespace eFolio.Api.Controllers
                     project.Developers.FirstOrDefault(item => item.Id == id)
                 );
 
-                _projectService.Update(project);
+                await _projectService.UpdateAsync(project);
 
                 return Ok();
             }
@@ -176,13 +176,13 @@ namespace eFolio.Api.Controllers
             }
         }
 
-        [HttpPut("{projectId}/d/{id}")] 
+        [HttpPut("{projectId}/d/{id}")]
         [HasClaim("role", "admin", "sales")]
         public async Task<IActionResult> AssignToProject(int projectId, int id)
         {
             try
             {
-                var project = _projectService.GetItem(projectId, DescriptionKind.External);
+                var project = await _projectService.GetItemAsync(projectId, DescriptionKind.External);
                 if (project == null)
                 {
                     return NotFound("Project not found: " + projectId);
@@ -202,7 +202,7 @@ namespace eFolio.Api.Controllers
                 if (!project.Developers.Any(item => item.Id == id))
                 {
                     project.Developers.Add(developer);
-                    _projectService.Update(project);
+                    await _projectService.UpdateAsync(project);
                 }
                 return Ok();
             }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using eFolio.BL;
 using eFolio.BL.Repositories;
 using eFolio.EF;
@@ -12,22 +13,21 @@ namespace eFolio.BL
         {
             adminRepository = new AdminRepository(authDB);
         }
-        public void Delete(int id)
+        public Task DeleteAsync(int id)
         {
-            adminRepository.Delete(id);
+            return adminRepository.DeleteAsync(id);
         }
-        public void Update(UserEntity user)
+        public Task UpdateAsync(UserEntity user)
         {
-            adminRepository.Update(user);
+            return adminRepository.UpdateAsync(user);
         }
-        public UserEntity GetUser(int id)
+        public Task<UserEntity> GetUserAsync(int id)
         {
-            var userEntity = adminRepository.GetUser(id);
-            return userEntity; 
+            return adminRepository.GetUserAsync(id); 
         }
-        public IEnumerable<UserEntity> GetUsersList()
+        public Task<IEnumerable<UserEntity>> GetUsersListAsync()
         {
-            return adminRepository.GetUsersList();
+            return adminRepository.GetUsersListAsync();
         }
     }
 }

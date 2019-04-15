@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using eFolio.DTO.Common;
 using System.IO;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace eFolio.BL
 {
@@ -23,51 +24,52 @@ namespace eFolio.BL
             this.mapper = mapper;
         }
 
-        public void Add(Developer item)
+        public async Task AddAsync(Developer item)
         {
             DeveloperEntity de = mapper.Map<DeveloperEntity>(item);
-            developerRepository.Add(de);
+            await developerRepository.AddAsync(de);
 
             item.UpdateId(de.Id);
             ElasticDeveloperData eld = mapper.Map<ElasticDeveloperData>(item);
             elastic.AddItem(eld);
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
-            developerRepository.Delete(id);
+            await developerRepository.DeleteAsync(id);
 
             elastic.DeleteDeveloperItem(id);
         }
         
         public async Task<Developer> GetItemAsync(int id, CVKind isExtended)
         {
-            var developerEntity = developerRepository.GetItem(id);
+            var developerEntity = await developerRepository.GetItemAsync(id);
             var elasticDeveloper = elastic.GetDeveloperById(id, isExtended);
 
             return await GetMergeDeveloperAsync(developerEntity, elasticDeveloper);
-        }
-         
+        } 
+
         public async Task<IEnumerable<Developer>> GetItemsListAsync(CVKind isExtended)
         {
-            var developerEntities = developerRepository.GetItemsList();
-            var elasticDevelopers = GetElasticDevelopers(developerEntities, isExtended);
-
-            var e1 = developerEntities.GetEnumerator();
-            var e2 = elasticDevelopers.GetEnumerator();
+            var developerEntities = await developerRepository.GetItemsListAsync();
+            var elasticDevelopers = GetElasticDevelopers(developerEntities, isExtended).ToList();
 
             List<Developer> ret = new List<Developer>();
-            while (e1.MoveNext() && e2.MoveNext())
+
+            foreach (var developer in developerEntities)
             {
-                ret.Add(await GetMergeDeveloperAsync(e1.Current, e2.Current));
+                ElasticDeveloperData elasticDeveloper =
+                    elasticDevelopers.Find(eld => eld.Id == developer.Id) ?? new ElasticDeveloperData();
+
+                ret.Add(await GetMergeDeveloperAsync(developer, elasticDeveloper));
             }
             return ret;
         }
-        
+
         public async Task<IEnumerable<Developer>> SearchAsync(string request, Paging paging, CVKind cvKind)
         {
             var elasticDevelopers = elastic.SearchItemsDeveloper(request, paging, cvKind);
-            var developerEntities = GetEntityDevelopers(elasticDevelopers);
+            var developerEntities = await GetEntityDevelopersAsync(elasticDevelopers);
 
             var e1 = developerEntities.GetEnumerator();
             var e2 = elasticDevelopers.GetEnumerator();
@@ -80,9 +82,9 @@ namespace eFolio.BL
             return ret;
         }
 
-        public void Update(Developer item)
+        public async Task UpdateAsync(Developer item)
         {
-            developerRepository.Update(mapper.Map<DeveloperEntity>(item));
+            await developerRepository.UpdateAsync(mapper.Map<DeveloperEntity>(item));
 
             elastic.UpdateDeveloperData(mapper.Map<ElasticDeveloperData>(item));
         }
@@ -95,12 +97,14 @@ namespace eFolio.BL
             }
         }
 
-        private IEnumerable<DeveloperEntity> GetEntityDevelopers(IEnumerable<ElasticDeveloperData> developers)
+        private async Task<IEnumerable<DeveloperEntity>> GetEntityDevelopersAsync(IEnumerable<ElasticDeveloperData> developers)
         {
+            List<DeveloperEntity> list = new List<DeveloperEntity>();
             foreach (var item in developers)
             {
-                yield return developerRepository.GetItem(item.Id);
+               list.Add(await developerRepository.GetItemAsync(item.Id));
             }
+            return list;
         }
 
         private async Task<Developer> GetMergeDeveloperAsync(DeveloperEntity developerEntity, ElasticDeveloperData elasticDeveloperData)

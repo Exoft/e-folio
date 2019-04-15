@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using System.Threading.Tasks;
 using eFolio.API.Models;
 using eFolio.Attibutes;
 using eFolio.BL;
@@ -35,11 +36,11 @@ namespace eFolio.API
 
         [HttpGet] 
         [HasClaim("role", "admin")]
-        public IActionResult GetUsersList()
+        public async Task<IActionResult> GetUsersList()
         {
             try
             {
-                return Ok(_adminService.GetUsersList());
+                return Ok(await _adminService.GetUsersListAsync());
             }
             catch(Exception ex)
             {
@@ -51,11 +52,11 @@ namespace eFolio.API
         // GET api/<controller>/5
         [HttpGet]
         [Route("{id}")]  
-        public IActionResult GetUser(int id)
+        public async Task<IActionResult> GetUser(int id)
         {
             try
             {
-                var user = _adminService.GetUser(id);
+                var user = await _adminService.GetUserAsync(id);
                 if(user == null)
                 {
                     return NotFound(id);
@@ -79,11 +80,11 @@ namespace eFolio.API
         // PUT api/<controller>/5
         [HttpPut]
         [HasClaim("role", "admin")]
-        public IActionResult Edit(UserEntity user)
+        public async Task<IActionResult> Edit(UserEntity user)
         {
             try
             {
-                _adminService.Update(user);
+                await _adminService.UpdateAsync(user);
                 return Ok();
             }
             catch(Exception ex)
@@ -96,11 +97,11 @@ namespace eFolio.API
         // DELETE api/<controller>/5
         [HttpDelete("{id}")]
         [HasClaim("role", "admin")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {
-                _adminService.Delete(id);
+                await _adminService.DeleteAsync(id);
                 return Ok();               
             }
             catch(Exception ex)

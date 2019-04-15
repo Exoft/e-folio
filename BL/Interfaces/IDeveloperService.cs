@@ -7,9 +7,9 @@ namespace eFolio.BL
 {
     public interface IDeveloperService
     {
-        void Add(Developer item);
-        void Update(Developer item);
-        void Delete(int id);
+        Task AddAsync(Developer item);
+        Task UpdateAsync(Developer item);
+        Task DeleteAsync(int id);
         Task<Developer> GetItemAsync(int id, CVKind isExtended);
         Task<IEnumerable<Developer>> GetItemsListAsync(CVKind isExtended);
         Task<IEnumerable<Developer>> SearchAsync(string request, Paging paging, CVKind isExtended);

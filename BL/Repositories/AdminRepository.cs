@@ -1,7 +1,9 @@
 ﻿using eFolio.EF;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace eFolio.BL.Repositories
 {
@@ -12,32 +14,31 @@ namespace eFolio.BL.Repositories
         {
             authDB = db;
         }
-        public IEnumerable<UserEntity> GetUsersList()
+        public async Task<IEnumerable<UserEntity>> GetUsersListAsync()
         {
-            return authDB.Users.ToList();
+            return await authDB.Users.AsNoTracking().ToListAsync();
         }
-        public UserEntity GetUser(int id)
+        public async Task<UserEntity> GetUserAsync(int id)
         {
-            UserEntity user = authDB.Users.Find(id);
-            return user;
+            return await authDB.Users.FindAsync(id);
         }
 
-        public void Add(UserEntity user)
+        public async Task AddAsync(UserEntity user)
         {
             authDB.Users.Add(user);
-            authDB.SaveChanges();
+            await authDB.SaveChangesAsync();
         }
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
-            UserEntity user = authDB.Users.Find(id);
+            UserEntity user = await authDB.Users.FindAsync(id);
             if (user != null)
                 authDB.Users.Remove(user);
-            authDB.SaveChanges();
+            await authDB.SaveChangesAsync();
         }
-        public void Update(UserEntity user)
+        public async Task UpdateAsync(UserEntity user)
         {
             authDB.Users.Update(user);
-            authDB.SaveChanges();
+            await authDB.SaveChangesAsync();
         }
         private bool disposed = false;
 

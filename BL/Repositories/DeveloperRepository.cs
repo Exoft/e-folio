@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace eFolio.BL
 {
@@ -14,41 +15,39 @@ namespace eFolio.BL
             this.db = eFolioDBContext;
         }
 
-        public void Add(DeveloperEntity item)
+        public async Task AddAsync(DeveloperEntity item)
         {
             db.Developers.Add(item);
 
-            db.SaveChanges();
+            await db.SaveChangesAsync();
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
-            DeveloperEntity developer = db.Developers.Find(id);
+            DeveloperEntity developer = await db.Developers.FindAsync(id);
 
             if (developer != null)
             {
                 db.Developers.Remove(developer);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
             }
         }
 
-        public IEnumerable<DeveloperEntity> GetItemsList()
+        public async Task<IEnumerable<DeveloperEntity>> GetItemsListAsync()
         {
-            return db.Developers.ToListAsync().Result;
+            return await db.Developers.ToListAsync();
         }
 
-        public DeveloperEntity GetItem(int id)
+        public async Task<DeveloperEntity> GetItemAsync(int id)
         {
-            var developerEntity = db.Developers.Find(id);
-
-            return developerEntity;
+            return await db.Developers.FindAsync(id);
         }
 
-        public void Update(DeveloperEntity item)
+        public async Task UpdateAsync(DeveloperEntity item)
         {
             db.Developers.Update(item);
 
-            db.SaveChanges();
+            await db.SaveChangesAsync();
         }
 
         private bool disposed = false;

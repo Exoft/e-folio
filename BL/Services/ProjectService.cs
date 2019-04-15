@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace eFolio.BL
 {
@@ -23,72 +24,78 @@ namespace eFolio.BL
             this.mapper = mapper;
         }
 
-        public void Add(Project item)
+        public async Task AddAsync(Project item)
         {
             ProjectEntity pe = mapper.Map<ProjectEntity>(item);
-            projectRepository.Add(pe);
+            await projectRepository.AddAsync(pe);
 
             item.UpdateId(pe.Id);
             ElasticProjectData epd = mapper.Map<ElasticProjectData>(item);
 
-            var list = projectRepository.GetItemsList().ToList();
-            int newId = list[list.Count-1].Id;
+            var list = (await projectRepository.GetItemsListAsync()).ToList();
+            int newId = list[list.Count - 1].Id;
             epd.Id = newId;
 
             elastic.AddItem(epd);
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
-            projectRepository.Delete(id);
+            await projectRepository.DeleteAsync(id);
 
             elastic.DeleteProjectItem(id);
         }
 
-        public Project GetItem(int id, DescriptionKind isExtended, params string[] includedProperties)
+        public async Task<Project> GetItemAsync(int id, DescriptionKind isExtended, params string[] includedProperties)
         {
-            var projectEntity = projectRepository.GetItem(id, includedProperties);
+            var projectEntity = await projectRepository.GetItemAsync(id, includedProperties);
             var elasticProject = elastic.GetProjectById(id, isExtended);
 
-            return GetMergeProject(projectEntity, elasticProject);
+            return await GetMergeProjectAsync(projectEntity, elasticProject);
         }
 
-        public IEnumerable<Project> GetItemsList(DescriptionKind isExtended)
+        public async Task<IEnumerable<Project>> GetItemsListAsync(DescriptionKind descriptionKind)
         {
-            var projectEntities = projectRepository.GetItemsList();
-            var elasticProjects = GetElasticProjects(projectEntities, isExtended);
+            var projectEntities = await projectRepository.GetItemsListAsync();
+            var elasticProjects = GetElasticProjects(projectEntities, descriptionKind).ToList();
 
-            var e1 = projectEntities.GetEnumerator();
-            var e2 = elasticProjects.GetEnumerator();
-            while (e1.MoveNext() && e2.MoveNext())
+            List<Project> list = new List<Project>();
+
+            foreach (var project in projectEntities)
             {
-                yield return GetMergeProject(e1.Current, e2.Current);
+                ElasticProjectData elasticProject =
+                    elasticProjects.Find(elp => elp.Id == project.Id) ?? new ElasticProjectData();
+
+                list.Add(await GetMergeProjectAsync(project, elasticProject));
             }
+            return list;
         }
 
-        public IEnumerable<Project> Search(string request, Paging paging, DescriptionKind isExtended)
+        public async Task<IEnumerable<Project>> SearchAsync(string request, Paging paging, DescriptionKind isExtended)
         {
             var elasticProjects = elastic.SearchItemsProject(request, paging, isExtended);
-            var projectEntities = GetEntityProjects(elasticProjects);
+            var projectEntities = await GetEntityProjectsAsync(elasticProjects);
 
             var e1 = projectEntities.GetEnumerator();
             var e2 = elasticProjects.GetEnumerator();
+            List<Project> list = new List<Project>();
             while (e1.MoveNext() && e2.MoveNext())
             {
-                yield return GetMergeProject(e1.Current, e2.Current);
+                list.Add(await GetMergeProjectAsync(e1.Current, e2.Current));
             }
+            return list;
         }
 
-        public void Update(Project item)
+        public async Task UpdateAsync(Project item)
         {
-            ProjectEntity oldProjectEntity = projectRepository.GetItem(item.Id);
+            ProjectEntity oldProjectEntity = await projectRepository.GetItemAsync(item.Id);
 
             if (oldProjectEntity == null)
             {
                 return;
             }
 
-            projectRepository.Update(new ProjectEntity()
+            await projectRepository.UpdateAsync(new ProjectEntity()
             {
                 Id = item.Id,
                 Name = item.Name,
@@ -101,22 +108,22 @@ namespace eFolio.BL
             elastic.UpdateProjectData(mapper.Map<ElasticProjectData>(item));
         }
 
-        public int GetSize()
+        public Task<int> GetSizeAsync()
         {
-            return projectRepository.GetSize();
+            return projectRepository.GetSizeAsync();
         }
 
-        public void UpdateDetails(int project, Context context)
+        public async Task UpdateDetailsAsync(int project, Context context)
         {
-            ProjectEntity oldProjectEntity = projectRepository.GetItem(project);
+            ProjectEntity oldProjectEntity = await projectRepository.GetItemAsync(project);
             if (oldProjectEntity == null)
             {
                 return;
             }
 
             oldProjectEntity.Context.Update(context);
-            
-            projectRepository.Update(oldProjectEntity);
+
+            await projectRepository.UpdateAsync(oldProjectEntity);
         }
 
         /// <summary>
@@ -124,9 +131,9 @@ namespace eFolio.BL
         /// </summary>
         /// <param name="project"></param>
         /// <param name="files"></param>
-        public void UpdateScreenshots(int project, Dictionary<int, FolioFile> files)
+        public async Task UpdateScreenshotsAsync(int project, Dictionary<int, FolioFile> files)
         {
-            ProjectEntity oldProjectEntity = projectRepository.GetItem(project);
+            ProjectEntity oldProjectEntity = await projectRepository.GetItemAsync(project);
             if (oldProjectEntity == null)
             {
                 return;
@@ -149,12 +156,12 @@ namespace eFolio.BL
                 }
             }
 
-            projectRepository.Update(oldProjectEntity);
+            await projectRepository.UpdateAsync(oldProjectEntity);
         }
 
-        public void DeleteScreeenshots(int project, int[] deleted)
+        public async Task DeleteScreeenshotsAsync(int project, int[] deleted)
         {
-            ProjectEntity oldProjectEntity = projectRepository.GetItem(project);
+            ProjectEntity oldProjectEntity = await projectRepository.GetItemAsync(project);
             if (oldProjectEntity == null)
             {
                 return;
@@ -169,7 +176,7 @@ namespace eFolio.BL
                     oldProjectEntity.Context.ScreenLinks.RemoveAt(where);
                 }
             }
-            projectRepository.Update(oldProjectEntity);
+            await projectRepository.UpdateAsync(oldProjectEntity);
         }
 
         private IEnumerable<ElasticProjectData> GetElasticProjects(IEnumerable<ProjectEntity> projects, DescriptionKind isExtended)
@@ -180,25 +187,27 @@ namespace eFolio.BL
             }
         }
 
-        private IEnumerable<ProjectEntity> GetEntityProjects(IEnumerable<ElasticProjectData> projects)
+        private async Task<IEnumerable<ProjectEntity>> GetEntityProjectsAsync(IEnumerable<ElasticProjectData> projects)
         {
+            List<ProjectEntity> list = new List<ProjectEntity>();
             foreach (var item in projects)
             {
-                yield return projectRepository.GetItem(item.Id);
+                list.Add(await projectRepository.GetItemAsync(item.Id));
             }
+            return list;
         }
 
-        private Project GetMergeProject(ProjectEntity projectEntity, ElasticProjectData elasticProjectData)
+        private async Task<Project> GetMergeProjectAsync(ProjectEntity projectEntity, ElasticProjectData elasticProjectData)
         {
             var project = mapper.Map<Project>(Tuple.Create(elasticProjectData, projectEntity));
             if (projectEntity.PhotoLink != null)
             {
                 project.HasPhoto(
-                    File.ReadAllBytes(projectEntity.PhotoLink),
+                    await File.ReadAllBytesAsync(projectEntity.PhotoLink),
                     Path.GetExtension(projectEntity.PhotoLink)
-                ); 
+                );
             }
             return project;
         }
-    } 
+    }
 }
