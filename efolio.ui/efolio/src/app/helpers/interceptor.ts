@@ -11,9 +11,9 @@ import { AuthService } from '../services/auth.service';
 @Injectable()
 export class Interceptor implements HttpInterceptor {
     constructor(private router: Router,
-        private notification: MatSnackBar,
-        private loaderService: LoaderService,
-        private authService: AuthService) {
+                private notification: MatSnackBar,
+                private loaderService: LoaderService,
+                private authService: AuthService) {
 
     }
 
@@ -33,7 +33,6 @@ export class Interceptor implements HttpInterceptor {
 
                 if (resp instanceof HttpErrorResponse) {
                     if (resp.status === 401 || resp.status === 403) {
-                        debugger
                         observable = empty();
 
                         this.authService.deleteUserData();
@@ -52,7 +51,7 @@ export class Interceptor implements HttpInterceptor {
 
                         this.notification.open(displayMessage, 'Ok', {
                             duration: 8000,
-                            panelClass: ['snackBar'],
+                            panelClass: ['error-snackbar'],
                         });
                     } else {
                         observable = throwError(resp);
