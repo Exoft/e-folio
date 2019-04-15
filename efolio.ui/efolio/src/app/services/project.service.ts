@@ -2,14 +2,16 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Project } from '../models/project.model';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectService {
+  private apiString = environment.apiUrl + '/api/Project/';
 
   constructor(private http: HttpClient) { }
-private apiString = 'http://localhost:5000/api/Project/';
+
   getAll(): Observable<any> {
     return this.http.get<any>(this.apiString);
   }
@@ -28,11 +30,11 @@ private apiString = 'http://localhost:5000/api/Project/';
   }
 
   updateProject(project: Project): Observable<any> {
-    return this.http.put<void>(this.apiString , project);
+    return this.http.put<void>(this.apiString, project);
   }
 
   addProject(project: Project): Observable<any> {
-    return this.http.post<void>(this.apiString , project);
+    return this.http.post<void>(this.apiString, project);
   }
 
   getProjectSize(): Observable<number> {

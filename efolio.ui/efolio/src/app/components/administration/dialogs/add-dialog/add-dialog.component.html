@@ -1,21 +1,46 @@
-<h1 mat-dialog-title>Add project</h1>
-<div mat-dialog-content>
-  <p>Name</p>
-  <mat-form-field>
-    <input matInput [(ngModel)]="data.name">
-  </mat-form-field>
+<form [formGroup]="addForm">
+  <h1 mat-dialog-title>Add project</h1>
+  <div mat-dialog-content class="inputs-block">
+    <mat-form-field>
+      <input matInput [(ngModel)]="data.name" formControlName="nameFormControl">
+      <button mat-button *ngIf="data.name" matSuffix mat-icon-button aria-label="Clear" (click)="data.name=''">
+        <mat-icon>close</mat-icon>
+      </button>
+      <mat-placeholder>Name...<mat-icon>create</mat-icon>
+      </mat-placeholder>
+      <mat-error *ngIf="addForm.controls['nameFormControl'].hasError('required')">
+        Is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
 
-  <p>InDesc</p>
-  <mat-form-field>
-    <input matInput [(ngModel)]="data.internalDescription">
-  </mat-form-field>
+    <mat-form-field>
+      <input matInput [(ngModel)]="data.internalDescription" formControlName="inDescFormControl">
+      <button mat-button *ngIf="data.internalDescription" matSuffix mat-icon-button aria-label="Clear"
+        (click)="data.internalDescription=''">
+        <mat-icon>close</mat-icon>
+      </button>
+      <mat-placeholder>Internal description...<mat-icon>create</mat-icon>
+      </mat-placeholder>
+      <mat-error *ngIf="addForm.controls['inDescFormControl'].hasError('required')">
+        Is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
 
-  <p>ExDesc</p>
-  <mat-form-field>
-    <input matInput [(ngModel)]="data.externalDescription">
-  </mat-form-field>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onCancelClick()">Cancel</button>
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Submit</button>
-</div>
+    <mat-form-field>
+      <input matInput [(ngModel)]="data.externalDescription" formControlName="exDescFormControl">
+      <button mat-button *ngIf="data.externalDescription" matSuffix mat-icon-button aria-label="Clear"
+        (click)="data.externalDescription=''">
+        <mat-icon>close</mat-icon>
+      </button>
+      <mat-placeholder>External description...<mat-icon>create</mat-icon>
+      </mat-placeholder>
+      <mat-error *ngIf="addForm.controls['exDescFormControl'].hasError('required')">
+        Is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onCancelClick()">Cancel</button>
+    <button mat-button [mat-dialog-close]="data" cdkFocusInitial [disabled]="addForm.invalid">Submit</button>
+  </div>
+</form>

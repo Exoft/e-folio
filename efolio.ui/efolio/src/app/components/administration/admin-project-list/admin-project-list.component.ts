@@ -68,21 +68,29 @@ export class AdminProjectListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result !== undefined) {
-        const editProject = project;
-        editProject.name = result.name;
-        editProject.internalDescription = result.internalDescription;
-        editProject.externalDescription = result.externalDescription;
-        this.projectService.updateProject(editProject).subscribe(() =>
+      if (this.checkResult(result)) {
+        const editProject = new Project(
+          project.id,
+          result.name,
+          result.internalDescription,
+          result.externalDescription,
+          project.photoBase64
+        );
+        this.projectService.updateProject(editProject).subscribe(() => {
           this.loginValidatorBar.open('Project was updated.', 'Ok', {
             duration: 5000,
             panelClass: ['snackBar'],
-          })
-        );
+          });
+          this.getData();
+        }, (err) => {
+          this.loginValidatorBar.open('Server error.', 'Ok', {
+            duration: 8000,
+            panelClass: ['snackBar'],
+          });
+          this.loaderService.stopLoading();
+        });
       }
     });
-
-    this.getData();
   }
 
   openAddDialog(): void {
@@ -92,17 +100,34 @@ export class AdminProjectListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result !== undefined) {
+      if (this.checkResult(result)) {
         const project = new Project(0, result.name, result.internalDescription, result.externalDescription, '');
-        this.projectService.addProject(project).subscribe(() =>
+        this.projectService.addProject(project).subscribe(() => {
           this.loginValidatorBar.open('Project was added.', 'Ok', {
             duration: 5000,
             panelClass: ['snackBar'],
-          })
-        );
+          });
+          this.getData();
+        }, (err) => {
+          this.loginValidatorBar.open('Server error.', 'Ok', {
+            duration: 8000,
+            panelClass: ['snackBar'],
+          });
+          this.loaderService.stopLoading();
+        });
       }
-
-      this.ngOnInit();
     });
+  }
+
+  private checkResult(result): boolean {
+    if (result === undefined)
+      return false;
+
+    if (result.name.trim() == '' &&
+      result.internalDescription.trim() == '' &&
+      result.externalDescription.trim() == '')
+      return false;
+
+    return true;
   }
 }

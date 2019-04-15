@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
 
 export interface DialogData {
   name: string;
@@ -21,5 +22,11 @@ export class EditDialogComponent {
   onCancelClick(): void {
     this.dialogRef.close();
   }
+
+  public editForm = new FormGroup({
+    nameFormControl: new FormControl('', Validators.required),
+    inDescFormControl: new FormControl('', Validators.required),
+    exDescFormControl: new FormControl('', Validators.required)
+  })
 
 }

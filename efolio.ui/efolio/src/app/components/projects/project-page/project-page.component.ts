@@ -22,4 +22,11 @@ export class ProjectPageComponent implements OnInit {
       }
     );
   }
+
+  public returnImgUrl(img): string {
+    if (img) {
+      return `url(${img})`;
+    }
+    return 'none';
+  }
 }
