@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource, MatDialog, MatSnackBar } from '@angular/material';
 import { AdministrationService } from 'src/app/services/administration.service';
 import { Developer } from 'src/app/models/developer.model';
@@ -12,11 +12,10 @@ import { EditDeveloperDialogComponent } from './dialogs/edit-dialog/edit-develop
   styleUrls: ['./admin-developers-list.component.scss']
 })
 export class AdminDevelopersListComponent implements OnInit {
-  public developers: Developer[] = [];
   public displayedColumns: string[] = ['id', 'fullName', 'internalCV', 'externalCV', 'actions'];
-  public exampleDatabase: AdministrationService | null;
   public dataSource = new MatTableDataSource();
-  public id: number;
+  public developers: Developer[] = [];
+
   constructor(
     private administrationService: AdministrationService,
     public dialog: MatDialog,
@@ -47,19 +46,20 @@ export class AdminDevelopersListComponent implements OnInit {
   }
 
   addDeveloper(developer: Developer) {
-    this.loaderService.startLoading();
+    //this.loaderService.startLoading();
     const dialogRef = this.dialog.open(AddDeveloperDialogComponent, {
       data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
-
-      this.loaderService.stopLoading();
-      this.vaidatorBar.open('Developer was added', 'Ok', {
-        duration: 5000,
-        panelClass: ['snackBar']
-      });
+      if (result) {      
+        this.loaderService.stopLoading();
+        this.vaidatorBar.open('Developer was added', 'Ok', {
+          duration: 5000,
+          panelClass: ['snackBar']
+        });
       this.developers.push(result);
       this.dataSource.data = this.developers;
+      }
     });
   }
 
@@ -77,17 +77,29 @@ export class AdminDevelopersListComponent implements OnInit {
     });
   }
 
-  editDeveloper(id: number, fullName: string, internalCV: string, externalCV: string) {
-    this.id = id;
+  editDeveloper(developer: Developer) {
     const dialogRef = this.dialog.open(EditDeveloperDialogComponent, {
-      data: { id: id, fullName: fullName, internalCV: internalCV, externalCV: externalCV }
+      data: {
+        id: developer.id,
+        fullName: developer.fullName,
+        internalCV: developer.internalCV,
+        externalCV: developer.externalCV
+      }
     });
 
-    dialogRef.afterClosed()
-      .subscribe(result => {
-        if (result === 1) {
-
-        }
-      });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+        const editDeveloper = new Developer(result.id, result.fullName, result.internalCV, result.externalCV, null);
+        this.loaderService.stopLoading();
+        this.administrationService.editDeveloper(editDeveloper)
+          .subscribe(() => {
+            this.vaidatorBar.open('Developer was updated.', 'Ok', {
+              duration: 5000,
+              panelClass: ['snackBar'],
+            });
+            this.getData();
+          });
+      }
+    });
   }
 }

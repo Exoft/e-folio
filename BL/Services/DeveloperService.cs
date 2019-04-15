@@ -40,7 +40,7 @@ namespace eFolio.BL
 
             elastic.DeleteDeveloperItem(id);
         }
-        
+
         public async Task<Developer> GetItemAsync(int id, CVKind isExtended)
         {
             var developerEntity = await developerRepository.GetItemAsync(id);

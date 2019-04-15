@@ -1,7 +1,7 @@
 import {Component, HostListener, OnInit} from '@angular/core';
-import { DeveloperServiceService as DeveloperService } from 'src/app/services/developer-service.service';
 import { LoaderService } from 'src/app/services/loader.service';
 import { Developer } from 'src/app/models/developer.model';
+import { DeveloperService } from 'src/app/services/developer.service';
 
 @Component({
   selector: 'app-developers-list',

@@ -187,7 +187,7 @@
                                  .Field(f => f.Id).Query(id.ToString())
                          )
                                 )
-                                        ); 
+                                        );
             if (searchResponse1.Hits.Count > 1)
             {
                 throw new Exception("ElasticSearch: Many developers with same id found: " + id);
@@ -228,6 +228,10 @@
             {
                 //insert document
                 var insertResponse = clientProject.IndexDocument(InsertData);
+                if (!insertResponse.IsValid)
+                {
+                    throw new Exception("ElasticSearch isn't started");
+                }
             }
 
         }
@@ -235,6 +239,17 @@
         {
             int InsertId = InsertData.Id;
             var updateResponse = clientDeveloper.Update<ElasticDeveloperData, object>(InsertId, u => u.Doc(InsertData).RetryOnConflict(1));
+
+            if (!updateResponse.IsValid && updateResponse.ApiCall.HttpStatusCode == 404)
+            {
+                //insert document
+                var insertResponse = clientDeveloper.IndexDocument(InsertData);
+                if (!insertResponse.IsValid)
+                {
+                    throw new Exception("ElasticSearch isn't started");
+                }
+            }
         }
     }
 }
+

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Developer } from '../models/developer.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,60 +9,32 @@ import { Developer } from '../models/developer.model';
 export class AdministrationService {
 
   constructor(private http: HttpClient) { }
-
+  
   getAllUsers() {
-    const httpHeaders = new HttpHeaders();
-    this.addHeaders(httpHeaders);
-    return this.http.get('http://localhost:5000/api/admin', {
-      headers: httpHeaders
-    });
-  }
-  addHeaders(headers: HttpHeaders) {
-    headers.append('Access-Control-Allow-Origin', '*');
-  }
-  getOneUser(id: number) {
-    const httpHeaders = new HttpHeaders();
-    this.addHeaders(httpHeaders);
-    return this.http.get('http://localhost:5000/api/admin/' + id.toString(), {
-      headers: httpHeaders
-    });
-  }
-  getAllDevelopers() {
-    const httpHeaders = new HttpHeaders();
-    this.addHeaders(httpHeaders);
-    return this.http.get<any>('http://localhost:5000/api/developers', {
-      headers: httpHeaders
-    });
+    return this.http.get('http://localhost:5000/api/admin');
   }
 
-  getOneDeveloper(id: number) {
-    const httpHeaders = new HttpHeaders();
-    this.addHeaders(httpHeaders);
-    return this.http.get<any>('http://localhost:5000/api/developers/' + id, {
-      headers: httpHeaders
-    });
+  getOneUser(id: number): Observable<any> {
+    return this.http.get('http://localhost:5000/api/admin/' + id.toString());
   }
-  addDeveloper(developer: Developer) {
-    const httpHeaders = new HttpHeaders();
-    this.addHeaders(httpHeaders);
-    return this.http.post<Developer>('http://localhost:5000/api/developers', developer, {
-      headers: httpHeaders
-    });
+  
+  getAllDevelopers(): Observable<any> {
+    return this.http.get<any>('http://localhost:5000/api/developers');
   }
 
-  deleteOneDeveloper(id: number) {
-    const httpHeaders = new HttpHeaders();
-    this.addHeaders(httpHeaders);
-    return this.http.delete<any>('http://localhost:5000/api/developers/' + id, {
-      headers: httpHeaders
-    });
+  getOneDeveloper(id: number): Observable<any> {
+    return this.http.get<any>('http://localhost:5000/api/developers/' + id);
   }
 
-  editDeveloper(id: number) {
-    const httpHeaders = new HttpHeaders();
-    this.addHeaders(httpHeaders);
-    return this.http.put<any>('http://localhost:5000/api/developers/' + id, {
-      headers: httpHeaders
-    });
+  addDeveloper(developer: Developer): Observable<any> {
+    return this.http.post<void>('http://localhost:5000/api/developers/', developer);
+  }
+
+  deleteOneDeveloper(id: number): Observable<any> {
+    return this.http.delete<void>('http://localhost:5000/api/developers/' + id);
+  }
+
+  editDeveloper(developer: Developer): Observable<any> {
+    return this.http.put<void>('http://localhost:5000/api/developers/', developer);
   }
 }

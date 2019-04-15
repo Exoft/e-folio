@@ -32,7 +32,8 @@ export class Interceptor implements HttpInterceptor {
                 let observable: Observable<HttpEvent<any>>;
 
                 if (resp instanceof HttpErrorResponse) {
-                    if (resp.status === 401) {
+                    if (resp.status === 401 || resp.status === 403) {
+                        debugger
                         observable = empty();
 
                         this.authService.deleteUserData();

@@ -25,7 +25,7 @@
     </mat-header-cell>
 
     <mat-cell *matCellDef="let row; let i=index;">
-      <button class="edit" (click)="editDeveloper()">Edit</button>
+      <button class="edit" (click)="editDeveloper(row)">Edit</button>
       <button class="delete" (click)="deleteDeveloper(i)">Delete</button>
 
     </mat-cell>

@@ -1,6 +1,7 @@
 .mat-sidenav-container{
     height: 100%;  
     position: relative;
+    overflow: hidden;
 }
 
 .mat-sidenav, .mat-sidenav-content{
@@ -23,9 +24,8 @@
     background-color: rgb(216, 216, 216);
     border-color: black;
 }
-// ::ng-deep.mat-drawer-content{
+
+// ::ng-deep .mat-drawer-content{
 //     overflow: hidden;
-// }
-// .mat-drawer-content{
-//     overflow: hidden;
+//     height: auto;
 // }

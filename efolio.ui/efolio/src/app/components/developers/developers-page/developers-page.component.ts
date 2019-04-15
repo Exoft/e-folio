@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DeveloperServiceService } from 'src/app/services/developer-service.service';
+import { DeveloperService } from 'src/app/services/developer.service';
 import { ActivatedRoute } from '@angular/router';
 import { LoaderService } from 'src/app/services/loader.service';
 import { Developer } from 'src/app/models/developer.model';
@@ -11,7 +11,7 @@ import { Developer } from 'src/app/models/developer.model';
 })
 export class DevelopersPageComponent implements OnInit {
   public developersInput: Developer = new Developer(0, '', '', '', null);
-  constructor(private developerService: DeveloperServiceService,
+  constructor(private developerService: DeveloperService,
               private route: ActivatedRoute,
               private loaderService: LoaderService) { }
 

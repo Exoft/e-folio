@@ -47,7 +47,7 @@ namespace eFolio.API
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
                     AllowOfflineAccess = true,
                     AbsoluteRefreshTokenLifetime = 2592000,
-                    AccessTokenLifetime = 3600,
+                    AccessTokenLifetime = 3600*24*15,
 
                     ClientSecrets =
                     {

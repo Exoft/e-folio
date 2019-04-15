@@ -1,7 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { AdministrationService } from 'src/app/services/administration.service';
-import { FormControl, Validators } from '@angular/forms';
 import { Developer } from 'src/app/models/developer.model';
 
 @Component({
@@ -12,15 +11,8 @@ import { Developer } from 'src/app/models/developer.model';
 export class EditDeveloperDialogComponent {
 
   constructor(public dialogRef: MatDialogRef<EditDeveloperDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any,
-              public administrationService: AdministrationService) { }
+              @Inject(MAT_DIALOG_DATA) public data: Developer) { }
 
-  public formControl = new FormControl('', [
-    Validators.required
-  ]);
-  saveEdit(): void {
-    this.administrationService.editDeveloper(this.data);
-  }
 
   closeEdit(): void {
     this.dialogRef.close();

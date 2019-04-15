@@ -11,7 +11,7 @@ import { Developer } from 'src/app/models/developer.model';
 })
 export class AddDeveloperDialogComponent {
 
-  constructor(public dialogRed: MatDialogRef<AddDeveloperDialogComponent>,
+  constructor(public dialogRef: MatDialogRef<AddDeveloperDialogComponent>,
               @Inject(MAT_DIALOG_DATA) private data: Developer,
               public administrationService: AdministrationService) { }
 
@@ -24,13 +24,14 @@ export class AddDeveloperDialogComponent {
   public confirmAdd(): void {
     const form = this.formControl.value;
     this.data = new Developer(0, form.fullName, form.internalCV, form.externalCV, null);
-    this.dialogRed.close(this.data);
+    this.dialogRef.close(this.data);
     this.administrationService.addDeveloper(this.data)
       .subscribe(result => {
+
       });
   }
 
-  public onNoClick() {
-    this.dialogRed.close();
+  public onNoClick(): void {
+    this.dialogRef.close(null);
   }
 }

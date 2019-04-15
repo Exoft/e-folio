@@ -1,7 +1,7 @@
 <div class="container">
   <h3>Add new developer</h3>
 
-  <form class="mat-dialog-content" (ngSubmit)="confirmAdd()" [formGroup]="formControl">
+  <form class="mat-dialog-content" [formGroup]="formControl">
     <div class="form">
       <mat-form-field color="accent">
         <input matInput formControlName="fullName" class="form-control" placeholder="fullName" name="fullName" required>
@@ -23,8 +23,8 @@
     </div>
 
     <div mat-dialog-actions>
-      <button mat-button [type]="submit" [disabled]="!formControl.valid">Save</button>
-      <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+      <button mat-button [type]="submit" (click)="confirmAdd()" [disabled]="!formControl.valid">Save</button>
+      <button mat-button [type]="button" (click)="onNoClick()">Cancel</button>
     </div>
   </form>
 </div>

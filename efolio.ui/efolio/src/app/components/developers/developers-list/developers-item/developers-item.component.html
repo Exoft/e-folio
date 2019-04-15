@@ -4,6 +4,7 @@
       <img *ngIf="developer.photoBase64" [src]="developer.photoBase64" />
       <img *ngIf="!developer.photoBase64" src="https://www.travelcontinuously.com/wp-content/uploads/2018/04/empty-avatar-300x300.png"/>
       <p class="developerName">{{ developer.fullName }}</p>
+      <!-- <p class="developerInternalCV">{{ developer.internalCV | truncate: 15:false }}</p> -->
     </div>
   </mat-card>
 </a>

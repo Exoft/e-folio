@@ -27,7 +27,7 @@ import { SignInComponent } from './components/account/user-logging/sign-in/sign-
 import { DevelopersComponent } from './components/developers/developers.component';
 import { DevelopersListComponent } from './components/developers/developers-list/developers-list.component';
 import { DevelopersItemComponent } from './components/developers/developers-list/developers-item/developers-item.component';
-import { DeveloperServiceService } from './services/developer-service.service';
+import { DeveloperService } from './services/developer.service';
 import { DevelopersFilterComponent } from './components/developers/developers-filter/developers-filter.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { FeedbackComponent } from './components/support/feedback/feedback.component';
@@ -48,6 +48,7 @@ import { AdministrationGuard } from './guards/administration.guard';
 
 // Pipe
 import { TruncatePipe } from './pipes/truncate.pipe';
+import { AdministrationListComponent } from './components/administration/administration-list/administration-list.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     DevelopersFilterComponent,
     ProjectPageComponent,
     DevelopersPageComponent,
+    AdministrationListComponent,
     AdminDevelopersListComponent,
     AddDialogComponent,
     EditDialogComponent,
@@ -106,7 +108,7 @@ import { TruncatePipe } from './pipes/truncate.pipe';
       useClass: Interceptor,
       multi: true
     },
-    DeveloperServiceService,
+    DeveloperService,
     AuthGuard,
     AdministrationService,
     AdministrationGuard
