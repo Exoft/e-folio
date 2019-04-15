@@ -5,11 +5,11 @@ import {LoaderService} from '../../services/loader.service';
   templateUrl: './support.component.html',
   styleUrls: ['./support.component.scss']
 })
+
 export class SupportComponent implements OnInit {
   constructor(private loaderService: LoaderService) { }
 
   ngOnInit() {
     this.loaderService.stopLoading();
   }
-
 }

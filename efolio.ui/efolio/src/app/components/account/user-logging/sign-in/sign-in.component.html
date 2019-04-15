@@ -5,11 +5,11 @@
     <input matInput placeholder="E-mail" formControlName="email">
 
     <mat-error
-      *ngIf="loginForm.controls['email'].hasError('email') && !loginForm.controls['email'].hasError('required')">
+      *ngIf="loginForm.controls['email'].hasError('email') && !loginForm.controls['email'].hasError('required')  && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)">
       Please enter a valid e-mail address
     </mat-error>
 
-    <mat-error *ngIf="loginForm.controls['email'].hasError('required')">
+    <mat-error *ngIf="loginForm.controls['email'].hasError('required') && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)">
       E-mail is <strong>required</strong>
     </mat-error>
   </mat-form-field>
@@ -21,7 +21,7 @@
       {{passwordVisibility ? 'visibility_off' : 'visibility'}}
     </mat-icon>
     
-    <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
+    <mat-error *ngIf="loginForm.controls['password'].hasError('required')  && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)">
       Password is <strong>required</strong>
     </mat-error>
   </mat-form-field>

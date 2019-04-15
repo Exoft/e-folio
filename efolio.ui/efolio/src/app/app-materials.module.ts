@@ -14,6 +14,7 @@ import {
   MatSelectModule,
   MatSnackBarModule,
   MatDialogModule,
+  MatTooltipModule
 } from '@angular/material';
 import { MatCardModule } from '@angular/material/card';
 import { MatStepperModule } from '@angular/material/stepper';
@@ -36,7 +37,8 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
     MatProgressSpinnerModule,
     MatTableModule,
     MatStepperModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTooltipModule
   ],
   providers: [
     {

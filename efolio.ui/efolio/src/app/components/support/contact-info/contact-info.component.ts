@@ -1,6 +1,5 @@
-import { FormGroup } from '@angular/forms';
-import {Component, OnInit} from '@angular/core';
-import {LoaderService} from '../../../services/loader.service';
+import { Component, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-contact-info',
@@ -8,15 +7,6 @@ import {LoaderService} from '../../../services/loader.service';
   styleUrls: ['./contact-info.component.scss']
 })
 
-export class ContactInfoComponent implements OnInit {
-
-  public contactinfoForm: FormGroup;
-
-  constructor(private loaderService: LoaderService) {
-    this.contactinfoForm = new FormGroup({});
-  }
-
-  ngOnInit() {
-    this.loaderService.stopLoading();
-  }
+export class ContactInfoComponent {
+  constructor() { }
 }

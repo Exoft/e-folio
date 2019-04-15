@@ -5,7 +5,8 @@
     <mat-form-field class="input-container">
       <input matInput placeholder="First name" formControlName="firstName">
 
-      <mat-error *ngIf="registerForm.controls['firstName'].hasError('required')">
+      <mat-error
+        *ngIf="registerForm.controls['firstName'].hasError('required') && (registerForm.controls['firstName'].dirty||registerForm.controls['firstName'].touched)">
         First name is <strong>required</strong>
       </mat-error>
     </mat-form-field>
@@ -13,7 +14,8 @@
     <mat-form-field class="input-container">
       <input matInput placeholder="Last name" formControlName="lastName">
 
-      <mat-error *ngIf="registerForm.controls['lastName'].hasError('required')">
+      <mat-error
+        *ngIf="registerForm.controls['lastName'].hasError('required') && (registerForm.controls['lastName'].dirty || registerForm.controls['lastName'].touched)">
         Last name is <strong>required</strong>
       </mat-error>
     </mat-form-field>
@@ -23,28 +25,36 @@
     <input matInput placeholder="E-mail" formControlName="email">
 
     <mat-error
-      *ngIf="registerForm.controls['email'].hasError('email') && !registerForm.controls['email'].hasError('required')">
+      *ngIf="registerForm.controls['email'].hasError('email') && !registerForm.controls['email'].hasError('required') && (registerForm.controls['email'].dirty || registerForm.controls['email'].touched)">
       Please enter a valid e-mail address
     </mat-error>
 
-    <mat-error *ngIf="registerForm.controls['email'].hasError('required')">
+    <mat-error
+      *ngIf="registerForm.controls['email'].hasError('required')&& (registerForm.controls['email'].dirty || registerForm.controls['email'].touched)">
       E-mail is <strong>required</strong>
     </mat-error>
   </mat-form-field>
 
-  <mat-form-field>
+  <mat-form-field >
     <input matInput placeholder="Password" [type]="passwordVisibility ? 'password' : 'text'" formControlName="password">
 
     <mat-icon matSuffix (click)="passwordVisibility = !passwordVisibility">
       {{passwordVisibility ? 'visibility_off' : 'visibility'}}
     </mat-icon>
 
-    <mat-error *ngIf="registerForm.controls['password'].hasError('required')">
-      Password is <strong>required</strong>
-    </mat-error>
-  </mat-form-field>
+    
+    <mat-error
+    *ngIf="registerForm.controls['password'].hasError('required') && (registerForm.controls['password'].dirty || registerForm.controls['password'].touched)">
+    Password is <strong>required</strong>
+  </mat-error>
+</mat-form-field>
 
-  <mat-form-field>
+<mat-error class="password-error"
+  *ngIf="registerForm.controls['password'].hasError('pattern') && !registerForm.controls['password'].hasError('required') && (registerForm.controls['password'].dirty || registerForm.controls['password'].touched)">
+  Password is <strong>incorect</strong>. Use minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character
+</mat-error>
+
+<mat-form-field>
     <input matInput placeholder="Confirm password" [type]="confirmPasswordVisibility ? 'password' : 'text'"
       formControlName="confirmPassword">
 
@@ -52,14 +62,17 @@
       {{confirmPasswordVisibility ? 'visibility_off' : 'visibility'}}
     </mat-icon>
 
-    <mat-error *ngIf="registerForm.controls['confirmPassword'].hasError('required')">
+    <mat-error
+      *ngIf="registerForm.controls['confirmPassword'].hasError('required') && (registerForm.controls['confirmPassword'].dirty || registerForm.controls['confirmPassword'].touched)">
       Password confirmation is <strong>required</strong>
     </mat-error>
   </mat-form-field>
 
-  <mat-error class="password-not-mach-error" *ngIf="registerForm.hasError('passwordsDoNotMatch')">
+  <mat-error class="password-error"
+    *ngIf="registerForm.hasError('passwordsDoNotMatch') && (registerForm.controls['confirmPassword'].dirty || registerForm.controls['confirmPassword'].touched)">
     Password <strong>do not match</strong>
   </mat-error>
 
-  <button class="designed-button" mat-raised-button type="submit" [disabled]="registerForm.invalid">Sign up</button>
+  <button class="designed-button" mat-raised-button type="submit"
+    [disabled]="registerForm.invalid || registerForm.pristine">Sign up</button>
 </form>

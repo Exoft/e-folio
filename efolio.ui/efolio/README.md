@@ -1,4 +1,6 @@
-# App
+# eFolio
+
+'eFolio' is an electronic portfolio with the possibility to search for developers and projects and also to add, update and delete projects and the information about them.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.3.
 

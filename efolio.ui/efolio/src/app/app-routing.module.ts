@@ -18,10 +18,13 @@ const routes: Routes = [{
 }, {
   path: 'projects',
   component: ProjectsComponent,
-  children: [
-    { path: '', component: ProjectListComponent },
-    { path: ':id', component: ProjectPageComponent }
-  ]
+  children: [{
+    path: '',
+    component: ProjectListComponent
+  }, {
+    path: ':id',
+    component: ProjectPageComponent
+  }]
 }, {
   path: 'developers',
   component: DevelopersComponent,
@@ -38,7 +41,7 @@ const routes: Routes = [{
   //canActivate: [AdministrationGuard]
 }, {
   path: 'account',
-  component: AccountComponent 
+  component: AccountComponent
 }];
 
 @NgModule({

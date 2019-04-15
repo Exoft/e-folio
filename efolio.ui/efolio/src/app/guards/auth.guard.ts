@@ -13,8 +13,8 @@ export class AuthGuard implements CanActivate {
               public loginValidatorBar: MatSnackBar) {
   }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {    
-    let user = this.authService.isAuthenticated();
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    const user = this.authService.isAuthenticated();
     if (!user) {
       this.loginValidatorBar.open('Please sign in to eFolio or create an account', 'Ok', {
         duration: 3000,

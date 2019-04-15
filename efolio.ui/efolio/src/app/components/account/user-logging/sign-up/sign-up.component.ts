@@ -13,12 +13,13 @@ import { LoaderService } from 'src/app/services/loader.service';
 export class SignUpComponent {
   public passwordVisibility = true;
   public confirmPasswordVisibility = true;
+  public passwordRegex = '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$';
 
   public registerForm = new FormGroup({
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
     email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
-    password: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.compose([Validators.required, Validators.pattern(this.passwordRegex)])),
     confirmPassword: new FormControl('', Validators.required)
   }, {
       validators: this.validationService.confirmPasswordValidator
@@ -60,12 +61,15 @@ export class SignUpComponent {
         );
     }
     this.registerForm.reset();
-    this.registerForm.markAsUntouched();
-
+/*
     let control: AbstractControl = null;
     Object.keys(this.registerForm.controls).forEach((name) => {
       control = this.registerForm.controls[name];
       control.setErrors(null);
-    });
+    });*/
+
+    // this.registerForm.markAsUntouched();
+    this.registerForm.markAsPristine();
+    this.registerForm.markAsUntouched();
   }
 }

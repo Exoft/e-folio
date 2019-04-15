@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+import { environment } from '../../environments/environment';
+
 @Injectable({
     providedIn: 'root'
 })
@@ -10,15 +12,15 @@ export class AuthService {
     constructor(private httpClient: HttpClient) { }
 
     signIn(loginData): Observable<any> {
-        return this.httpClient.post('http://localhost:5000/api/account/login/', loginData);
+        return this.httpClient.post(environment.apiUrl + '/api/account/login/', loginData);
     }
 
     signUp(registerData): Observable<any> {
-        return this.httpClient.post('http://localhost:5000/api/account/register/', registerData);
+        return this.httpClient.post(environment.apiUrl + '/api/account/register/', registerData);
     }
 
     getUserInfo(userId): Observable<any> {
-        return this.httpClient.get('http://localhost:5000/api/admin/' + userId);
+        return this.httpClient.get(environment.apiUrl + '/api/admin/' + userId);
     }
 
     isAuthenticated(): boolean {

@@ -36,7 +36,7 @@ export class Interceptor implements HttpInterceptor {
                         observable = empty();
 
                         this.authService.deleteUserData();
-                        this.router.navigate['account'];
+                        this.router.navigate(['account']);
                     } else if (resp.status === 0 || resp.status >= 500) {
                         observable = empty();
 
@@ -53,13 +53,11 @@ export class Interceptor implements HttpInterceptor {
                             duration: 8000,
                             panelClass: ['snackBar'],
                         });
-                    }
-                    else {
+                    } else {
                         observable = throwError(resp);
                     }
-                }
-                else {
-                    observable = throwError(resp)
+                } else {
+                    observable = throwError(resp);
                 }
                 return observable;
             })

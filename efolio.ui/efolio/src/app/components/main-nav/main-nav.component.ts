@@ -14,7 +14,7 @@ export class MainNavComponent {
 
   public isAdmin(): boolean {
     return this.authService.userRole() === 'admin';
-  } 
+  }
 
   @HostListener('window:resize', ['$event']) onResize() {
     if (window.innerWidth > 700) {
