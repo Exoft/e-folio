@@ -4,7 +4,7 @@ import { Developer } from '../models/developer.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class DeveloperService {
 
@@ -14,7 +14,7 @@ export class DeveloperService {
     return this.http.get<Developer>('http://localhost:5000/api/developers');
   }
 
-  getOneDeveloper(id: number):Observable<any> {
+  getOneDeveloper(id: number): Observable<any> {
     return this.http.get<any>('http://localhost:5000/api/developers/' + id);
   }
 

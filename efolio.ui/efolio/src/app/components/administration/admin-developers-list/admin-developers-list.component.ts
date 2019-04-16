@@ -5,6 +5,7 @@ import { Developer } from 'src/app/models/developer.model';
 import { LoaderService } from 'src/app/services/loader.service';
 import { AddDeveloperDialogComponent } from './dialogs/add-dialog/add-developer-dialog.component';
 import { EditDeveloperDialogComponent } from './dialogs/edit-dialog/edit-developer-dialog.component';
+import { EditDeveloperData } from '../../../models/edit-developer-data.model';
 
 @Component({
   selector: 'app-admin-developers-list',
@@ -46,19 +47,19 @@ export class AdminDevelopersListComponent implements OnInit {
   }
 
   addDeveloper(developer: Developer) {
-    //this.loaderService.startLoading();
+    // this.loaderService.startLoading();
     const dialogRef = this.dialog.open(AddDeveloperDialogComponent, {
       data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
-      if (result) {      
+      if (result) {
         this.loaderService.stopLoading();
         this.vaidatorBar.open('Developer was added', 'Ok', {
           duration: 5000,
           panelClass: ['snackBar']
         });
-      this.developers.push(result);
-      this.dataSource.data = this.developers;
+        this.developers.push(result);
+        this.dataSource.data = this.developers;
       }
     });
   }
@@ -79,25 +80,33 @@ export class AdminDevelopersListComponent implements OnInit {
 
   editDeveloper(developer: Developer) {
     const dialogRef = this.dialog.open(EditDeveloperDialogComponent, {
-      data: {
-        id: developer.id,
-        fullName: developer.fullName,
-        internalCV: developer.internalCV,
-        externalCV: developer.externalCV
-      }
+      data: new EditDeveloperData(developer, null)
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result !== undefined) {
-        const editDeveloper = new Developer(result.id, result.fullName, result.internalCV, result.externalCV, null);
+        const editDeveloper = new Developer(
+          result.developer.id,
+          result.developer.fullName,
+          result.developer.internalCV,
+          result.developer.externalCV,
+          null
+        );
         this.loaderService.stopLoading();
-        this.administrationService.editDeveloper(editDeveloper)
-          .subscribe(() => {
-            this.vaidatorBar.open('Developer was updated.', 'Ok', {
-              duration: 5000,
-              panelClass: ['snackBar'],
-            });
-            this.getData();
+        this.administrationService.editDeveloper(editDeveloper, result.imageData)
+          .subscribe(
+            resp => {
+              this.vaidatorBar.open('Developer was updated.', 'Ok', {
+                duration: 5000,
+                panelClass: ['snackBar'],
+              });
+              this.getData();
+            },
+            error => {
+              this.vaidatorBar.open(error.message, 'Ok', {
+                duration: 5000,
+                panelClass: ['error-snackbar'],
+              });
           });
       }
     });

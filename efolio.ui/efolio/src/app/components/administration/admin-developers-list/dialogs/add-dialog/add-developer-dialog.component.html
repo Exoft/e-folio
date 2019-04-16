@@ -2,21 +2,25 @@
   <h3>Add new developer</h3>
 
   <form class="mat-dialog-content" [formGroup]="formControl">
+  
     <div class="form">
       <mat-form-field color="accent">
-        <input matInput formControlName="fullName" class="form-control" placeholder="fullName" name="fullName" required>
+        <input matInput formControlName="fullName" class="form-control" name="fullName" required>
+        <mat-placeholder>Full name</mat-placeholder>
       </mat-form-field>
     </div>
 
     <div class="form">
       <mat-form-field color="accent">
-        <input matInput formControlName="internalCV" class="form-control" placeholder="internalCV" name="internalCV">
+        <input matInput formControlName="internalCV" class="form-control" name="internalCV">
+        <mat-placeholder>Internal CV</mat-placeholder>
       </mat-form-field>
     </div>
 
     <div class="form">
       <mat-form-field color="accent">
-        <input matInput formControlName="externalCV" class="form-control" placeholder="externalCV" name="externalCV">
+        <input matInput formControlName="externalCV" class="form-control" name="externalCV">
+        <mat-placeholder>External CV</mat-placeholder>
       </mat-form-field>
     </div>
 

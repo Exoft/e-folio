@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
-import { throwError, empty } from 'rxjs';
+import { throwError, empty, EMPTY } from 'rxjs';
 import { LoaderService } from '../services/loader.service';
 import { AuthService } from '../services/auth.service';
 
@@ -33,22 +33,22 @@ export class Interceptor implements HttpInterceptor {
 
                 if (resp instanceof HttpErrorResponse) {
                     if (resp.status === 401 || resp.status === 403) {
-                        observable = empty();
-
+                        observable = EMPTY;
                         this.authService.deleteUserData();
                         this.router.navigate(['account']);
                     } else if (resp.status === 0 || resp.status >= 500) {
-                        observable = empty();
-
-                        this.loaderService.stopLoading();
                         let displayMessage: string;
 
                         if (resp.status === 0) {
                             displayMessage = 'Cannot connect to server.';
+                        } else if (resp.status === 500) {
+                            displayMessage = resp.message;
                         } else {
                             displayMessage = 'Server error.';
                         }
 
+                        observable = throwError(resp);
+                        this.loaderService.stopLoading();
                         this.notification.open(displayMessage, 'Ok', {
                             duration: 8000,
                             panelClass: ['error-snackbar'],

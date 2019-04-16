@@ -3,6 +3,6 @@
     <span class="header">
       {{ developersInput.fullName }}
     </span>
-    <a class="cv" target="_blank" href="{{ developersInput.internalCV }}">Show CV</a>
+    <a class="cv" *ngIf="developersInput.internalCV" target="_blank" href="{{ developersInput.internalCV }}">Show CV</a>
   </div>
 </div>

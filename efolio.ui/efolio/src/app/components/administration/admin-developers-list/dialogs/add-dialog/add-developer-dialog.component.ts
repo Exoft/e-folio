@@ -16,19 +16,24 @@ export class AddDeveloperDialogComponent {
               public administrationService: AdministrationService) { }
 
   formControl = new FormGroup({
-    'fullName': new FormControl(null),
-    'internalCV': new FormControl(null),
-    'externalCV': new FormControl(null)
+    fullName: new FormControl(null),
+    internalCV: new FormControl(null),
+    externalCV: new FormControl(null)
   });
 
   public confirmAdd(): void {
     const form = this.formControl.value;
     this.data = new Developer(0, form.fullName, form.internalCV, form.externalCV, null);
-    this.dialogRef.close(this.data);
     this.administrationService.addDeveloper(this.data)
-      .subscribe(result => {
-
-      });
+      .subscribe(
+        result => {
+          this.dialogRef.close(this.data);
+        },
+        error => {
+          this.data = null; 
+          this.dialogRef.close(this.data);
+        }
+      );
   }
 
   public onNoClick(): void {

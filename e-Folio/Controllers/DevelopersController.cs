@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
 using eFolio.DTO.Common;
 using eFolio.BL;
 using eFolio.EF;
@@ -14,7 +13,6 @@ using Microsoft.AspNetCore.Identity;
 using eFolio.Attibutes;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
-using System.IO;
 
 namespace eFolio.Api.Controllers
 {
@@ -115,17 +113,17 @@ namespace eFolio.Api.Controllers
 
         [HttpPut("avatar/{id}")]
         [HasClaim("role", "admin")]
-        public async Task<IActionResult> UploadPhoto(int id, IFormFile formFile)
+        public async Task<IActionResult> UploadPhoto(int id, IFormFile image)
         {
             try
             {
-                string contentType = formFile.ContentType;
+                string contentType = image.ContentType;
                 if (contentType.Contains("image/png") ||
                     contentType.Contains("image/jpeg"))
                 {
                     await _developerService.ChangeAvatar(
                         id, contentType.Split('/').Last(),
-                        formFile.OpenReadStream()
+                        image.OpenReadStream()
                     );
                     return Ok();
                 }

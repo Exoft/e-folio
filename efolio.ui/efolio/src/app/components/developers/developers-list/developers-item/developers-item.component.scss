@@ -4,6 +4,7 @@
     margin-left: 10%;
 
 }
+ 
 a:link{
     text-decoration: none;
 }
@@ -14,19 +15,19 @@ a:link{
 }
 
 .card.mat-card
-{
+{ 
+    height: 145px;
     padding: 0;
 }
 
 .position { 
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
+    flex-direction: row; 
     cursor: pointer;
 }
 
 img {
-    width: 24%;
-    //height: auto;
+    width: 145px; 
+    height: 145px;
+    object-fit: cover;
 }

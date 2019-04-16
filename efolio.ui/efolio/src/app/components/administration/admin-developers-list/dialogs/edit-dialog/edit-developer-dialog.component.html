@@ -2,28 +2,44 @@
   <h3 mat-dialog-title> You select user with id: {{ data.id }}</h3>
 
   <form mat-dialog-content>
+    <img [src]="previewSrc" *ngIf="previewSrc"/>
+    <img src="https://www.travelcontinuously.com/wp-content/uploads/2018/04/empty-avatar-300x300.png"
+         *ngIf="!previewSrc"/>
+
     <div class="form">
       <mat-form-field >
-        <input matInput [(ngModel)]="data.id" placeholder="id" name="id" disabled>
+        <input matInput [(ngModel)]="data.developer.id" name="id" disabled>
+        <mat-placeholder>Id</mat-placeholder>
       </mat-form-field>
     </div>
 
     <div class="form">
         <mat-form-field >
-          <input matInput [(ngModel)]="data.fullName" placeholder="fullName" name="fullName">
+          <input matInput [(ngModel)]="data.developer.fullName" name="fullName">
+          <mat-placeholder>Full name</mat-placeholder>
         </mat-form-field>
     </div>
 
     <div class="form">
         <mat-form-field>
-          <input matInput [(ngModel)]="data.internalCV" placeholder="internalCV" name="internalCV">
+          <input matInput [(ngModel)]="data.developer.internalCV" name="internalCV">
+          <mat-placeholder>Internal CV</mat-placeholder>
+
         </mat-form-field>
     </div>
 
     <div class="form">
         <mat-form-field>
-          <input matInput [(ngModel)]="data.externalCV" placeholder="externalCV" name="externalCV">
+          <input matInput [(ngModel)]="data.developer.externalCV" name="externalCV">
+          <mat-placeholder>External CV</mat-placeholder>
         </mat-form-field>
+    </div>
+    <div class="upload-container">
+      <button mat-button (click)="openFileExplorer()"><mat-icon>file_upload</mat-icon>Select</button>
+      <input #file
+             (change)="fileSelected($event)"
+             type="file"  
+             accept="image/*"/>
     </div>
 
     <div mat-dialog-actions>

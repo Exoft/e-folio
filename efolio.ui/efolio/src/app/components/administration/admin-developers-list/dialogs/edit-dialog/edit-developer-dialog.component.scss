@@ -1,3 +1,32 @@
-.form{
-    background: grey;
+mat-icon {
+    font-size: 18px;
+    text-align: center;
+}
+
+mat-placeholder{
+    opacity: 0.4;
+    color: white;
+}
+   
+img {
+    width: 300px;
+    max-height: 300px;
+    object-fit: contain;
+    margin-bottom: 5%;
+}
+
+.upload-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    text-align: left;   
+
+    button {
+        text-align: left;
+    }
+    
+    input {
+        display:none;
+    } 
 }
