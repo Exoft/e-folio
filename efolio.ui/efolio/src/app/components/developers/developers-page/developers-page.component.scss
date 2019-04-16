@@ -3,10 +3,18 @@ div.container{
     height: 100%;
 }
 div.header{
-    display: flex;
+    display: grid;
     justify-content: center;
     align-items: center;
 }
 span.header{
     font-size: 64px;
+}
+.cv{
+    text-decoration: none;
+    color: lightslategrey;
+    display: grid;
+    align-items: center;
+    align-content: center;
+    font-size: 48px;  
 }

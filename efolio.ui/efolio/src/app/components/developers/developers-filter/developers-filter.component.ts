@@ -10,11 +10,11 @@ export class DevelopersFilterComponent {
   public searchString = '';
   public check: boolean[] = [false, false, false, false];
   public filterStrings: string[] = [' .Net', ' Java', ' Angular', ' Node'];
-  @Output() public SearchStringChanged = new EventEmitter<string>();
+  @Output() public searchStringChanged = new EventEmitter<string>();
   constructor() { }
   public onSearchClick() {
     console.log(this.searchString);
-    this.SearchStringChanged.emit(this.searchString);
+    this.searchStringChanged.emit(this.searchString);
   }
   public checkChange(i: number): void {
     this.check[i] = !this.check[i];
