@@ -1,5 +1,6 @@
 ﻿using eFolio.EF;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -45,8 +46,10 @@ namespace eFolio.BL
 
         public async Task UpdateAsync(DeveloperEntity item)
         {
-            db.Developers.Update(item);
-
+            DeveloperEntity original = await db.Set<DeveloperEntity>().FindAsync(item.Id);
+            original.FullName = item.FullName;
+            original.CVLink = item.CVLink;
+            db.Set<DeveloperEntity>().Update(original);
             await db.SaveChangesAsync();
         }
 
