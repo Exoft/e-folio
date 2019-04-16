@@ -1,36 +1,45 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Text;
-//using MimeKit;
-//using MailKit.Net.Smtp;
-//using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using MimeKit;
+using MailKit.Net.Smtp;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
+namespace eFolio.BL.Services
+{
+    public class EmailService :IEmailSender
+    {
 
-//namespace eFolio.BL.Services
-//{
-//   public class EmailService
-//    {
+        public async Task SendEmailAsync(string email, string name, string message)
+        {
+            var emailMessage = new MimeMessage();
 
-//        public async Task SendEmailAsync(string email, string name, string message)
-//        {
-//            var emailMessage = new MimeMessage();
+            emailMessage.From.Add(new MailboxAddress(name, "yelyzaveta.brednieva.pz.2016@lpnu.ua"));
+            emailMessage.To.Add(new MailboxAddress("Efolio", "torautowaidu@gmail.com"));
+            emailMessage.Subject = "eFolio support";
+            emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Html)
+            {
+                Text = email + " " + message 
+            };
 
-//            emailMessage.From.Add(new MailboxAddress(name, email));
-//            emailMessage.To.Add(new MailboxAddress("Efolio", "torautowaidu@gmail.com"));
-//            emailMessage.Subject = "Customer support";
-//            emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Html)
-//            {
-//                Text = message
-//            };
+            using (var client = new SmtpClient())
+            {
+                await client.ConnectAsync("smtp.gmail.com", 465, true);
+                try
+                {
+                    await client.AuthenticateAsync("yelyzaveta.brednieva.pz.2016@lpnu.ua", "03.02.1999");
 
-//            using (var client = new SmtpClient())
-//            {
-//                await client.ConnectAsync("smtp.gmail.com", 25, false);
-//                //await client.AuthenticateAsync("torautowaidu@gmail.com", "password");
-//                await client.SendAsync(emailMessage);
+                }
+                catch (Exception e)
+                {
+                    var ee = e; 
+                    throw;
+                }
+                await client.SendAsync(emailMessage);
 
-//                await client.DisconnectAsync(true);
-//            }
-//        }
-//    }
-//}
+                await client.DisconnectAsync(true);
+            }
+        }
+    }
+}
