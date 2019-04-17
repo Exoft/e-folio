@@ -11,7 +11,7 @@ using System.Net;
 using System.Threading.Tasks;
 
 namespace eFolio.API.Controllers
-{ 
+{
     [Route("api/[controller]")]
     [Produces("application/json")]
     [ApiController]
@@ -29,6 +29,6 @@ namespace eFolio.API.Controllers
             await emailService.SendEmailAsync(emailData.Email, emailData.Name, emailData.Message);
             return Ok();
         }
-       
+
     }
 }

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using MimeKit;
 using MailKit.Net.Smtp;
 using System.Threading.Tasks;
@@ -8,7 +6,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace eFolio.BL.Services
 {
-    public class EmailService :IEmailSender
+    public class EmailService : IEmailSender
     {
 
         public async Task SendEmailAsync(string email, string name, string message)
