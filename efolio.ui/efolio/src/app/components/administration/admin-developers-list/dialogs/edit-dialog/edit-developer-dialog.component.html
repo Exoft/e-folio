@@ -4,7 +4,7 @@
   <form mat-dialog-content>
     <img [src]="previewSrc" *ngIf="previewSrc"/>
     <img src="https://www.travelcontinuously.com/wp-content/uploads/2018/04/empty-avatar-300x300.png"
-         *ngIf="!previewSrc"/>
+         *ngIf="previewSrc === null || previewSrc === undefined"/>
 
     <div class="form">
       <mat-form-field >
