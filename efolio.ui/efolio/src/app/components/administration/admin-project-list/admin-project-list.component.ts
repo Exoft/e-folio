@@ -120,13 +120,15 @@ export class AdminProjectListComponent implements OnInit {
   }
 
   private checkResult(result): boolean {
-    if (result === undefined)
+    if (result === undefined) {
       return false;
+    }
 
-    if (result.name.trim() == '' &&
-      result.internalDescription.trim() == '' &&
-      result.externalDescription.trim() == '')
+    if (result.name.trim() === '' &&
+      result.internalDescription.trim() === '' &&
+      result.externalDescription.trim() === '') {
       return false;
+    }
 
     return true;
   }

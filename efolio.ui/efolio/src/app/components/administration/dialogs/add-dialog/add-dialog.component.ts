@@ -19,14 +19,14 @@ export class AddDialogComponent {
     public dialogRef: MatDialogRef<AddDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 
-  onCancelClick(): void {
-    this.dialogRef.close();
-  }
-
   public addForm = new FormGroup({
     nameFormControl: new FormControl('', Validators.required),
     inDescFormControl: new FormControl('', Validators.required),
     exDescFormControl: new FormControl('', Validators.required)
-  })
+  });
+
+  onCancelClick(): void {
+    this.dialogRef.close();
+  }
 
 }
